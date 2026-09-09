@@ -1,3 +1,1 @@
-from .agent import build_agent, handover
-
-__all__ = ["build_agent", "handover"]
+"""Standup — who is waiting on you, what will hurt later, what to do first."""
