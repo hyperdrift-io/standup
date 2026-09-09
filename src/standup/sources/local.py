@@ -71,6 +71,10 @@ def read_repo(repo: Path, now: datetime | None = None) -> RepoState:
     )
 
 
+def _last_commit_iso(repo: Path) -> str:
+    return _run(["git", "log", "-1", "--format=%cI"], repo)
+
+
 class LocalSource:
     def __init__(self, path: str):
         self.root = Path(path).expanduser()
@@ -78,5 +82,5 @@ class LocalSource:
     def read(self) -> list[RepoState]:
         if (self.root / ".git").exists():
             return [read_repo(self.root)]
-        repos = sorted(p.parent for p in self.root.glob("*/.git"))
+        repos = sorted((p.parent for p in self.root.glob("*/.git")), key=_last_commit_iso, reverse=True)
         return [read_repo(r) for r in repos[:12]]
