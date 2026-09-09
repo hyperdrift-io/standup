@@ -8,7 +8,7 @@ Built with the [Strands Agents SDK](https://strandsagents.com) for the [Agents f
 
 ## Real output
 
-`trekhleb`, a stranger, on the hosted page. Twelve public repositories, 52 seconds, nothing typed but the handle. These are the model's words, unedited:
+`trekhleb`, a stranger. Twelve public repositories, 52 seconds, nothing typed but the handle. Here in the CLI's own rendering, the model's words unedited:
 
 ```
 Main pipelines across javascript-algorithms, yesbrainer, and trekhleb.github.io are green, with clean zero-open-item states on trekhleb/trekhleb, cali-vibe, and hello-docker.
@@ -52,7 +52,7 @@ What Standup looked at (read-only):
 
 ## How it decides
 
-The ordering is the product. Anything a *person* is waiting on beats anything private. Then anything that will be lost or painful later. Then the thread you were pulling when you stopped.
+The ordering is the product. Anything a *person* is waiting on beats anything that only costs you. Then anything that will be lost or painful later. Then the thread you were pulling when you stopped.
 
 Bots are named and dropped: a Dependabot pull request is never someone waiting. A quiet account gets one item, not a padded three.
 
@@ -60,7 +60,7 @@ It never tells you off for leaving. People leave projects because life happens, 
 
 ## Read-only, and it shows you
 
-The agent has no GitHub write path — no token scope for it, no tool that could use one. A hook records every read as it happens and the brief carries that list, printed at the bottom of every run and on the page. Read-only is shown, not claimed.
+The agent has no GitHub write path: no tool that could write, and nothing in the code that calls one. Every read lands in an audit the brief carries with it, printed at the bottom of every run and on the page. Read-only is shown, not claimed.
 
 The one thing that ever writes is the last step of the GitHub Action: your token, your repository, one issue.
 
@@ -78,18 +78,18 @@ standup trekhleb          # a GitHub handle or org
 standup ~/dev/my-project  # or a folder of repositories
 ```
 
-Set `GOOGLE_SA_KEY_B64` + `VERTEX_PROJECT`, or `GEMINI_API_KEY`, or leave both unset and Strands falls back to Amazon Bedrock with your AWS credentials (see `.env.example` and `src/standup/model.py`). `GITHUB_TOKEN` is read from the environment, falling back to `gh auth token`.
+Set `GOOGLE_SA_KEY_B64` + `VERTEX_PROJECT`, or `GEMINI_API_KEY`, or leave both unset and Strands falls back to Amazon Bedrock with your AWS credentials (see `.env.example` and `src/standup/model.py`). `GITHUB_TOKEN` (or `GH_TOKEN`) is read from the environment, falling back to `gh auth token`.
 
 **MCP server** — ask Claude or Cursor "what should I do first on my projects?" and the brief comes back in the tool you already have open. Claude Desktop, `claude_desktop_config.json`:
 
 ```json
 {"mcpServers": {"standup": {"command": "/path/to/.venv/bin/standup-mcp",
-  "env": {"GOOGLE_SA_KEY_B64": "…", "VERTEX_PROJECT": "…"}}}}
+  "env": {"GOOGLE_SA_KEY_B64": "…", "VERTEX_PROJECT": "…", "GITHUB_TOKEN": "…"}}}}
 ```
 
-Cursor takes the same block in `.cursor/mcp.json`. One tool, `standup(target)`.
+Cursor takes the same block in `.cursor/mcp.json`. One tool, `standup(target)`. The token is any read-only one; without it the server falls back to `gh auth token`, which a GUI-launched app often cannot see.
 
-**GitHub Action** — copy [`examples/standup.yml`](examples/standup.yml) into `.github/workflows/`, add the model secret, and Monday morning brings an issue instead of a backlog.
+**GitHub Action** — copy [`examples/standup.yml`](examples/standup.yml) into `.github/workflows/`, add one model secret — a Gemini key, or the Vertex pair — and Monday morning brings an issue instead of a backlog.
 
 ## Architecture
 
@@ -101,14 +101,14 @@ flowchart LR
       L["git + gh<br/>local folder"]
     end
     S --> ST["RepoState × n"]
-    ST --> SC1["Scout · repo 1"]
-    ST --> SC2["Scout · repo 2"]
-    ST --> SCn["Scout · repo n"]
     subgraph GR["Strands Graph · scouts run in parallel"]
-      SC1 --> T["Triage<br/>ordering rule → typed Brief"]
-      SC2 --> T
-      SCn --> T
+      SC1["Scout · repo 1"] --> T["Triage<br/>ordering rule → typed Brief"]
+      SC2["Scout · repo 2"] --> T
+      SCn["Scout · repo n"] --> T
     end
+    ST --> SC1
+    ST --> SC2
+    ST --> SCn
     A["Audit hook<br/>everything looked at"] -.-> GR
     P["Previous brief<br/>one JSON file"] -.-> T
     T --> B["Brief<br/>1–3 items · evidence · minutes"]
@@ -118,9 +118,9 @@ flowchart LR
     B --> WEB["standup.hyperdrift.io"]
 ```
 
-- **One GraphQL call per account.** `repositoryOwner(login:)` reads a person and an organisation the same way, and costs 1 point of the 5,000 GitHub gives you per hour. Repositories pushed within the last year, most recent first, twelve at most; forks and archives skipped.
+- **One GraphQL call per account.** `repositoryOwner(login:)` reads a person and an organisation the same way, and costs 1 point of the 5,000 GitHub gives you per hour (measured 2026-09-09 on `trekhleb`: `cost 1`). Repositories pushed within the last year, most recent first, twelve at most; forks and archives skipped.
 - **A Strands `Graph`.** One scout agent per repository, all of them in flight at once, each returning a typed `RepoRead` — what moved, who is waiting, what will hurt, the dropped thread. One triage agent reads all of it, applies the ordering rule, and returns a `Brief` through `structured_output`. That single Pydantic shape feeds the CLI text, the MCP result, the Action's issue body and the page.
-- **A hook on tool and node events** appends every read to the audit that ships with the brief.
+- **A hook on every graph node, plus one line when the source reads GitHub,** appends each read to the audit that ships with the brief.
 - **One JSON file per handle** holds the last brief, so the next run can open with what changed since. No accounts, no database.
 - **The model** is Vertex Gemini by default, a Gemini API key or Amazon Bedrock otherwise.
 
