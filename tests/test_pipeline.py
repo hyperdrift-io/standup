@@ -18,6 +18,14 @@ class _FakeEmptySource:
         return []
 
 
+class _FakeEmptyLocalSource:
+    def __init__(self, path: str):
+        self.path = path
+
+    def read(self):
+        return []
+
+
 def test_github_error_becomes_honest_brief(monkeypatch, tmp_path):
     monkeypatch.setenv("STANDUP_STATE", str(tmp_path))
     monkeypatch.setattr("standup.pipeline.GitHubSource", _FakeErrorSource)
@@ -33,3 +41,10 @@ def test_empty_read_becomes_honest_brief(monkeypatch, tmp_path):
     brief = run_standup("nobody")
     assert len(brief.items) == 1
     assert "no repositories pushed in the last year" in brief.could_not_see[0]
+
+
+def test_empty_local_read_says_no_git_repositories(monkeypatch, tmp_path):
+    monkeypatch.setenv("STANDUP_STATE", str(tmp_path))
+    monkeypatch.setattr("standup.pipeline.LocalSource", _FakeEmptyLocalSource)
+    brief = run_standup(str(tmp_path))
+    assert "no git repositories found" in brief.could_not_see[0]

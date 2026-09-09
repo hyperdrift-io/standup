@@ -30,8 +30,9 @@ def run_standup(target: str, on_progress: Callable[[str], None] = lambda _: None
     target = target.strip()
     audit = Audit(target)
     on_progress("looking")
+    path = is_path(target)
     try:
-        if is_path(target):
+        if path:
             states = LocalSource(target).read()
             audit.note(f"read {len(states)} local repositories with git and gh", target)
         else:
@@ -40,7 +41,9 @@ def run_standup(target: str, on_progress: Callable[[str], None] = lambda _: None
     except GitHubError as exc:
         return _honest(target, str(exc), audit)
     if not states:
-        return _honest(target, f"no repositories pushed in the last year for {target}", audit)
+        reason = (f"no git repositories found in {target} or its subfolders" if path
+                  else f"no repositories pushed in the last year for {target}")
+        return _honest(target, reason, audit)
     previous = store.load(target)
     brief, _failed = run_graph(states, previous, audit, on_progress)
     store.save(brief)
