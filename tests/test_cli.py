@@ -25,3 +25,16 @@ def test_default_prints_rendered_text(monkeypatch, tmp_path, capsys):
     out = capsys.readouterr().out
     assert "s" in out
     assert "1. t" in out
+
+
+def test_failed_brief_is_one_plain_line_on_stderr(monkeypatch, tmp_path, capsys):
+    monkeypatch.setenv("STANDUP_STATE", str(tmp_path))
+
+    def _raise(target, on_progress=None):
+        raise RuntimeError("Standup could not finish the brief (Boom)")
+
+    monkeypatch.setattr(cli, "run_standup", _raise)
+    assert cli.main(["x"]) == 1
+    err = capsys.readouterr().err
+    assert "Standup could not finish the brief" in err
+    assert "Traceback" not in err

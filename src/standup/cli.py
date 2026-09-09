@@ -20,6 +20,10 @@ def main(argv: list[str] | None = None) -> int:
     a = p.parse_args(argv)
     if a.previous and a.previous.exists():
         store.save(Brief.model_validate_json(a.previous.read_text()))
-    brief = run_standup(a.target, on_progress=lambda m: print(f"… {m}", file=sys.stderr))
+    try:
+        brief = run_standup(a.target, on_progress=lambda m: print(f"… {m}", file=sys.stderr))
+    except RuntimeError as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
     print(brief.model_dump_json(indent=1) if a.json else brief_to_text(brief))
     return 0
