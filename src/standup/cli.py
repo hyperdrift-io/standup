@@ -19,7 +19,12 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--previous", type=Path, help="a previous brief JSON to compare against")
     a = p.parse_args(argv)
     if a.previous and a.previous.exists():
-        store.save(Brief.model_validate_json(a.previous.read_text()))
+        text = a.previous.read_text().strip()
+        if text:
+            try:
+                store.save(Brief.model_validate_json(text))
+            except ValueError:
+                print("… ignoring --previous: not a brief", file=sys.stderr)
     try:
         brief = run_standup(a.target, on_progress=lambda m: print(f"… {m}", file=sys.stderr))
     except RuntimeError as exc:

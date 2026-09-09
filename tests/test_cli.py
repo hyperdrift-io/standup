@@ -38,3 +38,23 @@ def test_failed_brief_is_one_plain_line_on_stderr(monkeypatch, tmp_path, capsys)
     err = capsys.readouterr().err
     assert "Standup could not finish the brief" in err
     assert "Traceback" not in err
+
+
+def test_empty_previous_file_is_skipped(monkeypatch, tmp_path, capsys):
+    monkeypatch.setenv("STANDUP_STATE", str(tmp_path))
+    monkeypatch.setattr(cli, "run_standup", lambda target, on_progress=None: _brief(target))
+    previous_file = tmp_path / "previous.json"
+    previous_file.write_text("")
+    assert cli.main(["x", "--previous", str(previous_file)]) == 0
+    out = capsys.readouterr().out
+    assert "s" in out
+
+
+def test_malformed_previous_file_is_skipped(monkeypatch, tmp_path, capsys):
+    monkeypatch.setenv("STANDUP_STATE", str(tmp_path))
+    monkeypatch.setattr(cli, "run_standup", lambda target, on_progress=None: _brief(target))
+    previous_file = tmp_path / "previous.json"
+    previous_file.write_text("not json")
+    assert cli.main(["x", "--previous", str(previous_file)]) == 0
+    err = capsys.readouterr().err
+    assert "ignoring --previous" in err
