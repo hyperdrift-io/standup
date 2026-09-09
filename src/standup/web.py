@@ -5,15 +5,14 @@ import asyncio
 import html
 import json
 import os
-import queue
 import re
-import threading
 import time
 from pathlib import Path
 
 from dotenv import load_dotenv
 
-load_dotenv()  # PM2 (interpreter: none) does not inject the app's .env — load it ourselves.
+# PM2 (interpreter: none) does not inject the app's .env — load it ourselves, never over the host.
+load_dotenv(override=False)
 
 from sse_starlette.sse import EventSourceResponse
 from starlette.applications import Starlette
@@ -22,23 +21,27 @@ from starlette.responses import HTMLResponse, JSONResponse, PlainTextResponse, R
 from starlette.routing import Mount, Route
 from starlette.staticfiles import StaticFiles
 
-from . import store
+from . import runs, store
 from .models import Brief
 from .pipeline import run_standup
 
 CACHE: dict[str, tuple[float, Brief]] = {}
 TTL = 3600
-RUNS = asyncio.Semaphore(4)
-LOCKS: dict[str, asyncio.Lock] = {}
+SWEEP_EVERY = 3600
+_swept = 0.0
 STATIC = Path(__file__).parent / "static"
 REPO = "https://github.com/hyperdrift-io/standup"
 HD = "https://ai.hyperdrift.io/?from=standup"
 
 
 def _evict_cache() -> None:
+    global _swept
     now = time.time()
     for stale in [k for k, (t, _) in CACHE.items() if now - t >= TTL]:
         del CACHE[stale]
+    if now - _swept >= SWEEP_EVERY:
+        _swept = now
+        store.sweep(7)  # seven days of session files, swept while the page is awake
 
 
 def _norm(target: str) -> str:
@@ -52,7 +55,14 @@ def _not_a_handle(target: str) -> bool:
     return not _HANDLE.fullmatch(target)
 
 
-def _posthog(event: str, props: dict) -> str:
+SANITISE = ("sanitize_properties:function(p){p.$current_url='https://standup.hyperdrift.io/';"
+            "delete p.$pathname;delete p.$referrer;delete p.$initial_referrer;"
+            "delete p.$initial_referring_domain;return p}")
+
+
+def _posthog(event: str | None = None, props: dict | None = None) -> str:
+    """The init snippet, plus one capture when there is something to capture. The URL carries the
+    handle, so every property that could leak it is rewritten before anything leaves the browser."""
     key = os.environ.get("POSTHOG_KEY")
     if not key:
         return ""
@@ -63,8 +73,9 @@ def _posthog(event: str, props: dict) -> str:
             f"u.toString=function(t){{var e='posthog';return'posthog'!==a&&(e+='.'+a),t||(e+=' (stub)'),e}},u.people.toString=function(){{return u.toString(1)+'.people (stub)'}},"
             f"o='init capture identify'.split(' '),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])}},e.__SV=1)}}(document,window.posthog||[]);"
             f"posthog.init('{key}',{{api_host:'https://eu.i.posthog.com',person_profiles:'identified_only',"
-            f"autocapture:false,capture_pageview:false,capture_pageleave:false}});"
-            f"posthog.capture('{event}',{json.dumps(props)});</script>")
+            f"autocapture:false,capture_pageview:false,capture_pageleave:false,{SANITISE}}});"
+            + (f"posthog.capture('{event}',{json.dumps(props or {})});" if event else "")
+            + "</script>")
 
 
 _CTA_SCRIPT = ("<script>document.addEventListener('click',function(e){"
@@ -72,7 +83,7 @@ _CTA_SCRIPT = ("<script>document.addEventListener('click',function(e){"
                "a&&window.posthog&&posthog.capture('cta_clicked',{target:a.dataset.cta})});</script>")
 
 
-def _page(title: str, body: str, ph: str = "") -> HTMLResponse:
+def _page(title: str, body: str, ph: str = "", status: int = 200) -> HTMLResponse:
     return HTMLResponse(f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(title)}</title>
 <link rel="stylesheet" href="/static/standup.css">{ph}</head><body>
@@ -80,7 +91,7 @@ def _page(title: str, body: str, ph: str = "") -> HTMLResponse:
 <main>{body}</main>
 <footer><a href="{REPO}" data-cta="repo">Open source, MIT</a> · read-only, sees only what GitHub shows a stranger · <a href="{HD}" data-cta="hyperdrift">Built by Hyperdrift</a></footer>
 {_CTA_SCRIPT}
-</body></html>""")
+</body></html>""", status_code=status)
 
 
 def render_brief(b: Brief, seconds: float = 0) -> str:
@@ -99,11 +110,22 @@ def render_brief(b: Brief, seconds: float = 0) -> str:
             f"<p><small>Generated {b.generated_at}. Share this page: it stays for an hour.</small></p></article>")
 
 
-async def home(_: Request):
-    return _page("Standup", """<form method="post"><label for="t">Your GitHub handle</label>
+FORM = """<form method="post"><label for="t">Your GitHub handle</label>
 <input id="t" name="target" placeholder="yannvr" required autocomplete="off" autofocus>
 <button>What should I do first?</button>
-<p>Reads your public repositories once, in the open. Never writes. Private repos stay invisible to it.</p></form>""")
+<p>Reads your public repositories once, in the open. Never writes. Private repos stay invisible to it.</p></form>"""
+
+
+async def home(_: Request):
+    return _page("Standup", FORM, _posthog())
+
+
+async def robots(_: Request):
+    return PlainTextResponse("User-agent: *\nDisallow: /\nAllow: /$\n")
+
+
+def _try_again(message: str) -> HTMLResponse:
+    return _page("Standup", f"<p>{html.escape(message)}</p>{FORM}", _posthog(), status=404)
 
 
 async def go(request: Request):
@@ -114,18 +136,18 @@ async def go(request: Request):
 async def show(request: Request):
     target = _norm(request.path_params["target"])
     if _not_a_handle(target):
-        return PlainTextResponse("not a handle", status_code=404)
+        return _try_again("That does not look like a GitHub handle. Letters, digits and hyphens, up to 39.")
     hit = CACHE.get(target)
     if hit and time.time() - hit[0] < TTL:
         b = hit[1]
         return _page(f"Standup · {target}", render_brief(b),
                      _posthog("standup_rendered",
                               {"handle_length": len(target), "items": len(b.items), "seconds": 0, "cached": True}))
-    body = (f'<article data-state="reading" data-events="/{html.escape(target)}/events">'
+    body = (f'<article data-state="reading" data-hl="{len(target)}" data-events="/{html.escape(target)}/events">'
             f"<p>Reading {html.escape(target)}…</p><ul></ul></article>"
             "<script>const a=document.querySelector('article');const s=new EventSource(a.dataset.events);"
             "s.addEventListener('progress',e=>{const li=document.createElement('li');li.textContent=e.data;a.querySelector('ul').append(li)});"
-            "s.addEventListener('done',e=>{s.close();const hl=a.dataset.events.length-8;a.outerHTML=e.data;"
+            "s.addEventListener('done',e=>{s.close();const hl=+a.dataset.hl;a.outerHTML=e.data;"
             "const d=document.querySelector('article').dataset;"
             "window.posthog&&posthog.capture('standup_rendered',{handle_length:hl,items:+d.items,seconds:+d.seconds,cached:false})});"
             "s.addEventListener('failed',e=>{s.close();a.dataset.state='failed';a.querySelector('p').textContent=e.data;"
@@ -137,55 +159,41 @@ async def events(request: Request):
     target = _norm(request.path_params["target"])
     if _not_a_handle(target):
         return PlainTextResponse("not a handle", status_code=404)
-    lock = LOCKS.setdefault(target, asyncio.Lock())
 
     async def gen():
-        async with lock:
-            hit = CACHE.get(target)
-            if hit and time.time() - hit[0] < TTL:
-                yield {"event": "done", "data": render_brief(hit[1])}
+        hit = CACHE.get(target)
+        if hit and time.time() - hit[0] < TTL:
+            yield {"event": "done", "data": render_brief(hit[1])}
+            return
+        run = runs.watch(target, lambda progress: run_standup(target, on_progress=progress, source="github"))
+        index = 0
+        while True:
+            kind, payload = await asyncio.to_thread(run.event, index)
+            index += 1
+            if kind == "progress":
+                yield {"event": "progress", "data": payload}
+            elif kind == "brief":
+                seconds = round(time.perf_counter() - run.started, 1)
+                CACHE[target] = (time.time(), payload)
+                _evict_cache()
+                yield {"event": "done", "data": render_brief(payload, seconds)}
                 return
-            if RUNS.locked():
-                yield {"event": "failed", "data": "Standup is busy with four other people. Try again in a minute."}
+            else:
+                yield {"event": "failed", "data": payload}
                 return
-            async with RUNS:
-                q: queue.Queue = queue.Queue()
-                start = time.perf_counter()
-
-                def work():
-                    try:
-                        q.put(("brief", run_standup(target, on_progress=lambda m: q.put(("progress", m)))))
-                    except RuntimeError as exc:  # the pipeline's own plain one-line message
-                        q.put(("failed", str(exc)))
-                    except Exception as exc:  # named on the page, never a trace
-                        q.put(("failed", f"Standup could not finish: {exc.__class__.__name__}."))
-
-                threading.Thread(target=work, daemon=True).start()
-                while True:
-                    kind, payload = await asyncio.to_thread(q.get)
-                    if kind == "progress":
-                        yield {"event": "progress", "data": payload}
-                    elif kind == "brief":
-                        seconds = round(time.perf_counter() - start, 1)
-                        CACHE[target] = (time.time(), payload)
-                        _evict_cache()
-                        yield {"event": "done", "data": render_brief(payload, seconds)}
-                        return
-                    else:
-                        yield {"event": "failed", "data": payload}
-                        return
 
     return EventSourceResponse(gen())
 
 
 async def health(_: Request):
-    return JSONResponse({"ok": True, "cached": len(CACHE)})
+    return JSONResponse({"ok": True, "cached": len(CACHE), "running": len(runs.INFLIGHT)})
 
 
 app = Starlette(routes=[
     Route("/", home, methods=["GET"]),
     Route("/", go, methods=["POST"]),
     Route("/health", health),
+    Route("/robots.txt", robots),
     Mount("/static", StaticFiles(directory=str(STATIC)), name="static"),
     Route("/{target}", show),
     Route("/{target}/events", events),
