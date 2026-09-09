@@ -56,8 +56,16 @@ def fetch_account(login: str, token: str) -> dict:
     if r.status_code != 200:
         raise GitHubError(f"GitHub answered {r.status_code}")
     body = r.json()
-    if body.get("errors") and not (body.get("data") or {}).get("repositoryOwner"):
+    errors = body.get("errors") or []
+    if errors and not (body.get("data") or {}).get("repositoryOwner"):
+        if any(
+            e.get("type") == "RATE_LIMITED" or "rate limit" in str(e.get("message", "")).lower()
+            for e in errors
+        ):
+            raise GitHubError("GitHub rate limit reached for this token; try again in an hour")
         raise GitHubError(f"no public GitHub account called {login}")
+    if "data" not in body:
+        raise GitHubError("GitHub answered without data")
     return body["data"]
 
 
