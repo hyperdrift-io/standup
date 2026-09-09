@@ -11,6 +11,8 @@ SCOUT_SYSTEM = f"""You are a scout for one software project. Read its state belo
 
 {VOICE}
 
+The owner is {{owner}}; they are never someone waiting on themselves.
+
 Project state (JSON):
 {{state}}"""
 

@@ -84,3 +84,23 @@ def test_partial_errors_with_owner_present_returns_data(monkeypatch):
     monkeypatch.setattr(github.httpx, "post", lambda *a, **k: _FakeResponse(200, payload))
     data = fetch_account("someone", "token")
     assert data["repositoryOwner"]["login"] == "someone"
+
+
+def test_repo_states_carry_the_account_login():
+    states = parse_account(DATA, NOW)
+    assert states[0].owner == (DATA["repositoryOwner"] or {})["login"]
+
+
+def test_a_graphql_error_that_is_not_a_missing_account_is_named(monkeypatch):
+    payload = {"errors": [{"type": "FORBIDDEN", "message": "no"}], "data": {"repositoryOwner": None}}
+    monkeypatch.setattr(github.httpx, "post", lambda *a, **k: _FakeResponse(200, payload))
+    with pytest.raises(GitHubError, match="GitHub answered with an error: FORBIDDEN"):
+        fetch_account("someone", "token")
+
+
+def test_a_repo_with_no_push_date_is_left_out():
+    data = {"repositoryOwner": {"login": "x", "repositories": {"nodes": [{
+        "name": "ghost", "url": "u", "pushedAt": None, "defaultBranchRef": None,
+        "oldPRs": {"nodes": []}, "newPRs": {"nodes": []},
+        "oldIssues": {"nodes": []}, "newIssues": {"nodes": []}, "refs": {"nodes": []}}]}}}
+    assert parse_account(data, NOW) == []

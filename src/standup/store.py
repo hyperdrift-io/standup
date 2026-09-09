@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import os
 import re
+import tempfile
 import time
 from pathlib import Path
 
@@ -10,9 +11,15 @@ from .models import Brief
 
 
 def _dir() -> Path:
-    d = Path(os.environ.get("STANDUP_STATE", ".standup")).expanduser()
-    d.mkdir(parents=True, exist_ok=True)
-    return d
+    """`~/.standup` by default: an MCP host launches the server with the working directory at `/`."""
+    d = Path(os.environ.get("STANDUP_STATE", "~/.standup")).expanduser()
+    try:
+        d.mkdir(parents=True, exist_ok=True)
+        return d
+    except OSError:
+        fallback = Path(tempfile.gettempdir()) / "standup"
+        fallback.mkdir(parents=True, exist_ok=True)
+        return fallback
 
 
 def _key(target: str) -> str:

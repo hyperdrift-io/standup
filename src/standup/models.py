@@ -31,6 +31,7 @@ class Branch(BaseModel):
 class RepoState(BaseModel):
     name: str
     url: str
+    owner: str = ""
     days_since_push: int
     default_branch: str
     ci: str | None = None
@@ -69,7 +70,9 @@ class BriefItem(BaseModel):
 
     @model_validator(mode="after")
     def waiting_names_someone(self) -> "BriefItem":
-        if self.kind == "waiting" and not self.waiting_on:
+        if self.waiting_on:
+            self.kind = "waiting"  # naming a person is what makes an item a waiting item
+        elif self.kind == "waiting":
             raise ValueError("a waiting item must name who is waiting")
         return self
 

@@ -41,7 +41,7 @@ def _run_coroutine(coro):
 
 
 def scout_agent(state: RepoState, model) -> Agent:
-    kwargs = dict(system_prompt=SCOUT_SYSTEM.format(state=state.model_dump_json()),
+    kwargs = dict(system_prompt=SCOUT_SYSTEM.format(state=state.model_dump_json(), owner=state.owner or "unknown"),
                   structured_output_model=RepoRead, callback_handler=None)
     if model is not None:
         kwargs["model"] = model

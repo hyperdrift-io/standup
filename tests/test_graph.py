@@ -102,3 +102,23 @@ def test_a_failed_triage_is_one_plain_line_when_the_graph_fails(monkeypatch):
     audit = Audit("acct")
     with pytest.raises(RuntimeError, match="^Standup could not finish the brief"):
         run_graph(states, None, audit)
+
+
+def test_an_item_that_names_someone_ranks_first_whatever_its_kind():
+    items = [it("will_hurt", title="h"), it("thread", waiting_on="alice", title="w")]
+    assert [i.title for i in rank(items)] == ["w", "h"]
+    assert items[1].kind == "waiting"
+
+
+def test_the_owner_is_never_someone_waiting_on_themselves(monkeypatch):
+    states = [_state("a")]
+    _patch_no_graph(monkeypatch)
+    monkeypatch.setattr(
+        "standup.graph.scout_agent",
+        lambda state, model: _FakeAgent(structured_output=RepoRead(repo=state.name, moved="x")),
+    )
+    self_waiting = Brief(target="yannvr", standing="s", beyond_tonight="b", generated_at="p",
+                         items=[it("waiting", "YannVR", title="self")])
+    monkeypatch.setattr("standup.graph.triage_agent", lambda model: _FakeAgent(structured_output=self_waiting))
+    brief, _ = run_graph(states, None, Audit("yannvr"))
+    assert brief.items[0].waiting_on is None and brief.items[0].kind == "thread"

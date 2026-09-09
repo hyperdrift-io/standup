@@ -63,15 +63,18 @@ def fetch_account(login: str, token: str) -> dict:
             for e in errors
         ):
             raise GitHubError("GitHub rate limit reached for this token; try again in an hour")
+        types = {str(e.get("type")) for e in errors if e.get("type")}
+        if types and types != {"NOT_FOUND"}:
+            raise GitHubError("GitHub answered with an error: " + ", ".join(sorted(types)))
         raise GitHubError(f"no public GitHub account called {login}")
     if "data" not in body:
         raise GitHubError("GitHub answered without data")
     return body["data"]
 
 
-def _days(iso: str | None, now: datetime) -> int:
+def _days(iso: str | None, now: datetime, missing: int = 0) -> int:
     if not iso:
-        return 0
+        return missing
     then = datetime.fromisoformat(iso.replace("Z", "+00:00"))
     return max(0, (now - then).days)
 
@@ -98,10 +101,11 @@ def _threads(old: list, new: list, kind: str, now: datetime) -> list[Thread]:
 
 def parse_account(data: dict, now: datetime | None = None) -> list[RepoState]:
     now = now or datetime.now(timezone.utc)
-    owner = data.get("repositoryOwner") or {}
+    account = data.get("repositoryOwner") or {}
+    login = account.get("login") or ""
     states: list[RepoState] = []
-    for r in (owner.get("repositories") or {}).get("nodes", []):
-        days = _days(r.get("pushedAt"), now)
+    for r in (account.get("repositories") or {}).get("nodes", []):
+        days = _days(r.get("pushedAt"), now, missing=ACTIVE_DAYS + 1)
         if days > ACTIVE_DAYS:
             continue
         ref = r.get("defaultBranchRef") or {}
@@ -113,7 +117,7 @@ def parse_account(data: dict, now: datetime | None = None) -> list[RepoState]:
             if b.get("name") != default and b.get("target")
         ]
         states.append(RepoState(
-            name=r["name"], url=r["url"], days_since_push=days, default_branch=default,
+            name=r["name"], url=r["url"], owner=login, days_since_push=days, default_branch=default,
             ci=(head.get("statusCheckRollup") or {}).get("state"),
             recent_commits=[c["messageHeadline"] for c in (head.get("history") or {}).get("nodes", [])],
             open_prs=_threads(r["oldPRs"]["nodes"], r["newPRs"]["nodes"], "pr", now),

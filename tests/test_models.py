@@ -28,3 +28,12 @@ def test_minutes_must_be_positive():
 def test_waiting_item_requires_waiting_on():
     with pytest.raises(ValidationError):
         item(kind="waiting", waiting_on=None)
+
+
+def test_naming_someone_makes_an_item_a_waiting_item():
+    assert item(kind="thread", waiting_on="alice").kind == "waiting"
+
+
+def test_repo_state_carries_its_owner():
+    from standup.models import RepoState
+    assert RepoState(name="r", url="u", owner="yannvr", days_since_push=1, default_branch="main").owner == "yannvr"

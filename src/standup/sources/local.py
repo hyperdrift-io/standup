@@ -58,11 +58,12 @@ def read_repo(repo: Path, now: datetime | None = None) -> RepoState:
         if name != branch and age > 7:
             stale.append(Branch(name=name, days=age))
     url = _run(["gh", "repo", "view", "--json", "url", "-q", ".url"], repo)
+    owner = _run(["gh", "repo", "view", "--json", "owner", "-q", ".owner.login"], repo)
     prs = _run(["gh", "pr", "list", "--limit", "10", "--json", "number,title,url,updatedAt,isDraft,reviewDecision,author"], repo)
     issues = _run(["gh", "issue", "list", "--limit", "10", "--json", "number,title,url,updatedAt,author,comments"], repo)
     runs = _run(["gh", "run", "list", "--limit", "1", "--json", "conclusion", "-q", ".[0].conclusion"], repo)
     return RepoState(
-        name=repo.name, url=url or str(repo), days_since_push=_days(last_iso, now) if last_iso else 0,
+        name=repo.name, url=url or str(repo), owner=owner, days_since_push=_days(last_iso, now) if last_iso else 0,
         default_branch=branch, ci=(runs.upper() or None) if runs else None,
         recent_commits=_run(["git", "log", "-8", "--format=%s"], repo).splitlines(),
         open_prs=_threads(prs, "pr", now), open_issues=_threads(issues, "issue", now),

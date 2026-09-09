@@ -26,11 +26,14 @@ def _honest(target: str, reason: str, audit: Audit) -> Brief:
                  could_not_see=[reason], looked_at=list(audit.entries), generated_at=_now())
 
 
-def run_standup(target: str, on_progress: Callable[[str], None] = lambda _: None) -> Brief:
+def run_standup(target: str, on_progress: Callable[[str], None] = lambda _: None,
+                source: str | None = None) -> Brief:
+    """`source` pins where to read from. The page pins "github": a visitor's handle must never
+    be able to point the agent at the server's own filesystem."""
     target = target.strip()
-    audit = Audit(target)
+    audit = Audit(target, on_note=on_progress)
     on_progress("looking")
-    path = is_path(target)
+    path = (source or ("local" if is_path(target) else "github")) == "local"
     try:
         if path:
             states = LocalSource(target).read()
@@ -44,7 +47,9 @@ def run_standup(target: str, on_progress: Callable[[str], None] = lambda _: None
         reason = (f"no git repositories found in {target} or its subfolders" if path
                   else f"no repositories pushed in the last year for {target}")
         return _honest(target, reason, audit)
+    audit.expected = len(states)
     previous = store.load(target)
     brief, _failed = run_graph(states, previous, audit, on_progress)
+    brief.target = target  # the model fills this field; the request decides it
     store.save(brief)
     return brief
