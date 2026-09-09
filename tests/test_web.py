@@ -54,8 +54,9 @@ def test_posthog_rewrites_the_url_properties_that_would_carry_the_handle(monkeyp
     monkeypatch.setenv("POSTHOG_KEY", "phc_test")
     web.CACHE["yannvr"] = (time.time(), brief())
     html = TestClient(web.app).get("/yannvr").text
-    assert "sanitize_properties" in html
-    assert "delete p.$pathname" in html and "delete p.$referrer" in html
+    assert "before_send" in html
+    assert "$session_entry" in html
+    assert "sanitize_properties" not in html
 
 
 def test_home_initialises_posthog_without_capturing_a_page_view(monkeypatch):
@@ -70,6 +71,23 @@ def test_robots_keeps_crawlers_off_every_handle():
     r = TestClient(web.app).get("/robots.txt")
     assert r.status_code == 200
     assert r.text == "User-agent: *\nDisallow: /\nAllow: /$\n"
+
+
+def test_handle_pages_are_noindex_but_home_is_not():
+    web.CACHE["yannvr"] = (time.time(), brief())
+    assert "noindex" in TestClient(web.app).get("/yannvr").text
+    assert "noindex" not in TestClient(web.app).get("/").text
+
+
+def test_completed_brief_is_cached_even_without_a_watcher():
+    run = runs.watch("nobody-watching", lambda progress: brief("nobody-watching"), on_brief=web._cache_brief)
+    # No one ever calls run.event(...) — simulating every SSE connection having walked away.
+    deadline = time.monotonic() + 2
+    while "nobody-watching" not in web.CACHE and time.monotonic() < deadline:
+        time.sleep(0.01)
+    assert "nobody-watching" in web.CACHE
+    assert web.CACHE["nobody-watching"][1].target == "nobody-watching"
+    assert isinstance(run, runs.Run)
 
 
 def test_a_bad_handle_gets_the_page_back_with_one_line():

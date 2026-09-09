@@ -44,6 +44,10 @@ def _evict_cache() -> None:
         store.sweep(7)  # seven days of session files, swept while the page is awake
 
 
+def _cache_brief(target: str, brief: Brief) -> None:
+    CACHE[target] = (time.time(), brief)
+
+
 def _norm(target: str) -> str:
     return target.strip().lstrip("@").lower()
 
@@ -55,14 +59,19 @@ def _not_a_handle(target: str) -> bool:
     return not _HANDLE.fullmatch(target)
 
 
-SANITISE = ("sanitize_properties:function(p){p.$current_url='https://standup.hyperdrift.io/';"
-            "delete p.$pathname;delete p.$referrer;delete p.$initial_referrer;"
-            "delete p.$initial_referring_domain;return p}")
+BEFORE_SEND = ("before_send:function(e){if(!e)return e;var p=e.properties||{};"
+               "p.$current_url='https://standup.hyperdrift.io/';for(var k in p){"
+               "if(k.indexOf('$session_entry')===0||k==='$pathname'||k==='$referrer'||"
+               "k==='$initial_referrer'||k==='$initial_referring_domain'){delete p[k]}}"
+               "e.properties=p;return e}")
 
 
 def _posthog(event: str | None = None, props: dict | None = None) -> str:
     """The init snippet, plus one capture when there is something to capture. The URL carries the
-    handle, so every property that could leak it is rewritten before anything leaves the browser."""
+    handle, so every property that could leak it — including the $session_entry_* family
+    posthog-js attaches to every event in a session — is stripped before anything leaves the
+    browser. sanitize_properties is deprecated (and does not see $session_entry_*), so we use
+    before_send instead."""
     key = os.environ.get("POSTHOG_KEY")
     if not key:
         return ""
@@ -73,7 +82,7 @@ def _posthog(event: str | None = None, props: dict | None = None) -> str:
             f"u.toString=function(t){{var e='posthog';return'posthog'!==a&&(e+='.'+a),t||(e+=' (stub)'),e}},u.people.toString=function(){{return u.toString(1)+'.people (stub)'}},"
             f"o='init capture identify'.split(' '),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])}},e.__SV=1)}}(document,window.posthog||[]);"
             f"posthog.init('{key}',{{api_host:'https://eu.i.posthog.com',person_profiles:'identified_only',"
-            f"autocapture:false,capture_pageview:false,capture_pageleave:false,{SANITISE}}});"
+            f"autocapture:false,capture_pageview:false,capture_pageleave:false,{BEFORE_SEND}}});"
             + (f"posthog.capture('{event}',{json.dumps(props or {})});" if event else "")
             + "</script>")
 
@@ -83,9 +92,10 @@ _CTA_SCRIPT = ("<script>document.addEventListener('click',function(e){"
                "a&&window.posthog&&posthog.capture('cta_clicked',{target:a.dataset.cta})});</script>")
 
 
-def _page(title: str, body: str, ph: str = "", status: int = 200) -> HTMLResponse:
+def _page(title: str, body: str, ph: str = "", status: int = 200, noindex: bool = False) -> HTMLResponse:
+    robots = '<meta name="robots" content="noindex">' if noindex else ""
     return HTMLResponse(f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(title)}</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">{robots}<title>{html.escape(title)}</title>
 <link rel="stylesheet" href="/static/standup.css">{ph}</head><body>
 <header><a href="/">Standup</a><p>Who is waiting on you. What will hurt later. What to do first.</p></header>
 <main>{body}</main>
@@ -125,7 +135,7 @@ async def robots(_: Request):
 
 
 def _try_again(message: str) -> HTMLResponse:
-    return _page("Standup", f"<p>{html.escape(message)}</p>{FORM}", _posthog(), status=404)
+    return _page("Standup", f"<p>{html.escape(message)}</p>{FORM}", _posthog(), status=404, noindex=True)
 
 
 async def go(request: Request):
@@ -142,7 +152,8 @@ async def show(request: Request):
         b = hit[1]
         return _page(f"Standup · {target}", render_brief(b),
                      _posthog("standup_rendered",
-                              {"handle_length": len(target), "items": len(b.items), "seconds": 0, "cached": True}))
+                              {"handle_length": len(target), "items": len(b.items), "seconds": 0, "cached": True}),
+                     noindex=True)
     body = (f'<article data-state="reading" data-hl="{len(target)}" data-events="/{html.escape(target)}/events">'
             f"<p>Reading {html.escape(target)}…</p><ul></ul></article>"
             "<script>const a=document.querySelector('article');const s=new EventSource(a.dataset.events);"
@@ -152,7 +163,8 @@ async def show(request: Request):
             "window.posthog&&posthog.capture('standup_rendered',{handle_length:hl,items:+d.items,seconds:+d.seconds,cached:false})});"
             "s.addEventListener('failed',e=>{s.close();a.dataset.state='failed';a.querySelector('p').textContent=e.data;"
             "window.posthog&&posthog.capture('standup_failed',{reason:e.data})});</script>")
-    return _page(f"Standup · {target}", body, _posthog("standup_requested", {"handle_length": len(target)}))
+    return _page(f"Standup · {target}", body, _posthog("standup_requested", {"handle_length": len(target)}),
+                 noindex=True)
 
 
 async def events(request: Request):
@@ -165,7 +177,8 @@ async def events(request: Request):
         if hit and time.time() - hit[0] < TTL:
             yield {"event": "done", "data": render_brief(hit[1])}
             return
-        run = runs.watch(target, lambda progress: run_standup(target, on_progress=progress, source="github"))
+        run = runs.watch(target, lambda progress: run_standup(target, on_progress=progress, source="github"),
+                          on_brief=_cache_brief)
         index = 0
         while True:
             kind, payload = await asyncio.to_thread(run.event, index)
@@ -174,7 +187,7 @@ async def events(request: Request):
                 yield {"event": "progress", "data": payload}
             elif kind == "brief":
                 seconds = round(time.perf_counter() - run.started, 1)
-                CACHE[target] = (time.time(), payload)
+                _cache_brief(target, payload)  # idempotent: on_brief above already wrote this
                 _evict_cache()
                 yield {"event": "done", "data": render_brief(payload, seconds)}
                 return

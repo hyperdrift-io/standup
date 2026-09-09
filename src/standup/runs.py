@@ -53,24 +53,31 @@ def plain(exc: BaseException) -> str:
     return message if isinstance(exc, RuntimeError) and message.startswith("Standup") else BROKE
 
 
-def watch(target: str, work: Callable[[Callable[[str], None]], Brief]) -> Run:
-    """The run for this target, started if none is in flight."""
+def watch(target: str, work: Callable[[Callable[[str], None]], Brief],
+          on_brief: Callable[[str, Brief], None] | None = None) -> Run:
+    """The run for this target, started if none is in flight. `on_brief`, when given, is called with
+    the finished brief the moment it exists — regardless of whether anyone ever reads the run's
+    events, so a completed brief is not lost when every watcher has walked away."""
     with _GUARD:
         run = INFLIGHT.get(target)
         if run is None:
             run = Run(target)
             INFLIGHT[target] = run
-            threading.Thread(target=_work, args=(run, work), daemon=True).start()
+            threading.Thread(target=_work, args=(run, work, on_brief), daemon=True).start()
         return run
 
 
-def _work(run: Run, work: Callable[[Callable[[str], None]], Brief]) -> None:
+def _work(run: Run, work: Callable[[Callable[[str], None]], Brief],
+          on_brief: Callable[[str, Brief], None] | None = None) -> None:
     try:
         if not BUDGET.acquire(blocking=False):
             run.emit("failed", BUSY)
             return
         try:
-            run.emit("brief", work(lambda line: run.emit("progress", line)))
+            brief = work(lambda line: run.emit("progress", line))
+            if on_brief is not None:
+                on_brief(run.target, brief)
+            run.emit("brief", brief)
         except Exception as exc:
             run.emit("failed", plain(exc))
         finally:

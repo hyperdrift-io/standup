@@ -126,16 +126,18 @@ def run_graph(states: list[RepoState], previous: Brief | None, audit: Audit,
               on_progress: Callable[[str], None] = lambda _: None) -> tuple[Brief, list[str]]:
     from .model import resolve
     on_progress(f"reading {len(states)} projects")
-    model = None
     try:
         model = resolve()
+    except Exception as exc:
+        raise RuntimeError("Standup could not finish the brief (model configuration)") from exc
+    try:
         graph, ids = build_graph(states, model, audit)
         task = "Scouts: read your project and report. Triage: produce the brief for the owner."
         if previous is not None:
             task += f"\n\nPrevious brief ({previous.generated_at}):\n{previous.model_dump_json()}"
         result = graph(task)
     except Exception as exc:
-        audit.note(f"graph stopped early: {exc.__class__.__name__}; reading projects individually")
+        audit.note("first pass stopped early; reading projects individually", target=exc.__class__.__name__)
         return _run_coroutine(_gather(states, previous, model, audit, on_progress))
     failed = [s.name for s, nid in zip(states, ids)
               if nid not in result.results or result.results[nid].status.name != "COMPLETED"]

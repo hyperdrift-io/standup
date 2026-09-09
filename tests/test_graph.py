@@ -88,6 +88,11 @@ def test_a_failed_scout_is_dropped_and_named_when_the_graph_fails(monkeypatch):
     triage_notes = [e for e in brief.looked_at if e.what == "ran triage"]
     assert len(triage_notes) == 1
     assert [i.kind for i in brief.items] == ["waiting", "thread"]
+    fallback_notes = [e for e in audit.entries if "reading projects individually" in e.what]
+    assert len(fallback_notes) == 1
+    assert fallback_notes[0].what == "first pass stopped early; reading projects individually"
+    assert "RuntimeError" not in fallback_notes[0].what
+    assert fallback_notes[0].target == "RuntimeError"
 
 
 def test_a_failed_triage_is_one_plain_line_when_the_graph_fails(monkeypatch):
@@ -102,6 +107,18 @@ def test_a_failed_triage_is_one_plain_line_when_the_graph_fails(monkeypatch):
     audit = Audit("acct")
     with pytest.raises(RuntimeError, match="^Standup could not finish the brief"):
         run_graph(states, None, audit)
+
+
+def test_a_broken_model_configuration_fails_loudly_instead_of_falling_back(monkeypatch):
+    states = [_state("a")]
+
+    def _boom():
+        raise ValueError("no credentials")
+
+    monkeypatch.setattr("standup.model.resolve", _boom)
+
+    with pytest.raises(RuntimeError, match=r"^Standup could not finish the brief \(model configuration\)$"):
+        run_graph(states, None, Audit("acct"))
 
 
 def test_an_item_that_names_someone_ranks_first_whatever_its_kind():
