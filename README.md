@@ -84,7 +84,8 @@ Set `GOOGLE_SA_KEY_B64` + `VERTEX_PROJECT`, or `GEMINI_API_KEY`, or leave both u
 
 ```json
 {"mcpServers": {"standup": {"command": "/path/to/.venv/bin/standup-mcp",
-  "env": {"GOOGLE_SA_KEY_B64": "…", "VERTEX_PROJECT": "…", "GITHUB_TOKEN": "…"}}}}
+  "env": {"GOOGLE_SA_KEY_B64": "…", "VERTEX_PROJECT": "…", "GITHUB_TOKEN": "…",
+          "STANDUP_STATE": "/Users/you/.standup"}}}}
 ```
 
 Cursor takes the same block in `.cursor/mcp.json`. One tool, `standup(target)`. The token is any read-only one; without it the server falls back to `gh auth token`, which a GUI-launched app often cannot see.
