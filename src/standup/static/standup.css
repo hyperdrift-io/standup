@@ -1,0 +1,32 @@
+:root { --ink: #0c0c10; --cream: #f0e9da; --muted: #a39b8b; --hot: #ff4a1c; --ok: #7bd389; }
+html { background: var(--ink); color: var(--cream); font: 17px/1.5 "IBM Plex Sans", system-ui, sans-serif; }
+body { margin: 0 auto; max-width: 42rem; padding: 3rem 1.25rem 4rem; }
+header a { color: var(--cream); text-decoration: none; font-size: 2.4rem; font-weight: 700; letter-spacing: -.02em; }
+header p { margin: .25rem 0 2.5rem; color: var(--muted); }
+form { display: grid; gap: .75rem; }
+label { color: var(--muted); font-size: .9rem; }
+input { font: inherit; font-size: 1.6rem; padding: .6rem .8rem; background: transparent; color: var(--cream);
+        border: 0; border-bottom: 2px solid var(--muted); outline: none; }
+input:focus { border-color: var(--hot); }
+button { font: inherit; font-weight: 600; padding: .8rem 1.2rem; border: 0; border-radius: .4rem;
+         background: var(--hot); color: var(--ink); cursor: pointer; justify-self: start; }
+button:hover { filter: brightness(1.1); }
+form p { color: var(--muted); font-size: .9rem; }
+article > p:first-child { font-size: 1.3rem; }
+article[data-state="reading"] > p::after { content: ""; display: inline-block; width: .6em; height: .6em; margin-left: .5em;
+        border-radius: 50%; background: var(--hot); animation: pulse 1s infinite alternate; }
+article[data-state="reading"] ul { list-style: none; padding: 0; color: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: .85rem; }
+article[data-state="failed"] > p { color: var(--hot); }
+ol { padding-left: 1.4rem; display: grid; gap: 1.5rem; }
+ol li::marker { color: var(--hot); font-weight: 700; }
+h2 { margin: 0 0 .3rem; font-size: 1.15rem; }
+h2 small { color: var(--muted); font-weight: 400; margin-left: .5rem; }
+li p { margin: .2rem 0; }
+li b { color: var(--ok); }
+time { color: var(--muted); font-family: "IBM Plex Mono", monospace; font-size: .85rem; margin-left: .5rem; }
+details { margin-top: 1.5rem; color: var(--muted); }
+summary { cursor: pointer; }
+details ul { font-family: "IBM Plex Mono", monospace; font-size: .8rem; }
+footer { margin-top: 4rem; color: var(--muted); font-size: .85rem; }
+footer a { color: var(--cream); }
+@keyframes pulse { to { opacity: .2; } }
