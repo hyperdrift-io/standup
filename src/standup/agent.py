@@ -32,7 +32,7 @@ Finish with one line: what the project needs from them beyond tonight."""
 def _model():
     """Vertex AI when a service account is present, otherwise the Gemini API key, otherwise Bedrock."""
     sa_b64 = os.environ.get("GOOGLE_SA_KEY_B64")
-    model_id = os.environ.get("HANDOVER_MODEL", "gemini-3.6-flash")
+    model_id = os.environ.get("STANDUP_MODEL", "gemini-3.6-flash")
     if sa_b64:
         from google import genai
         from google.oauth2 import service_account

@@ -1,4 +1,4 @@
-# handover
+# standup
 
 **What to do first when you come back to a project you left.**
 
