@@ -36,8 +36,9 @@ runs:
         GEMINI_API_KEY: ${{ inputs.gemini-api-key }}
         GOOGLE_SA_KEY_B64: ${{ inputs.google-sa-key-b64 }}
         VERTEX_PROJECT: ${{ inputs.vertex-project }}
+        TARGET: ${{ inputs.target }}
       run: |
-        standup "${{ inputs.target }}" --json --previous previous.json > brief.json
+        standup "$TARGET" --json --previous previous.json > brief.json
         python - <<'EOF'
         import json, datetime
         b = json.load(open("brief.json"))
