@@ -1,0 +1,17 @@
+name: Standup
+on:
+  schedule:
+    - cron: "0 7 * * 1"   # Mondays 07:00 UTC
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+jobs:
+  standup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: hyperdrift-io/standup@main
+        with:
+          gemini-api-key: ${{ secrets.GEMINI_API_KEY }}
+          google-sa-key-b64: ${{ secrets.GOOGLE_SA_KEY_B64 }}
+          vertex-project: ${{ secrets.VERTEX_PROJECT }}

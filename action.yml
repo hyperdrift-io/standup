@@ -1,0 +1,66 @@
+name: Standup
+description: Who is waiting on you, what will hurt later, what to do first — posted as a weekly issue. Read-only agent; only this action writes, and only the issue.
+inputs:
+  target:
+    description: "GitHub handle or organisation to read (default: this repository's owner)"
+    default: ${{ github.repository_owner }}
+  github-token:
+    description: Token used to read public repos and write the issue
+    default: ${{ github.token }}
+  gemini-api-key:
+    description: Gemini API key for the model (or set AWS credentials in env for Bedrock)
+    default: ""
+  google-sa-key-b64:
+    description: Base64-encoded Google service account key for Vertex AI (takes priority over gemini-api-key when set)
+    default: ""
+  vertex-project:
+    description: GCP project id for Vertex AI (used with google-sa-key-b64)
+    default: ""
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+    - shell: bash
+      run: pip install -q "git+https://github.com/hyperdrift-io/standup@main"
+    - shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.github-token }}
+      run: |
+        gh issue list --repo "$GITHUB_REPOSITORY" --search "Standup · week of in:title" --state all --limit 1 --json body -q '.[0].body' \
+          | sed -n '/^```json$/,/^```$/p' | sed '1d;$d' > previous.json || true
+    - shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+        GEMINI_API_KEY: ${{ inputs.gemini-api-key }}
+        GOOGLE_SA_KEY_B64: ${{ inputs.google-sa-key-b64 }}
+        VERTEX_PROJECT: ${{ inputs.vertex-project }}
+      run: |
+        standup "${{ inputs.target }}" --json --previous previous.json > brief.json
+        python - <<'EOF'
+        import json, datetime
+        b = json.load(open("brief.json"))
+        week = datetime.date.today().isoformat()
+        lines = [b["standing"], ""]
+        for n, it in enumerate(b["items"], 1):
+            lines.append(f"{n}. **{it['title']}** ({it['repo']})")
+            if it.get("waiting_on"): lines.append(f"   _{it['waiting_on']} is waiting._")
+            lines += [f"   Evidence: {it['evidence']}", f"   Action: {it['action']}", f"   Estimate: {it['minutes']} minutes", ""]
+        lines.append(f"Beyond this week: {b['beyond_tonight']}")
+        if b["could_not_see"]: lines.append("Could not see: " + "; ".join(b["could_not_see"]))
+        lines += ["", "<details><summary>What Standup looked at (read-only)</summary>", ""]
+        lines += [f"- `{e['when']}` {e['what']}" for e in b["looked_at"]]
+        lines += ["", "```json", json.dumps(b), "```", "</details>", "",
+                  "_Posted by [Standup](https://github.com/hyperdrift-io/standup)._"]
+        open("issue.md", "w").write("\n".join(lines))
+        open("title.txt", "w").write(f"Standup · week of {week}")
+        EOF
+    - shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.github-token }}
+      run: |
+        title="$(cat title.txt)"
+        existing="$(gh issue list --repo "$GITHUB_REPOSITORY" --search "\"$title\" in:title" --state open --limit 1 --json number -q '.[0].number')"
+        if [ -n "$existing" ]; then gh issue edit "$existing" --repo "$GITHUB_REPOSITORY" --body-file issue.md
+        else gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" --body-file issue.md; fi
