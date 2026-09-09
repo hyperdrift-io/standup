@@ -80,6 +80,8 @@ def test_a_failed_scout_is_dropped_and_named_when_the_graph_fails(monkeypatch):
     assert any("b" in line for line in brief.could_not_see)
     scout_notes = [e for e in audit.entries if e.what.startswith("ran scout_")]
     assert len(scout_notes) == len(states)
+    triage_notes = [e for e in brief.looked_at if e.what == "ran triage"]
+    assert len(triage_notes) == 1
     assert [i.kind for i in brief.items] == ["waiting", "thread"]
 
 

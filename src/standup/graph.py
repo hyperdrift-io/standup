@@ -89,6 +89,7 @@ async def _gather(states: list[RepoState], previous: Brief | None, model, audit:
         "\n".join(r.model_dump_json() for r in reads if r is not None)
     if previous is not None:
         prompt += f"\n\nPrevious brief ({previous.generated_at}):\n{previous.model_dump_json()}"
+    audit.note("ran triage")
     try:
         result = await triage_agent(model).invoke_async(prompt)
         brief = result.structured_output
