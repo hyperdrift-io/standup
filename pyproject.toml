@@ -16,6 +16,9 @@ dependencies = [
   "uvicorn>=0.30",
   "sse-starlette>=3",
   "python-multipart>=0.0.20",
+  # PM2 (interpreter: none) starts the interpreter directly and does not source .env;
+  # the web entrypoint loads it itself.
+  "python-dotenv>=1.0",
 ]
 
 [project.optional-dependencies]

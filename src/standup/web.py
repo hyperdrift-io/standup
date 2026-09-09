@@ -11,6 +11,10 @@ import threading
 import time
 from pathlib import Path
 
+from dotenv import load_dotenv
+
+load_dotenv()  # PM2 (interpreter: none) does not inject the app's .env — load it ourselves.
+
 from sse_starlette.sse import EventSourceResponse
 from starlette.applications import Starlette
 from starlette.requests import Request
