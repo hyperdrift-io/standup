@@ -43,3 +43,21 @@ def test_posthog_payload_never_contains_the_handle(monkeypatch):
 def test_favicon_is_not_treated_as_a_handle():
     r = TestClient(web.app).get("/favicon.ico")
     assert r.status_code == 404
+
+
+def test_reflected_xss_attempt_is_rejected_as_not_a_handle():
+    r = TestClient(web.app).get('/x" onmouseover="alert(1)')
+    assert r.status_code == 404
+
+
+def test_posthog_snippet_disables_autocapture_and_pageviews(monkeypatch):
+    monkeypatch.setenv("POSTHOG_KEY", "phc_test")
+    web.CACHE["yannvr"] = (time.time(), brief())
+    html = TestClient(web.app).get("/yannvr").text
+    assert "autocapture:false" in html and "capture_pageview:false" in html
+
+
+def test_home_page_has_cta_click_tracking(monkeypatch):
+    monkeypatch.setenv("POSTHOG_KEY", "phc_test")
+    html = TestClient(web.app).get("/").text
+    assert "cta_clicked" in html and 'data-cta="repo"' in html and 'data-cta="hyperdrift"' in html
