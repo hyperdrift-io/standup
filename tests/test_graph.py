@@ -1,7 +1,7 @@
 import pytest
 
 from standup.audit import Audit
-from standup.graph import node_id, rank, run_graph
+from standup.graph import build_graph, node_id, rank, run_graph
 from standup.models import Brief, BriefItem, RepoRead, RepoState
 
 
@@ -20,7 +20,12 @@ def test_rank_is_stable_within_a_kind():
 
 
 def test_node_ids_are_safe():
-    assert node_id("my.repo-name") == "scout_my_repo_name"
+    assert node_id("my.repo-name", 3) == "scout_3_my_repo_name"
+
+
+def test_repos_that_sanitise_to_the_same_id_still_build_a_graph():
+    graph, ids = build_graph([_state("my-app"), _state("my_app")], None, Audit("acct"))
+    assert len(set(ids)) == 2 and graph is not None
 
 
 def _state(name: str) -> RepoState:
@@ -50,7 +55,7 @@ def _boom_graph(task):
 def _patch_no_graph(monkeypatch):
     monkeypatch.setattr(
         "standup.graph.build_graph",
-        lambda states, model, audit: (_boom_graph, [node_id(s.name) for s in states]),
+        lambda states, model, audit: (_boom_graph, [node_id(s.name, n) for n, s in enumerate(states)]),
     )
     monkeypatch.setattr("standup.model.resolve", lambda: None)
 

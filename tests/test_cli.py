@@ -58,3 +58,23 @@ def test_malformed_previous_file_is_skipped(monkeypatch, tmp_path, capsys):
     assert cli.main(["x", "--previous", str(previous_file)]) == 0
     err = capsys.readouterr().err
     assert "ignoring --previous" in err
+
+
+def test_any_failure_is_one_plain_line_not_a_traceback(monkeypatch, tmp_path, capsys):
+    monkeypatch.setenv("STANDUP_STATE", str(tmp_path))
+
+    def _raise(target, on_progress=None):
+        raise ValueError("node ids collided")
+
+    monkeypatch.setattr(cli, "run_standup", _raise)
+    assert cli.main(["x"]) == 1
+    err = capsys.readouterr().err
+    assert err.strip() == "Standup could not finish: node ids collided"
+
+
+def test_missing_previous_file_is_named_on_stderr(monkeypatch, tmp_path, capsys):
+    monkeypatch.setenv("STANDUP_STATE", str(tmp_path))
+    monkeypatch.setattr(cli, "run_standup", lambda target, on_progress=None: _brief(target))
+    missing = tmp_path / "nope.json"
+    assert cli.main(["x", "--previous", str(missing)]) == 0
+    assert f"no previous brief at {missing}" in capsys.readouterr().err

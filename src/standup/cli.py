@@ -18,7 +18,9 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--json", action="store_true", help="print the brief as JSON")
     p.add_argument("--previous", type=Path, help="a previous brief JSON to compare against")
     a = p.parse_args(argv)
-    if a.previous and a.previous.exists():
+    if a.previous and not a.previous.exists():
+        print(f"… no previous brief at {a.previous}", file=sys.stderr)
+    elif a.previous:
         text = a.previous.read_text().strip()
         if text:
             try:
@@ -27,8 +29,10 @@ def main(argv: list[str] | None = None) -> int:
                 print("… ignoring --previous: not a brief", file=sys.stderr)
     try:
         brief = run_standup(a.target, on_progress=lambda m: print(f"… {m}", file=sys.stderr))
-    except RuntimeError as exc:
-        print(str(exc), file=sys.stderr)
+    except Exception as exc:  # one plain line, whatever broke; never a traceback
+        message = str(exc).strip() or exc.__class__.__name__
+        print(message if message.startswith("Standup") else f"Standup could not finish: {message}",
+              file=sys.stderr)
         return 1
     print(brief.model_dump_json(indent=1) if a.json else brief_to_text(brief))
     return 0
