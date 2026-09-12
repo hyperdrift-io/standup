@@ -96,38 +96,76 @@ def _page(title: str, body: str, ph: str = "", status: int = 200, noindex: bool 
     robots = '<meta name="robots" content="noindex">' if noindex else ""
     return HTMLResponse(f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">{robots}<title>{html.escape(title)}</title>
-<link rel="stylesheet" href="/static/standup.css">{ph}</head><body>
-<header><a href="/">Standup</a><p>Who is waiting on you. What will hurt later. What to do first.</p></header>
-<main>{body}</main>
-<footer><a href="{REPO}" data-cta="repo">Open source, MIT</a> · read-only, sees only what GitHub shows a stranger · <a href="{HD}" data-cta="hyperdrift">Built by Hyperdrift</a></footer>
+<meta name="description" content="A little help getting back to it. We read your public projects and find a useful place to start. Public repositories, read-only, no login.">
+<meta name="theme-color" content="#fcfaf7">
+<link rel="stylesheet" href="/static/standup.css"><script src="/static/standup.js" defer></script>{ph}</head><body>
+<a href="#main">Skip to content</a>
+<header><a href="/" aria-label="Standup home">Standup</a></header>
+<main id="main">{body}</main>
+<footer><a href="{REPO}" data-cta="repo">Open source, MIT</a><a href="{HD}" data-cta="hyperdrift">Built by Hyperdrift</a></footer>
 {_CTA_SCRIPT}
 </body></html>""", status_code=status)
 
 
 def render_brief(b: Brief, seconds: float = 0) -> str:
     items = "".join(
-        f"<li><h2>{html.escape(i.title)} <small>{html.escape(i.repo)}</small></h2>"
+        f"<li><div><h2>{html.escape(i.title)}</h2><small>{html.escape(i.repo)}</small>"
         + (f"<p><b>{html.escape(i.waiting_on)}</b> is waiting.</p>" if i.waiting_on else "")
-        + f"<p>{html.escape(i.evidence)}</p><p><strong>{html.escape(i.action)}</strong> <time>{i.minutes} min</time></p></li>"
+        + f"<p>{html.escape(i.evidence)}</p><p><strong>{html.escape(i.action)}</strong></p></div>"
+        + f'<time datetime="PT{i.minutes}M">{i.minutes} min</time></li>'
         for i in b.items)
     could = "".join(f"<li>{html.escape(c)}</li>" for c in b.could_not_see)
     looked = "".join(f"<li><time>{e.when}</time> {html.escape(e.what)}</li>" for e in b.looked_at)
-    return (f'<article data-state="done" data-items="{len(b.items)}" data-seconds="{seconds}">'
-            f'<p>{html.escape(b.standing)}</p><ol>{items}</ol>'
+    return (f'<article data-state="done" data-items="{len(b.items)}" data-seconds="{seconds}" aria-labelledby="brief-title">'
+            f'<header><p>Your brief · {html.escape(b.target)}</p><h1 id="brief-title" tabindex="-1">A useful place to start.</h1>'
+            f'<p>{html.escape(b.standing)}</p></header><ol>{items}</ol>'
             f"<p>Beyond tonight: {html.escape(b.beyond_tonight)}</p>"
             + (f"<details><summary>Could not see</summary><ul>{could}</ul></details>" if could else "")
             + f"<details><summary>What Standup looked at</summary><ul>{looked}</ul></details>"
-            f"<p><small>Generated {b.generated_at}. Share this page: it stays for an hour.</small></p></article>")
+            f"<p><small>Generated {html.escape(b.generated_at)}. Share this page: it stays for an hour.</small></p>"
+            '<a href="/">Read another handle <span aria-hidden="true">↗</span></a></article>')
 
 
-FORM = """<form method="post"><label for="t">Your GitHub handle</label>
-<input id="t" name="target" placeholder="yannvr" required autocomplete="off" autofocus>
-<button>What should I do first?</button>
-<p>Reads your public repositories once, in the open. Never writes. Private repos stay invisible to it.</p></form>"""
+FORM = r"""<form method="post" action="/">
+<label for="t">Your GitHub handle
+<input id="t" name="target" placeholder="yannvr" required maxlength="40"
+ pattern="@?[a-zA-Z0-9\-]{1,39}" title="A GitHub handle: letters, digits and hyphens."
+ autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="scan-boundary"></label>
+<button type="submit">Read my projects</button>
+<p id="scan-boundary">Public repositories. Read-only. No login.</p></form>"""
+
+HOME = ('<section aria-labelledby="question"><h1 id="question">A little help getting back to it.</h1>'
+        '<p>We read your public projects and find a useful place to start.</p>' + FORM + '</section>'
+        '<section aria-labelledby="example-heading"><header><p id="example-heading">Example route</p>'
+        '</header><div data-route="example">'
+        '<svg viewBox="0 0 1200 520" preserveAspectRatio="none" aria-hidden="true" focusable="false">'
+        '<path d="M-40 10 H790 Q835 10 870 45 L1030 205 M180 10 Q220 10 255 45 L370 160"/>'
+        '<path d="M335 210 L370 245 Q400 270 445 270 H1240 M680 235 L855 60 Q900 10 950 10 H1240"/>'
+        '<path d="M810 340 L1070 600 M890 470 H980 Q1040 470 1080 430 L1170 340 Q1210 305 1240 305"/>'
+        '<path d="M200 320 Q245 320 280 360 L350 430 Q390 470 430 470 H910"/>'
+        '<path d="M-40 340 H165 Q205 340 240 305 L350 195 Q380 160 410 160 H565 Q605 160 640 195 L740 295 Q780 340 820 340 H855 Q900 340 935 305 L1040 200 Q1080 160 1120 160 H1240"/>'
+        '<path data-segment="1" d="M410 160 H565 Q605 160 640 195 L680 235"/>'
+        '<path data-segment="2" d="M680 235 L740 295 Q780 340 820 340 H855 Q900 340 935 305 L1000 240"/>'
+        '<path data-segment="3" d="M1000 240 L1040 200 Q1080 160 1120 160 H1240"/>'
+        '</svg><p>Your projects are still standing.<br>Maya offered a documentation fix.</p>'
+        '<ol aria-label="Follow a contribution to its next step">'
+        '<li><details><summary><span>docs-kit · Pull request #42</span><small>opened 3 days ago</small></summary>'
+        '<div><h3>Someone has already taken the first step.</h3>'
+        '<p>In this example, Maya has written a documentation fix. Her contribution gives you a place to pick up the thread.</p></div></details></li>'
+        '<li><details><summary><span>Your paths meet here</span><small>Maya’s contribution · your review</small></summary>'
+        '<div><h3>A small review can carry her work forward.</h3>'
+        '<p>Read her changes and let her know what works. If something needs adjusting, a clear reply gives her a next step too.</p></div></details></li>'
+        '<li><details><summary><span>Review her pull request</span><time datetime="PT15M">15 min</time></summary>'
+        '<div><h3>One useful thing for the time you have.</h3>'
+        '<p>You can leave the rest for another evening. Standup brings the contribution, its context and a next step together.</p>'
+        '<a href="#t">Find a starting point in my projects ↗</a></div></details></li></ol></div>'
+        '<details><summary>What Standup looked at</summary>'
+        '<p>This is an example, using an illustrative contributor and project. Enter a handle above '
+        'for your own brief and a record of the public projects Standup read.</p></details></section>')
 
 
 async def home(_: Request):
-    return _page("Standup", FORM, _posthog())
+    return _page("Standup — A place to start", HOME, _posthog())
 
 
 async def robots(_: Request):
@@ -135,7 +173,8 @@ async def robots(_: Request):
 
 
 def _try_again(message: str) -> HTMLResponse:
-    return _page("Standup", f"<p>{html.escape(message)}</p>{FORM}", _posthog(), status=404, noindex=True)
+    return _page("Standup", f'<section><div><h1>Let’s find your projects.</h1><p role="alert">{html.escape(message)}</p>{FORM}</div></section>',
+                 _posthog(), status=404, noindex=True)
 
 
 async def go(request: Request):
@@ -154,15 +193,25 @@ async def show(request: Request):
                      _posthog("standup_rendered",
                               {"handle_length": len(target), "items": len(b.items), "seconds": 0, "cached": True}),
                      noindex=True)
-    body = (f'<article data-state="reading" data-hl="{len(target)}" data-events="/{html.escape(target)}/events">'
-            f"<p>Reading {html.escape(target)}…</p><ul></ul></article>"
-            "<script>const a=document.querySelector('article');const s=new EventSource(a.dataset.events);"
-            "s.addEventListener('progress',e=>{const li=document.createElement('li');li.textContent=e.data;a.querySelector('ul').append(li)});"
-            "s.addEventListener('done',e=>{s.close();const hl=+a.dataset.hl;a.outerHTML=e.data;"
-            "const d=document.querySelector('article').dataset;"
-            "window.posthog&&posthog.capture('standup_rendered',{handle_length:hl,items:+d.items,seconds:+d.seconds,cached:false})});"
-            "s.addEventListener('failed',e=>{s.close();a.dataset.state='failed';a.querySelector('p').textContent=e.data;"
-            "window.posthog&&posthog.capture('standup_failed',{reason:e.data})});</script>")
+    body = (f'<article data-state="reading" data-hl="{len(target)}" data-events="/{html.escape(target)}/events" '
+            'aria-labelledby="reading-title"><header>'
+            f'<p>Public projects · {html.escape(target)}</p><h1 id="reading-title">Finding a useful next step.</h1>'
+            '<p>Your work stays yours. We’re just doing the reading.</p></header>'
+            '<p role="status" aria-live="polite">Connecting to your public projects…</p>'
+            '<ul aria-label="Reading activity"></ul><p><small>Public repositories. Read-only. No login.</small></p>'
+            '<p data-retry hidden><a href="">Try this handle again ↗</a> · <a href="/">Read another handle</a></p>'
+            '<noscript><p>Enable JavaScript for live progress, or <a href="?wait=1">read your brief without it</a>.</p></noscript></article>')
+    if request.query_params.get("wait") == "1":
+        run = runs.watch(target, lambda progress: run_standup(target, on_progress=progress, source="github"),
+                         on_brief=_cache_brief)
+        index = 0
+        while True:
+            kind, payload = await asyncio.to_thread(run.event, index)
+            index += 1
+            if kind == "brief":
+                return _page(f"Standup · {target}", render_brief(payload), noindex=True)
+            if kind == "failed":
+                return _try_again(str(payload))
     return _page(f"Standup · {target}", body, _posthog("standup_requested", {"handle_length": len(target)}),
                  noindex=True)
 
