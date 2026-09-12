@@ -29,3 +29,7 @@ python -m venv .venv && .venv/bin/pip install -e '.[dev]'
 ```
 
 Production runs `.venv/bin/python -m standup.web` under PM2 with `interpreter: none`, which does not inject `.env`; the web entrypoint loads it itself.
+
+## Approved experience — Clear Line (2026-09-11) and the Three stops mark (2026-09-13)
+
+Founder selected Clear Line: "clear line is great. Go with that." See `DESIGN.md`. The hero tells the product story: a person contributes, their work meets the maintainer's attention, a manageable review helps them move forward. Each marked intersection reveals context on hover, keyboard focus or tap. Off-white, navy Figtree, coral route and quieter sage/slate crossings. Semantic cascading CSS, native SVG geometry, native forms and details/summary; motion optional, content immediate; real SSE owns progress, never an animation. No new framework or runtime dependency. Brand assets live in `src/standup/static/` (mark, favicon cut, share card); the design record is in the HD root under `docs/design/2026-09-1{1,3}-standup-*`.
