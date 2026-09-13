@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Standup · "Three stops" — favicon cut for 24px and below: heavier route, open stops become small filled dots. -->
+  <path d="M14 50 H 23 C 32 50 32 44 32 40 V 24 C 32 20 32 14 41 14 H 50" stroke="#191837" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="14" cy="50" r="10.5" fill="#f17b64"/>
+  <circle cx="32" cy="32" r="8.5" fill="#191837"/>
+  <circle cx="50" cy="14" r="8.5" fill="#191837"/>
+</svg>

@@ -63,3 +63,19 @@ horizontal overflow at 1366px. The tall reference composition remains unchanged.
 Contest deadline independently rechecked on the official Devpost page: Monday
 14 September 2026 at 17:00 PDT, Tuesday 15 September at 01:00 BST. This does not
 verify registration or submission status. Internal submission target: Sunday 13.
+
+## Logo — Three stops (2026-09-13)
+
+Founder-selected from three SVG directions (record: HD root docs/design/2026-09-13-standup-logo/).
+A rising route with three stations; the first is filled coral (the person waiting, done first),
+the next two open. `static/mark.svg` is the mark, `static/favicon.svg` the ≤24 px cut (heavier
+route, filled stops), `static/share.png` the 1200×630 share card, `static/icon-180.png` the touch
+icon. The header carries the mark inline before the wordmark at .82 em with a .3 em gap.
+
+## Laptop widths and copy (2026-09-13)
+
+Station labels lost their paper boxes so routes never break under text; competing routes dim by
+colour-mix, not opacity, so crossings stay solid. Below 75 rem the example uses the vertical route.
+Example copy is gender-neutral ("Review the pull request"); the scout and triage prompts name
+people by handle and use "they". Placeholder handle: hyperdrift-io. Share-card and favicon
+metadata added to every page.
