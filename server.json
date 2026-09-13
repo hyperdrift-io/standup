@@ -1,0 +1,25 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.hyperdrift-io/standup",
+  "description": "Read-only: who is waiting on you across your public GitHub projects, what to start with, how long it takes.",
+  "repository": { "url": "https://github.com/hyperdrift-io/standup", "source": "github" },
+  "websiteUrl": "https://standup.hyperdrift.io",
+  "version": "0.3.0",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "standup-agent",
+      "version": "0.3.0",
+      "runtimeHint": "uvx",
+      "transport": { "type": "stdio" },
+      "packageArguments": [ { "type": "positional", "value": "standup-mcp" } ],
+      "environmentVariables": [
+        { "name": "GITHUB_TOKEN", "description": "Any read-only GitHub token; without it the server falls back to gh auth token.", "format": "string", "isRequired": false, "isSecret": true },
+        { "name": "GEMINI_API_KEY", "description": "Gemini API key. Leave unset to use Vertex AI (GOOGLE_SA_KEY_B64 + VERTEX_PROJECT) or Amazon Bedrock with your AWS credentials.", "format": "string", "isRequired": false, "isSecret": true },
+        { "name": "GOOGLE_SA_KEY_B64", "description": "Base64 service-account JSON for Vertex AI.", "format": "string", "isRequired": false, "isSecret": true },
+        { "name": "VERTEX_PROJECT", "description": "Google Cloud project for Vertex AI.", "format": "string", "isRequired": false, "isSecret": false },
+        { "name": "STANDUP_STATE", "description": "Folder for the previous brief per handle (default ~/.standup).", "format": "string", "isRequired": false, "isSecret": false, "default": "~/.standup" }
+      ]
+    }
+  ]
+}

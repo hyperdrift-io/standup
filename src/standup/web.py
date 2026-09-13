@@ -145,8 +145,9 @@ FORM = r"""<form method="post" action="/">
 <button type="submit">Read my projects</button>
 <p id="scan-boundary">Public repositories. Read-only. No login.</p></form>"""
 
-HOME = ('<section aria-labelledby="question"><h1 id="question">A little help getting back to it.</h1>'
-        '<p>We read your public projects and find a useful place to start.</p>' + FORM + '</section>'
+HOME = ('<section aria-labelledby="question"><h1 id="question">Who is waiting on you?</h1>'
+        '<p>One evening for your projects. Standup reads your public GitHub and answers three questions: '
+        'how to make the most of it, what to start with, who is waiting.</p>' + FORM + '</section>'
         '<section aria-labelledby="example-heading"><header><p id="example-heading">Example route</p>'
         '</header><div data-route="example">'
         '<svg viewBox="0 0 1200 520" preserveAspectRatio="none" aria-hidden="true" focusable="false">'

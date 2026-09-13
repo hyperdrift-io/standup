@@ -73,9 +73,9 @@ The one thing that ever writes is the last step of the GitHub Action: your token
 **CLI**
 
 ```bash
-pip install "git+https://github.com/hyperdrift-io/standup"
-standup trekhleb          # a GitHub handle or org
-standup ~/dev/my-project  # or a folder of repositories
+pipx install standup-agent        # or: uv tool install standup-agent
+standup trekhleb                  # a GitHub handle or org
+standup ~/dev/my-project          # or a folder of repositories
 ```
 
 Set `GOOGLE_SA_KEY_B64` + `VERTEX_PROJECT`, or `GEMINI_API_KEY`, or leave both unset and Strands falls back to Amazon Bedrock with your AWS credentials (see `.env.example` and `src/standup/model.py`). `GITHUB_TOKEN` (or `GH_TOKEN`) is read from the environment, falling back to `gh auth token`.
@@ -83,12 +83,12 @@ Set `GOOGLE_SA_KEY_B64` + `VERTEX_PROJECT`, or `GEMINI_API_KEY`, or leave both u
 **MCP server** — ask Claude or Cursor "what should I do first on my projects?" and the brief comes back in the tool you already have open. Claude Desktop, `claude_desktop_config.json`:
 
 ```json
-{"mcpServers": {"standup": {"command": "/path/to/.venv/bin/standup-mcp",
+{"mcpServers": {"standup": {"command": "uvx", "args": ["--from", "standup-agent", "standup-mcp"],
   "env": {"GOOGLE_SA_KEY_B64": "…", "VERTEX_PROJECT": "…", "GITHUB_TOKEN": "…",
           "STANDUP_STATE": "/Users/you/.standup"}}}}
 ```
 
-Cursor takes the same block in `.cursor/mcp.json`. One tool, `standup(target)`. The token is any read-only one; without it the server falls back to `gh auth token`, which a GUI-launched app often cannot see.
+Cursor takes the same block in `.cursor/mcp.json`. One tool, `standup(target)`. Listed in the [MCP Registry](https://registry.modelcontextprotocol.io) as `io.github.hyperdrift-io/standup`. The token is any read-only one; without it the server falls back to `gh auth token`, which a GUI-launched app often cannot see.
 
 **GitHub Action** — copy [`examples/standup.yml`](examples/standup.yml) into `.github/workflows/`, add one model secret — a Gemini key, or the Vertex pair — and Monday morning brings an issue instead of a backlog.
 
@@ -132,3 +132,5 @@ Private repositories — invisible to it, by design. Anything quiet for more tha
 ## Licence
 
 MIT. Built by [Hyperdrift](https://ai.hyperdrift.io/?from=standup).
+
+<!-- mcp-name: io.github.hyperdrift-io/standup -->
