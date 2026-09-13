@@ -92,15 +92,26 @@ _CTA_SCRIPT = ("<script>document.addEventListener('click',function(e){"
                "a&&window.posthog&&posthog.capture('cta_clicked',{target:a.dataset.cta})});</script>")
 
 
+BASE = "https://standup.hyperdrift.io"
+DESCRIPTION = ("How do I make the most of my evening? What should I start with? Who is waiting on me? "
+               "Standup reads your public GitHub projects and answers all three. Read-only, no login.")
+
+
 def _page(title: str, body: str, ph: str = "", status: int = 200, noindex: bool = False) -> HTMLResponse:
     robots = '<meta name="robots" content="noindex">' if noindex else ""
     return HTMLResponse(f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">{robots}<title>{html.escape(title)}</title>
-<meta name="description" content="A little help getting back to it. We read your public projects and find a useful place to start. Public repositories, read-only, no login.">
+<meta name="description" content="{DESCRIPTION}">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Standup">
+<meta property="og:title" content="{html.escape(title)}"><meta property="og:description" content="{DESCRIPTION}">
+<meta property="og:url" content="{BASE}/"><meta property="og:image" content="{BASE}/static/share.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/static/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/static/icon-180.png">
 <meta name="theme-color" content="#fcfaf7">
 <link rel="stylesheet" href="/static/standup.css"><script src="/static/standup.js" defer></script>{ph}</head><body>
 <a href="#main">Skip to content</a>
-<header><a href="/" aria-label="Standup home">Standup</a></header>
+<header><a href="/" aria-label="Standup home"><svg viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M13 51 H 23 C 32 51 32 45 32 40 V 24 C 32 19 32 13 41 13 H 51" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="13" cy="51" r="8" fill="#f17b64"/><circle cx="32" cy="32" r="6.5" fill="#fcfaf7" stroke="currentColor" stroke-width="3.75"/><circle cx="51" cy="13" r="6.5" fill="#fcfaf7" stroke="currentColor" stroke-width="3.75"/></svg>Standup</a></header>
 <main id="main">{body}</main>
 <footer><a href="{REPO}" data-cta="repo">Open source, MIT</a><a href="{HD}" data-cta="hyperdrift">Built by Hyperdrift</a></footer>
 {_CTA_SCRIPT}
@@ -128,7 +139,7 @@ def render_brief(b: Brief, seconds: float = 0) -> str:
 
 FORM = r"""<form method="post" action="/">
 <label for="t">Your GitHub handle
-<input id="t" name="target" placeholder="yannvr" required maxlength="40"
+<input id="t" name="target" placeholder="hyperdrift-io" required maxlength="40"
  pattern="@?[a-zA-Z0-9\-]{1,39}" title="A GitHub handle: letters, digits and hyphens."
  autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="scan-boundary"></label>
 <button type="submit">Read my projects</button>
@@ -141,8 +152,8 @@ HOME = ('<section aria-labelledby="question"><h1 id="question">A little help get
         '<svg viewBox="0 0 1200 520" preserveAspectRatio="none" aria-hidden="true" focusable="false">'
         '<path d="M-40 10 H790 Q835 10 870 45 L1030 205 M180 10 Q220 10 255 45 L370 160"/>'
         '<path d="M335 210 L370 245 Q400 270 445 270 H1240 M680 235 L855 60 Q900 10 950 10 H1240"/>'
-        '<path d="M810 340 L1070 600 M890 470 H980 Q1040 470 1080 430 L1170 340 Q1210 305 1240 305"/>'
-        '<path d="M200 320 Q245 320 280 360 L350 430 Q390 470 430 470 H910"/>'
+        '<path d="M200 320 Q245 320 280 360 L350 430 Q390 470 430 470 H985"/>'
+        '<path d="M810 340 L905 435 Q940 470 985 470 Q1040 470 1080 430 L1170 340 Q1210 305 1240 305"/>'
         '<path d="M-40 340 H165 Q205 340 240 305 L350 195 Q380 160 410 160 H565 Q605 160 640 195 L740 295 Q780 340 820 340 H855 Q900 340 935 305 L1040 200 Q1080 160 1120 160 H1240"/>'
         '<path data-segment="1" d="M410 160 H565 Q605 160 640 195 L680 235"/>'
         '<path data-segment="2" d="M680 235 L740 295 Q780 340 820 340 H855 Q900 340 935 305 L1000 240"/>'
@@ -151,11 +162,11 @@ HOME = ('<section aria-labelledby="question"><h1 id="question">A little help get
         '<ol aria-label="Follow a contribution to its next step">'
         '<li><details><summary><span>docs-kit · Pull request #42</span><small>opened 3 days ago</small></summary>'
         '<div><h3>Someone has already taken the first step.</h3>'
-        '<p>In this example, Maya has written a documentation fix. Her contribution gives you a place to pick up the thread.</p></div></details></li>'
+        '<p>In this example, Maya has written a documentation fix. That contribution gives you a place to pick up the thread.</p></div></details></li>'
         '<li><details><summary><span>Your paths meet here</span><small>Maya’s contribution · your review</small></summary>'
-        '<div><h3>A small review can carry her work forward.</h3>'
-        '<p>Read her changes and let her know what works. If something needs adjusting, a clear reply gives her a next step too.</p></div></details></li>'
-        '<li><details><summary><span>Review her pull request</span><time datetime="PT15M">15 min</time></summary>'
+        '<div><h3>A small review can carry that work forward.</h3>'
+        '<p>Read the changes and say what works. If something needs adjusting, a clear reply gives Maya a next step too.</p></div></details></li>'
+        '<li><details><summary><span>Review the pull request</span><time datetime="PT15M">15 min</time></summary>'
         '<div><h3>One useful thing for the time you have.</h3>'
         '<p>You can leave the rest for another evening. Standup brings the contribution, its context and a next step together.</p>'
         '<a href="#t">Find a starting point in my projects ↗</a></div></details></li></ol></div>'

@@ -43,7 +43,8 @@ details li { margin-block: .65rem; }
 body > a[href='#main'] { position: fixed; inset: .5rem auto auto .5rem; z-index: 5; background: var(--paper); inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); }
 body > a[href='#main']:focus { inline-size: auto; block-size: auto; padding: .75rem; clip-path: none; }
 body > header { padding: 4.4rem 1.5rem 0; text-align: center; view-transition-name: masthead; }
-body > header a { display: inline-flex; align-items: center; min-block-size: 44px; text-decoration: none; font-size: 3.1rem; line-height: 1; font-weight: 750; letter-spacing: -.045em; }
+body > header a { display: inline-flex; align-items: center; gap: .3em; min-block-size: 44px; text-decoration: none; font-size: 3.1rem; line-height: 1; font-weight: 750; letter-spacing: -.045em; }
+body > header svg { block-size: .82em; inline-size: .82em; flex: none; }
 main > section:first-child { max-inline-size: 90rem; margin: 5.1rem auto 0; padding-inline: 2rem; text-align: center; }
 h1 + p { max-inline-size: 58ch; margin: 1.3rem auto 0; font-size: clamp(1rem, 1.8vw, 1.65rem); text-wrap: pretty; }
 body > footer { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; padding: 1rem 1.5rem 2rem; color: var(--muted); font-size: .8rem; }
@@ -53,40 +54,44 @@ body > footer a { display: inline-flex; align-items: center; min-block-size: 44p
 section[aria-labelledby='example-heading'] { margin: 5rem auto 0; max-inline-size: 110rem; }
 section[aria-labelledby='example-heading'] > header { padding-inline: 1.5rem; text-align: center; }
 #example-heading { color: var(--ink); font-size: 1.2rem; }
-[data-route] { --route-height: 650px; position: relative; isolation: isolate; margin-block-start: 4.8rem; }
+[data-route] { --route-height: 650px; position: relative; z-index: 1; isolation: isolate; container-type: inline-size; margin-block-start: 4.8rem; }
 [data-route] > svg { position: absolute; z-index: -1; inset: 0; inline-size: 100%; block-size: var(--route-height); overflow: hidden; pointer-events: none; }
-[data-route] svg path { fill: none; stroke: var(--sage); stroke-width: 18; vector-effect: non-scaling-stroke; transition: opacity 200ms, stroke 200ms; }
-[data-route] svg path:nth-child(2) { stroke: var(--slate); }
-[data-route] svg path:nth-child(3) { stroke: #f3c59c; }
-[data-route] svg path:nth-child(4) { stroke: #ece1cf; opacity: .8; }
-[data-route] svg path:nth-child(5) { stroke: var(--coral); }
-[data-route] svg path[data-segment] { stroke: var(--action); opacity: 0; }
+/* Solid strokes: crossings and joins never show a darker overlap. Dimming mixes toward paper instead of fading. */
+[data-route] svg path { --line: var(--sage); fill: none; stroke: var(--line); stroke-width: 18; vector-effect: non-scaling-stroke; transition: opacity 200ms, stroke 200ms; }
+[data-route] svg path:nth-child(2) { --line: var(--slate); }
+[data-route] svg path:nth-child(3) { --line: #eee4d4; }
+[data-route] svg path:nth-child(4) { --line: #f3c59c; }
+[data-route] svg path:nth-child(5) { --line: var(--coral); }
+[data-route] svg path[data-segment] { --line: var(--action); opacity: 0; }
 [data-route]:has(li:nth-child(1) details[open]) svg [data-segment='1'],
 [data-route]:has(li:nth-child(2) details[open]) svg [data-segment='2'],
 [data-route]:has(li:nth-child(3) details[open]) svg [data-segment='3'] { opacity: 1; }
-[data-route]:has(details[open]) svg path:nth-child(-n+4) { opacity: .32; }
-[data-route] > p { position: absolute; inset: 21.54% auto auto 4%; max-inline-size: 25%; font-size: clamp(1rem, 1.35vw, 1.35rem); font-weight: 650; }
+[data-route]:has(details[open]) svg path:nth-child(-n+4) { stroke: color-mix(in srgb, var(--line) 32%, var(--paper)); }
+[data-route] > p { position: absolute; inset: 21.54% auto auto 4%; max-inline-size: 21%; font-size: clamp(1rem, 1.35vw, 1.35rem); font-weight: 650; }
 [data-route] > ol { position: relative; list-style: none; padding: 0; margin: 0; min-block-size: var(--route-height); }
 [data-route] > ol > li { position: absolute; inset: 30.77% auto auto 34.17%; inline-size: 26%; }
-[data-route] > ol > li:nth-child(2) { inset: 45.23% auto auto 56.67%; inline-size: 23%; }
-[data-route] > ol > li:nth-child(3) { inset: 46.15% auto auto 83.33%; inline-size: 16%; }
+[data-route] > ol > li:nth-child(2) { inset: 45.23% auto auto 56.67%; inline-size: 19cqw; }
+[data-route] > ol > li:nth-child(3) { inset: 46.15% auto auto 83.33%; inline-size: calc(13.7cqw - 1.5rem); }
 [data-route] li details { position: relative; border: 0; }
 [data-route] li details[open] { z-index: 3; min-block-size: 6rem; }
 [data-route] li details[open]::before { content: ''; position: absolute; inset: -6rem 0 auto -1.2rem; block-size: 12rem; z-index: -1; }
-[data-route] li summary { position: relative; display: block; padding: 0 0 0 1.7rem; min-block-size: 44px; font-size: clamp(1rem, 1.35vw, 1.35rem); line-height: 1.4; }
+[data-route] li summary { position: relative; display: block; padding: 0; min-block-size: 44px; font-size: clamp(1rem, 1.35vw, 1.35rem); line-height: 1.4; }
 [data-route] li summary::after { display: none; }
 [data-route] li summary::before { content: ''; position: absolute; inset: -17px auto auto -17px; inline-size: 34px; block-size: 34px; border-radius: 50%; background: var(--coral); box-shadow: 0 0 0 0 #f17b6430; transition: box-shadow 180ms, background 180ms; }
 [data-route] li summary:hover::before, [data-route] li summary:focus-visible::before, [data-route] li details[open] summary::before { background: var(--action); box-shadow: 0 0 0 10px #f17b6425; }
 [data-route] li summary span { display: block; font-weight: 650; }
-[data-route] li summary span, [data-route] li summary small, [data-route] li summary time { inline-size: fit-content; background: var(--paper); box-shadow: 0 0 0 4px var(--paper); }
 [data-route] li summary small, [data-route] li summary time { display: block; color: var(--ink); font-size: .9em; }
-[data-route] li:first-child summary { translate: 0 -4.8rem; padding-inline-start: 0; }
-[data-route] li:first-child summary::before { inset-block-start: calc(4.8rem - 17px); }
-[data-route] li:nth-child(2) summary { translate: 6rem -.7rem; }
-[data-route] li:nth-child(2) summary::before { inset-block-start: calc(.7rem - 17px); inset-inline-start: calc(-6rem - 17px); }
-[data-route] li:last-child summary { translate: -3rem -6rem; padding: 0; }
-[data-route] li:last-child summary::before { inset: calc(6rem - 17px) auto auto calc(3rem - 17px); }
+/* Each label sits in open ground beside its own segment, so no line runs under text. Offsets follow the SVG: cqw for x, route height for y. */
+[data-route] li:first-child summary { translate: 0 calc(-100% - 1.6rem); }
+[data-route] li:first-child summary::before { inset-block-start: calc(100% + 1.6rem - 17px); }
+[data-route] li:nth-child(2) summary { translate: -17.5cqw calc(var(--route-height) * .106); }
+[data-route] li:nth-child(2) summary::before { inset: calc(var(--route-height) * -.106 - 17px) auto auto calc(17.5cqw - 17px); }
+[data-route] li:nth-child(2) details[open]::before { inset: -2rem auto auto -17.5cqw; inline-size: 21cqw; block-size: calc(var(--route-height) * .106 + 8rem); }
+[data-route] li:last-child summary { translate: 3cqw calc(-100% - var(--route-height) * .192); }
+[data-route] li:last-child summary::before { inset: calc(100% + var(--route-height) * .192 - 17px) auto auto calc(-3cqw - 17px); }
+[data-route] li:last-child details[open]::before { inset-block-start: calc(var(--route-height) * -.192 - 4.5rem); block-size: calc(var(--route-height) * .192 + 11rem); }
 [data-route] li details > div { position: absolute; inset: 5rem auto auto 0; inline-size: min(23rem, 90vw); padding: 1.4rem; border: 1px solid var(--rule); border-radius: 1rem; background: var(--paper); box-shadow: 0 12px 35px #19183712; }
+[data-route] li:nth-child(2) details > div { inset: calc(var(--route-height) * .106 + 5.5rem) auto auto -17.5cqw; }
 [data-route] li:last-child details > div { inset-inline: auto 1rem; }
 [data-route] li details h3 { font-size: 1.2rem; }
 [data-route] li details p { margin-block-start: .7rem; font-size: 1rem; }
@@ -150,16 +155,28 @@ article[data-state='done'] > [role='status'] { position: absolute; inline-size: 
   h1 + p { margin-block-start: .8rem; font-size: 1.2rem; }
   form { margin-block-start: 1.3rem; }
   section[aria-labelledby='example-heading'] { margin-block-start: 1.3rem; }
-  [data-route] { --route-height: clamp(240px, calc(100svh - 510px), 430px); margin-block-start: 1.5rem; }
+  section[aria-labelledby='example-heading'] > details > summary { min-block-size: 48px; }
+  body > footer { flex-direction: row; gap: 1.5rem; padding-block: 0; }
+}
+@media (width >= 75rem) and (height < 1100px) {
+  [data-route] { --route-height: clamp(360px, calc(100svh - 510px), 430px); margin-block-start: 1.5rem; }
   [data-route] svg path { stroke-width: 12; }
   [data-route] > p { font-size: 1rem; }
   [data-route] li summary { font-size: 1rem; }
-  [data-route] li:first-child summary { translate: 0 -3.8rem; }
-  [data-route] li:first-child summary::before { inset-block-start: calc(3.8rem - 17px); }
-  [data-route] li:last-child summary { translate: -3rem -4rem; }
-  [data-route] li:last-child summary::before { inset-block-start: calc(4rem - 17px); }
-  section[aria-labelledby='example-heading'] > details > summary { min-block-size: 48px; }
-  body > footer { flex-direction: row; gap: 1.5rem; padding-block: 0; }
+}
+/* Below a wide laptop the labels no longer fit the open ground: one continuous vertical route. */
+@media (width < 75rem) {
+  [data-route] { max-inline-size: 46rem; margin: 2rem auto 0; padding-inline: 24px; overflow-wrap: anywhere; }
+  [data-route] > svg { display: none; }
+  [data-route] li details[open]::before { display: none; }
+  [data-route] > p { position: static; max-inline-size: none; margin-block-end: 2.5rem; font-size: 1.2rem; }
+  [data-route] > ol { min-block-size: 0; border-inline-start: 5px solid var(--coral); margin-inline-start: .5rem; }
+  [data-route] > ol > li, [data-route] > ol > li:nth-child(2), [data-route] > ol > li:nth-child(3) { position: relative; inset: auto; inline-size: auto; padding: 0 0 2.5rem 1.8rem; }
+  [data-route] li summary, [data-route] li:first-child summary, [data-route] li:nth-child(2) summary, [data-route] li:last-child summary { translate: none; padding: 0; font-size: 1.15rem; }
+  [data-route] li summary::before, [data-route] li:first-child summary::before, [data-route] li:nth-child(2) summary::before, [data-route] li:last-child summary::before { inset: 0 auto auto -46px; inline-size: 29px; block-size: 29px; }
+  [data-route] li details > div, [data-route] li:nth-child(2) details > div, [data-route] li:last-child details > div { position: static; inline-size: auto; margin-block-start: 1rem; padding: 1rem; }
+  [data-route] > ol > li:last-child { padding-block-end: .6rem; }
+  [data-route] li:has(details[open])::after { content: ''; position: absolute; inset: 15px auto 0 -5px; inline-size: 5px; background: var(--action); z-index: -1; }
 }
 @media (width < 48rem) {
   body > header { padding-block-start: 1.3rem; }
@@ -172,17 +189,6 @@ article[data-state='done'] > [role='status'] { position: absolute; inline-size: 
   form p { margin-block-start: 0; font-size: .78rem; }
   section[aria-labelledby='example-heading'] { margin-block-start: 3.5rem; }
   section[aria-labelledby='example-heading'] h2 { font-size: 1.2rem; }
-  [data-route] { margin: 2rem 24px 0; overflow-wrap: anywhere; }
-  [data-route] > svg { display: none; }
-  [data-route] li details[open]::before { display: none; }
-  [data-route] > p { position: static; max-inline-size: none; margin-block-end: 2.5rem; font-size: 1.2rem; }
-  [data-route] > ol { min-block-size: 0; border-inline-start: 5px solid var(--coral); margin-inline-start: .5rem; }
-  [data-route] > ol > li, [data-route] > ol > li:nth-child(2), [data-route] > ol > li:nth-child(3) { position: relative; inset: auto; inline-size: auto; padding: 0 0 2.5rem 1.8rem; }
-  [data-route] li summary, [data-route] li:first-child summary, [data-route] li:nth-child(2) summary, [data-route] li:last-child summary { translate: none; padding: 0; font-size: 1.15rem; }
-  [data-route] li summary::before, [data-route] li:first-child summary::before, [data-route] li:nth-child(2) summary::before, [data-route] li:last-child summary::before { inset: 0 auto auto -46px; inline-size: 29px; block-size: 29px; }
-  [data-route] li details > div, [data-route] li:last-child details > div { position: static; inline-size: auto; margin-block-start: 1rem; padding: 1rem; }
-  [data-route] > ol > li:last-child { padding-block-end: .6rem; }
-  [data-route] li:has(details[open])::after { content: ''; position: absolute; inset: 15px auto 0 -5px; inline-size: 5px; background: var(--action); z-index: -1; }
   section[aria-labelledby='example-heading'] > details { margin: 2rem 1.5rem 0; }
   article { padding-inline: 1.5rem; margin-block-start: 2.5rem; }
   article > header { margin-block-end: 2rem; }

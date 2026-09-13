@@ -17,7 +17,7 @@ async def standup(target: str) -> dict:
 
     Call this when a person asks what to work on, what they left unfinished, who is waiting on them,
     or wants a standup across their repositories. `target` is a public GitHub handle or organisation
-    (e.g. "yannvr"), or a local folder path. Read-only: it never writes to GitHub or the disk beyond a
+    (e.g. "hyperdrift-io"), or a local folder path. Read-only: it never writes to GitHub or the disk beyond a
     small cache. Returns up to three items with evidence, action and minutes, plus what it looked at.
     """
     # The run is a minute of blocking work with its own event loop inside; keep the server's loop free.

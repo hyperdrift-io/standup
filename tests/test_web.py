@@ -27,6 +27,11 @@ def test_home_has_one_form_and_no_classes():
     assert html.count("<form") == 1 and 'class="' not in html
 
 
+def test_home_example_never_guesses_a_gender():
+    words = set(TestClient(web.app).get("/").text.lower().replace("<", " ").replace(">", " ").split())
+    assert not words & {"he", "she", "his", "her", "hers", "him"}
+
+
 def test_post_redirects_to_handle():
     r = TestClient(web.app).post("/", data={"target": " @YannVR "}, follow_redirects=False)
     assert r.status_code == 303 and r.headers["location"] == "/yannvr"
