@@ -1,5 +1,12 @@
 /* Native browser enhancements. The server and real SSE events own the state. */
 (() => {
+  // The handle is the one thing to do on this page, so it takes focus on load: only where a keyboard is
+  // already there (fine pointer, so no phone keyboard covering the page), only when the URL points at
+  // nothing else, and without scrolling, so the promise stays in view. Shift+Tab still reaches the skip link.
+  const handle = document.getElementById('t');
+  if (handle && !location.hash && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    handle.focus({ preventScroll: true });
+  }
   // Native disclosure is the fallback; hover and focus let people follow the route.
   document.querySelectorAll('[data-route] li details').forEach(station => {
     const summary = station.querySelector('summary');

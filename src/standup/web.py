@@ -141,7 +141,7 @@ FORM = r"""<form method="post" action="/">
 <label for="t">Your GitHub handle
 <input id="t" name="target" placeholder="hyperdrift-io" required maxlength="40"
  pattern="@?[a-zA-Z0-9\-]{1,39}" title="A GitHub handle: letters, digits and hyphens."
- autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="scan-boundary"></label>
+ autocomplete="off" autocapitalize="none" spellcheck="false" enterkeyhint="go" aria-describedby="scan-boundary"></label>
 <button type="submit">Read my projects</button>
 <p id="scan-boundary">Public repositories. Read-only. No login.</p></form>"""
 
