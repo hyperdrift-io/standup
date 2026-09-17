@@ -17,7 +17,7 @@ load_dotenv(override=False)
 from sse_starlette.sse import EventSourceResponse
 from starlette.applications import Starlette
 from starlette.requests import Request
-from starlette.responses import HTMLResponse, JSONResponse, PlainTextResponse, RedirectResponse
+from starlette.responses import HTMLResponse, JSONResponse, PlainTextResponse, RedirectResponse, Response
 from starlette.routing import Mount, Route
 from starlette.staticfiles import StaticFiles
 
@@ -181,7 +181,19 @@ async def home(_: Request):
 
 
 async def robots(_: Request):
-    return PlainTextResponse("User-agent: *\nDisallow: /\nAllow: /$\n")
+    """Every crawler is welcome on the home page; handle pages stay out of every index."""
+    return PlainTextResponse(f"User-agent: *\nDisallow: /\nAllow: /$\nAllow: /sitemap.xml\n\nSitemap: {BASE}/sitemap.xml\n")
+
+
+HOME_LASTMOD = "2026-09-14"  # the day the home page last changed; move it only when HOME or FORM does
+
+
+async def sitemap(_: Request):
+    """The home page is the only indexable URL: every handle page is noindex."""
+    return Response('<?xml version="1.0" encoding="UTF-8"?>\n'
+                    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+                    f"<url><loc>{BASE}/</loc><lastmod>{HOME_LASTMOD}</lastmod></url></urlset>\n",
+                    media_type="application/xml")
 
 
 def _try_again(message: str) -> HTMLResponse:
@@ -268,6 +280,7 @@ app = Starlette(routes=[
     Route("/", go, methods=["POST"]),
     Route("/health", health),
     Route("/robots.txt", robots),
+    Route("/sitemap.xml", sitemap),
     Mount("/static", StaticFiles(directory=str(STATIC)), name="static"),
     Route("/{target}", show),
     Route("/{target}/events", events),

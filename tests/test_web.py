@@ -75,7 +75,14 @@ def test_home_initialises_posthog_without_capturing_a_page_view(monkeypatch):
 def test_robots_keeps_crawlers_off_every_handle():
     r = TestClient(web.app).get("/robots.txt")
     assert r.status_code == 200
-    assert r.text == "User-agent: *\nDisallow: /\nAllow: /$\n"
+    assert r.text.startswith("User-agent: *\nDisallow: /\nAllow: /$\n")
+    assert "Sitemap: https://standup.hyperdrift.io/sitemap.xml" in r.text
+
+
+def test_sitemap_lists_the_home_page_and_nothing_else():
+    r = TestClient(web.app).get("/sitemap.xml")
+    assert r.status_code == 200 and r.headers["content-type"].startswith("application/xml")
+    assert r.text.count("<loc>") == 1 and "<loc>https://standup.hyperdrift.io/</loc>" in r.text
 
 
 def test_handle_pages_are_noindex_but_home_is_not():
