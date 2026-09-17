@@ -79,6 +79,13 @@ def test_robots_keeps_crawlers_off_every_handle():
     assert "Sitemap: https://standup.hyperdrift.io/sitemap.xml" in r.text
 
 
+def test_llms_txt_maps_the_pages_worth_reading_and_crawlers_may_fetch_it():
+    r = TestClient(web.app).get("/llms.txt")
+    assert r.status_code == 200 and r.text.startswith("# Standup\n")
+    assert "](https://standup.hyperdrift.io/)" in r.text
+    assert "Allow: /llms.txt" in TestClient(web.app).get("/robots.txt").text
+
+
 def test_sitemap_lists_the_home_page_and_nothing_else():
     r = TestClient(web.app).get("/sitemap.xml")
     assert r.status_code == 200 and r.headers["content-type"].startswith("application/xml")

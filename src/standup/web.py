@@ -182,7 +182,23 @@ async def home(_: Request):
 
 async def robots(_: Request):
     """Every crawler is welcome on the home page; handle pages stay out of every index."""
-    return PlainTextResponse(f"User-agent: *\nDisallow: /\nAllow: /$\nAllow: /sitemap.xml\n\nSitemap: {BASE}/sitemap.xml\n")
+    return PlainTextResponse(f"User-agent: *\nDisallow: /\nAllow: /$\nAllow: /sitemap.xml\nAllow: /llms.txt\n\nSitemap: {BASE}/sitemap.xml\n")
+
+
+LLMS = f"""# Standup
+
+> Type a GitHub handle and see who is waiting on you. Standup reads your public repositories and hands back three things to do first, each with the evidence it saw and how long it takes. Read-only, no login.
+
+## Pages
+
+- [Standup]({BASE}/): enter a handle, get the brief; the page walks through one example route
+- [Source and README]({REPO}): how the ordering is decided, a real unedited brief, the CLI, the GitHub Action and the MCP server
+- [standup-agent on PyPI](https://pypi.org/project/standup-agent/): install the CLI and the MCP server with pipx or uv
+"""
+
+
+async def llms(_: Request):
+    return PlainTextResponse(LLMS)
 
 
 HOME_LASTMOD = "2026-09-14"  # the day the home page last changed; move it only when HOME or FORM does
@@ -281,6 +297,7 @@ app = Starlette(routes=[
     Route("/health", health),
     Route("/robots.txt", robots),
     Route("/sitemap.xml", sitemap),
+    Route("/llms.txt", llms),
     Mount("/static", StaticFiles(directory=str(STATIC)), name="static"),
     Route("/{target}", show),
     Route("/{target}/events", events),
