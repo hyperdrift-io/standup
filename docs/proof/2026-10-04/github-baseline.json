@@ -1,0 +1,3712 @@
+{
+  "retrieved_at": "2026-10-04T20:02:48.643103+00:00",
+  "method": "gh api graphql; public repositories only; read before MCP output",
+  "data": {
+    "data": {
+      "rateLimit": {
+        "cost": 1,
+        "remaining": 4998
+      },
+      "repositoryOwner": {
+        "login": "trekhleb",
+        "repositories": {
+          "totalCount": 29,
+          "nodes": [
+            {
+              "name": "trekhleb.github.io",
+              "url": "https://github.com/trekhleb/trekhleb.github.io",
+              "pushedAt": "2026-10-04T10:07:39Z",
+              "defaultBranchRef": {
+                "name": "master",
+                "target": {
+                  "statusCheckRollup": {
+                    "state": "SUCCESS"
+                  },
+                  "history": {
+                    "nodes": [
+                      {
+                        "messageHeadline": "Move social icons",
+                        "committedDate": "2026-09-28T15:30:30Z"
+                      },
+                      {
+                        "messageHeadline": "Remove dead links",
+                        "committedDate": "2026-09-28T03:10:33Z"
+                      },
+                      {
+                        "messageHeadline": "Image preview fixes and project descriptions",
+                        "committedDate": "2026-09-28T02:47:37Z"
+                      },
+                      {
+                        "messageHeadline": "Add missed article",
+                        "committedDate": "2026-09-28T01:22:20Z"
+                      },
+                      {
+                        "messageHeadline": "Update social image",
+                        "committedDate": "2026-09-27T21:16:59Z"
+                      },
+                      {
+                        "messageHeadline": "Update README",
+                        "committedDate": "2026-09-27T21:16:52Z"
+                      },
+                      {
+                        "messageHeadline": "Fix paddings",
+                        "committedDate": "2026-09-27T20:59:19Z"
+                      },
+                      {
+                        "messageHeadline": "Redesign",
+                        "committedDate": "2026-09-27T20:26:11Z"
+                      }
+                    ]
+                  }
+                }
+              },
+              "oldPRs": {
+                "totalCount": 5,
+                "nodes": [
+                  {
+                    "number": 104,
+                    "title": "Bump joi from 17.9.2 to 17.13.8",
+                    "url": "https://github.com/trekhleb/trekhleb.github.io/pull/104",
+                    "updatedAt": "2026-09-30T23:16:53Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "dependabot",
+                      "__typename": "Bot"
+                    }
+                  },
+                  {
+                    "number": 105,
+                    "title": "Bump probe-image-size from 7.2.3 to 7.4.0",
+                    "url": "https://github.com/trekhleb/trekhleb.github.io/pull/105",
+                    "updatedAt": "2026-10-03T11:21:51Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "dependabot",
+                      "__typename": "Bot"
+                    }
+                  },
+                  {
+                    "number": 106,
+                    "title": "Bump brace-expansion from 1.1.11 to 1.1.21",
+                    "url": "https://github.com/trekhleb/trekhleb.github.io/pull/106",
+                    "updatedAt": "2026-10-03T11:22:01Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "dependabot",
+                      "__typename": "Bot"
+                    }
+                  },
+                  {
+                    "number": 107,
+                    "title": "Bump moment from 2.29.4 to 2.31.0",
+                    "url": "https://github.com/trekhleb/trekhleb.github.io/pull/107",
+                    "updatedAt": "2026-10-03T11:22:03Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "dependabot",
+                      "__typename": "Bot"
+                    }
+                  },
+                  {
+                    "number": 108,
+                    "title": "Bump svgo from 2.8.0 to 2.8.4",
+                    "url": "https://github.com/trekhleb/trekhleb.github.io/pull/108",
+                    "updatedAt": "2026-10-03T11:22:09Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "dependabot",
+                      "__typename": "Bot"
+                    }
+                  }
+                ]
+              },
+              "newPRs": {
+                "nodes": [
+                  {
+                    "number": 108,
+                    "title": "Bump svgo from 2.8.0 to 2.8.4",
+                    "url": "https://github.com/trekhleb/trekhleb.github.io/pull/108",
+                    "updatedAt": "2026-10-03T11:22:09Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "dependabot",
+                      "__typename": "Bot"
+                    }
+                  },
+                  {
+                    "number": 107,
+                    "title": "Bump moment from 2.29.4 to 2.31.0",
+                    "url": "https://github.com/trekhleb/trekhleb.github.io/pull/107",
+                    "updatedAt": "2026-10-03T11:22:03Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "dependabot",
+                      "__typename": "Bot"
+                    }
+                  },
+                  {
+                    "number": 106,
+                    "title": "Bump brace-expansion from 1.1.11 to 1.1.21",
+                    "url": "https://github.com/trekhleb/trekhleb.github.io/pull/106",
+                    "updatedAt": "2026-10-03T11:22:01Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "dependabot",
+                      "__typename": "Bot"
+                    }
+                  },
+                  {
+                    "number": 105,
+                    "title": "Bump probe-image-size from 7.2.3 to 7.4.0",
+                    "url": "https://github.com/trekhleb/trekhleb.github.io/pull/105",
+                    "updatedAt": "2026-10-03T11:21:51Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "dependabot",
+                      "__typename": "Bot"
+                    }
+                  },
+                  {
+                    "number": 104,
+                    "title": "Bump joi from 17.9.2 to 17.13.8",
+                    "url": "https://github.com/trekhleb/trekhleb.github.io/pull/104",
+                    "updatedAt": "2026-09-30T23:16:53Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "dependabot",
+                      "__typename": "Bot"
+                    }
+                  }
+                ]
+              },
+              "oldIssues": {
+                "totalCount": 1,
+                "nodes": [
+                  {
+                    "number": 103,
+                    "title": "Deep-dive resource proposal for the web crawler sketch",
+                    "url": "https://github.com/trekhleb/trekhleb.github.io/issues/103",
+                    "updatedAt": "2026-08-26T02:27:20Z",
+                    "author": {
+                      "login": "AndyNian",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  }
+                ]
+              },
+              "newIssues": {
+                "nodes": [
+                  {
+                    "number": 103,
+                    "title": "Deep-dive resource proposal for the web crawler sketch",
+                    "url": "https://github.com/trekhleb/trekhleb.github.io/issues/103",
+                    "updatedAt": "2026-08-26T02:27:20Z",
+                    "author": {
+                      "login": "AndyNian",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  }
+                ]
+              },
+              "refs": {
+                "totalCount": 7,
+                "nodes": [
+                  {
+                    "name": "dependabot/npm_and_yarn/brace-expansion-1.1.21",
+                    "target": {
+                      "committedDate": "2026-10-03T11:21:56Z"
+                    }
+                  },
+                  {
+                    "name": "dependabot/npm_and_yarn/joi-17.13.8",
+                    "target": {
+                      "committedDate": "2026-09-30T23:16:51Z"
+                    }
+                  },
+                  {
+                    "name": "dependabot/npm_and_yarn/moment-2.31.0",
+                    "target": {
+                      "committedDate": "2026-10-03T11:22:01Z"
+                    }
+                  },
+                  {
+                    "name": "dependabot/npm_and_yarn/probe-image-size-7.4.0",
+                    "target": {
+                      "committedDate": "2026-10-03T11:21:49Z"
+                    }
+                  },
+                  {
+                    "name": "dependabot/npm_and_yarn/svgo-2.8.4",
+                    "target": {
+                      "committedDate": "2026-10-03T11:22:04Z"
+                    }
+                  },
+                  {
+                    "name": "master",
+                    "target": {
+                      "committedDate": "2026-09-28T15:30:30Z"
+                    }
+                  },
+                  {
+                    "name": "public",
+                    "target": {
+                      "committedDate": "2026-10-04T10:07:35Z"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "bible-cross-references",
+              "url": "https://github.com/trekhleb/bible-cross-references",
+              "pushedAt": "2026-09-28T23:55:52Z",
+              "defaultBranchRef": {
+                "name": "main",
+                "target": {
+                  "statusCheckRollup": {
+                    "state": "SUCCESS"
+                  },
+                  "history": {
+                    "nodes": [
+                      {
+                        "messageHeadline": "Add screenshot with >4 votes filter",
+                        "committedDate": "2026-09-28T23:55:49Z"
+                      },
+                      {
+                        "messageHeadline": "Set default threshold of >4 votes",
+                        "committedDate": "2026-09-28T23:45:21Z"
+                      },
+                      {
+                        "messageHeadline": "Fix range cross-references",
+                        "committedDate": "2026-09-26T22:37:34Z"
+                      },
+                      {
+                        "messageHeadline": "Fix range cross-references",
+                        "committedDate": "2026-09-26T22:37:32Z"
+                      },
+                      {
+                        "messageHeadline": "Update mobile jestures",
+                        "committedDate": "2026-09-26T15:06:28Z"
+                      },
+                      {
+                        "messageHeadline": "Deploy to GH Pages",
+                        "committedDate": "2026-09-26T05:33:08Z"
+                      },
+                      {
+                        "messageHeadline": "Init",
+                        "committedDate": "2026-09-26T05:19:52Z"
+                      },
+                      {
+                        "messageHeadline": "Initial commit",
+                        "committedDate": "2026-09-26T03:57:33Z"
+                      }
+                    ]
+                  }
+                }
+              },
+              "oldPRs": {
+                "totalCount": 0,
+                "nodes": []
+              },
+              "newPRs": {
+                "nodes": []
+              },
+              "oldIssues": {
+                "totalCount": 0,
+                "nodes": []
+              },
+              "newIssues": {
+                "nodes": []
+              },
+              "refs": {
+                "totalCount": 1,
+                "nodes": [
+                  {
+                    "name": "main",
+                    "target": {
+                      "committedDate": "2026-09-28T23:55:49Z"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "trekhleb",
+              "url": "https://github.com/trekhleb/trekhleb",
+              "pushedAt": "2026-09-28T15:28:15Z",
+              "defaultBranchRef": {
+                "name": "master",
+                "target": {
+                  "statusCheckRollup": null,
+                  "history": {
+                    "nodes": [
+                      {
+                        "messageHeadline": "Fix typo",
+                        "committedDate": "2026-09-28T15:28:11Z"
+                      },
+                      {
+                        "messageHeadline": "Update README",
+                        "committedDate": "2026-09-28T15:25:09Z"
+                      },
+                      {
+                        "messageHeadline": "Update README",
+                        "committedDate": "2026-09-28T15:24:43Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2026-07-13T20:09:57Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2024-04-11T19:52:52Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2023-05-03T20:05:39Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2023-05-03T20:04:29Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2022-08-11T14:12:41Z"
+                      }
+                    ]
+                  }
+                }
+              },
+              "oldPRs": {
+                "totalCount": 0,
+                "nodes": []
+              },
+              "newPRs": {
+                "nodes": []
+              },
+              "oldIssues": {
+                "totalCount": 0,
+                "nodes": []
+              },
+              "newIssues": {
+                "nodes": []
+              },
+              "refs": {
+                "totalCount": 1,
+                "nodes": [
+                  {
+                    "name": "master",
+                    "target": {
+                      "committedDate": "2026-09-28T15:28:11Z"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "yesbrainer",
+              "url": "https://github.com/trekhleb/yesbrainer",
+              "pushedAt": "2026-09-13T02:37:35Z",
+              "defaultBranchRef": {
+                "name": "main",
+                "target": {
+                  "statusCheckRollup": {
+                    "state": "SUCCESS"
+                  },
+                  "history": {
+                    "nodes": [
+                      {
+                        "messageHeadline": "Upgrade model versions",
+                        "committedDate": "2026-09-13T02:37:31Z"
+                      },
+                      {
+                        "messageHeadline": "Add footer links",
+                        "committedDate": "2026-09-13T02:11:06Z"
+                      },
+                      {
+                        "messageHeadline": "Make councils more reselient to phone locks and tabs going to background",
+                        "committedDate": "2026-08-09T15:28:02Z"
+                      },
+                      {
+                        "messageHeadline": "Add code review skill",
+                        "committedDate": "2026-08-09T04:52:34Z"
+                      },
+                      {
+                        "messageHeadline": "Update banner",
+                        "committedDate": "2026-07-27T03:43:54Z"
+                      },
+                      {
+                        "messageHeadline": "Update banner",
+                        "committedDate": "2026-07-27T03:32:55Z"
+                      },
+                      {
+                        "messageHeadline": "Merge pull request #1 from trekhleb/integration-tests",
+                        "committedDate": "2026-07-27T02:52:26Z"
+                      },
+                      {
+                        "messageHeadline": "Add integration tests",
+                        "committedDate": "2026-07-26T21:48:09Z"
+                      }
+                    ]
+                  }
+                }
+              },
+              "oldPRs": {
+                "totalCount": 0,
+                "nodes": []
+              },
+              "newPRs": {
+                "nodes": []
+              },
+              "oldIssues": {
+                "totalCount": 1,
+                "nodes": [
+                  {
+                    "number": 2,
+                    "title": "Expose the full OpenRouter model catalog",
+                    "url": "https://github.com/trekhleb/yesbrainer/issues/2",
+                    "updatedAt": "2026-07-30T19:12:35Z",
+                    "author": {
+                      "login": "axAilotl",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 1
+                    }
+                  }
+                ]
+              },
+              "newIssues": {
+                "nodes": [
+                  {
+                    "number": 2,
+                    "title": "Expose the full OpenRouter model catalog",
+                    "url": "https://github.com/trekhleb/yesbrainer/issues/2",
+                    "updatedAt": "2026-07-30T19:12:35Z",
+                    "author": {
+                      "login": "axAilotl",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 1
+                    }
+                  }
+                ]
+              },
+              "refs": {
+                "totalCount": 1,
+                "nodes": [
+                  {
+                    "name": "main",
+                    "target": {
+                      "committedDate": "2026-09-13T02:37:31Z"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "javascript-algorithms",
+              "url": "https://github.com/trekhleb/javascript-algorithms",
+              "pushedAt": "2026-07-26T02:43:08Z",
+              "defaultBranchRef": {
+                "name": "master",
+                "target": {
+                  "statusCheckRollup": {
+                    "state": "SUCCESS"
+                  },
+                  "history": {
+                    "nodes": [
+                      {
+                        "messageHeadline": "Remove Project Backers section",
+                        "committedDate": "2026-07-26T02:43:01Z"
+                      },
+                      {
+                        "messageHeadline": "Add links to sattelite apps (thinking and drawing)",
+                        "committedDate": "2026-07-26T02:42:07Z"
+                      },
+                      {
+                        "messageHeadline": "Add links to sattelite apps (thinking and drawing)",
+                        "committedDate": "2026-07-26T02:40:43Z"
+                      },
+                      {
+                        "messageHeadline": "Recompute graph edge key after reverse to reflect new direction",
+                        "committedDate": "2026-06-26T22:49:08Z"
+                      },
+                      {
+                        "messageHeadline": "Fix graph reverse method",
+                        "committedDate": "2026-06-26T22:32:12Z"
+                      },
+                      {
+                        "messageHeadline": "Add test for graph reverse with cycle of length two",
+                        "committedDate": "2026-06-26T22:32:12Z"
+                      },
+                      {
+                        "messageHeadline": "Deque: use DoublyLinkedList so both ends are truly O(1)",
+                        "committedDate": "2026-06-19T18:15:58Z"
+                      },
+                      {
+                        "messageHeadline": "feat: add Deque data structure with tests and README",
+                        "committedDate": "2026-06-19T18:03:02Z"
+                      }
+                    ]
+                  }
+                }
+              },
+              "oldPRs": {
+                "totalCount": 273,
+                "nodes": [
+                  {
+                    "number": 68,
+                    "title": "Bidirectional conditional insertion sort",
+                    "url": "https://github.com/trekhleb/javascript-algorithms/pull/68",
+                    "updatedAt": "2018-07-02T02:38:00Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "christian4423",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 150,
+                    "title": "Add efficient LIS",
+                    "url": "https://github.com/trekhleb/javascript-algorithms/pull/150",
+                    "updatedAt": "2018-08-11T14:03:23Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "Bruce-Feldman",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 149,
+                    "title": "Make Rain Terraces more terse using standard array functions",
+                    "url": "https://github.com/trekhleb/javascript-algorithms/pull/149",
+                    "updatedAt": "2018-08-11T13:57:11Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "Bruce-Feldman",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 160,
+                    "title": "Made maximum subarray solution more terse",
+                    "url": "https://github.com/trekhleb/javascript-algorithms/pull/160",
+                    "updatedAt": "2018-08-29T08:13:27Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "Bruce-Feldman",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 186,
+                    "title": "Add support for complex data to PriorityQueue",
+                    "url": "https://github.com/trekhleb/javascript-algorithms/pull/186",
+                    "updatedAt": "2018-08-31T20:38:33Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "appleJax",
+                      "__typename": "User"
+                    }
+                  }
+                ]
+              },
+              "newPRs": {
+                "nodes": [
+                  {
+                    "number": 2191,
+                    "title": "Implements the Hungarian Algorithm",
+                    "url": "https://github.com/trekhleb/javascript-algorithms/pull/2191",
+                    "updatedAt": "2026-10-02T16:26:07Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "Ayushman-00",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 2188,
+                    "title": "docs: fix typos in valid parentheses README",
+                    "url": "https://github.com/trekhleb/javascript-algorithms/pull/2188",
+                    "updatedAt": "2026-09-27T16:45:44Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "chenlichao",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 2220,
+                    "title": "Fix LinkedList.insert not updating the tail when inserting after the last node",
+                    "url": "https://github.com/trekhleb/javascript-algorithms/pull/2220",
+                    "updatedAt": "2026-09-22T20:33:53Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "Darkslayer3324j",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 2219,
+                    "title": "Fix interpolationSearch looping forever when the seek element is above part of the range",
+                    "url": "https://github.com/trekhleb/javascript-algorithms/pull/2219",
+                    "updatedAt": "2026-09-22T20:33:50Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "Darkslayer3324j",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 2217,
+                    "title": "docs: replace stale Travis CI badge in Arabic README",
+                    "url": "https://github.com/trekhleb/javascript-algorithms/pull/2217",
+                    "updatedAt": "2026-09-12T23:30:38Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "QIU-Guanzong",
+                      "__typename": "User"
+                    }
+                  }
+                ]
+              },
+              "oldIssues": {
+                "totalCount": 135,
+                "nodes": [
+                  {
+                    "number": 216,
+                    "title": "Add Persistent Vector?",
+                    "url": "https://github.com/trekhleb/javascript-algorithms/issues/216",
+                    "updatedAt": "2018-10-01T14:16:19Z",
+                    "author": {
+                      "login": "t4sk",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 213,
+                    "title": "Italian Language",
+                    "url": "https://github.com/trekhleb/javascript-algorithms/issues/213",
+                    "updatedAt": "2018-10-01T14:16:34Z",
+                    "author": {
+                      "login": "acadevmyWorks",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 1
+                    }
+                  },
+                  {
+                    "number": 119,
+                    "title": "My concern about no classification by Procedural/Imperative and Functional programming Paradigm",
+                    "url": "https://github.com/trekhleb/javascript-algorithms/issues/119",
+                    "updatedAt": "2018-11-25T20:54:17Z",
+                    "author": {
+                      "login": "ken-okabe",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 4
+                    }
+                  },
+                  {
+                    "number": 234,
+                    "title": "Add Bogosort",
+                    "url": "https://github.com/trekhleb/javascript-algorithms/issues/234",
+                    "updatedAt": "2018-12-12T06:46:31Z",
+                    "author": {
+                      "login": "Shastel",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 2
+                    }
+                  },
+                  {
+                    "number": 272,
+                    "title": "Provide use cases for the abstraction",
+                    "url": "https://github.com/trekhleb/javascript-algorithms/issues/272",
+                    "updatedAt": "2018-12-22T21:09:00Z",
+                    "author": {
+                      "login": "hulkish",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 4
+                    }
+                  }
+                ]
+              },
+              "newIssues": {
+                "nodes": [
+                  {
+                    "number": 2221,
+                    "title": "[TEL] Telugu Language Translation / \u0c24\u0c46\u0c32\u0c41\u0c17\u0c41 \u0c2d\u0c3e\u0c37 \u0c05\u0c28\u0c41\u0c35\u0c3e\u0c26\u0c2e\u0c41",
+                    "url": "https://github.com/trekhleb/javascript-algorithms/issues/2221",
+                    "updatedAt": "2026-09-30T08:32:00Z",
+                    "author": {
+                      "login": "YashwanthPandi",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 4
+                    }
+                  },
+                  {
+                    "number": 1061,
+                    "title": "Add Animations to Algorithms",
+                    "url": "https://github.com/trekhleb/javascript-algorithms/issues/1061",
+                    "updatedAt": "2026-09-17T08:00:09Z",
+                    "author": {
+                      "login": "AhmadMustafa01",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 3
+                    }
+                  },
+                  {
+                    "number": 616,
+                    "title": "Add Matrix Chain Multiplication in DP",
+                    "url": "https://github.com/trekhleb/javascript-algorithms/issues/616",
+                    "updatedAt": "2026-09-01T10:36:09Z",
+                    "author": {
+                      "login": "Rohit-FSD",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 6
+                    }
+                  },
+                  {
+                    "number": 2057,
+                    "title": "Incorrect Cycle Path Construction in detectUndirectedCycle",
+                    "url": "https://github.com/trekhleb/javascript-algorithms/issues/2057",
+                    "updatedAt": "2026-07-16T03:21:10Z",
+                    "author": {
+                      "login": "Imran-imtiaz48",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 1
+                    }
+                  },
+                  {
+                    "number": 2102,
+                    "title": "BinarySearchTreeNode removing",
+                    "url": "https://github.com/trekhleb/javascript-algorithms/issues/2102",
+                    "updatedAt": "2026-06-17T04:20:14Z",
+                    "author": {
+                      "login": "bbonch",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 1
+                    }
+                  }
+                ]
+              },
+              "refs": {
+                "totalCount": 1,
+                "nodes": [
+                  {
+                    "name": "master",
+                    "target": {
+                      "committedDate": "2026-07-26T02:43:01Z"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "claude-pod",
+              "url": "https://github.com/trekhleb/claude-pod",
+              "pushedAt": "2026-06-23T15:44:56Z",
+              "defaultBranchRef": {
+                "name": "main",
+                "target": {
+                  "statusCheckRollup": null,
+                  "history": {
+                    "nodes": [
+                      {
+                        "messageHeadline": "Add instructions of pasting images to Claude",
+                        "committedDate": "2026-06-23T15:44:53Z"
+                      },
+                      {
+                        "messageHeadline": "Pass COLORTERM for better Claude colors",
+                        "committedDate": "2026-06-23T15:30:31Z"
+                      },
+                      {
+                        "messageHeadline": "Add some colors",
+                        "committedDate": "2026-06-14T13:47:44Z"
+                      },
+                      {
+                        "messageHeadline": "Fix broken port command and path/alias inconsistencies in README",
+                        "committedDate": "2026-06-13T15:40:41Z"
+                      },
+                      {
+                        "messageHeadline": "Add claude-pod --help cheatsheet and document it in README",
+                        "committedDate": "2026-06-13T15:25:03Z"
+                      },
+                      {
+                        "messageHeadline": "Simplify README install command to absolute path, no cd",
+                        "committedDate": "2026-06-13T14:51:28Z"
+                      },
+                      {
+                        "messageHeadline": "Restructure README with TL;DR, TOC, and accuracy fixes",
+                        "committedDate": "2026-06-12T18:10:04Z"
+                      },
+                      {
+                        "messageHeadline": "Fix preflight false-negative on Docker image-inspect bug",
+                        "committedDate": "2026-06-12T16:33:13Z"
+                      }
+                    ]
+                  }
+                }
+              },
+              "oldPRs": {
+                "totalCount": 0,
+                "nodes": []
+              },
+              "newPRs": {
+                "nodes": []
+              },
+              "oldIssues": {
+                "totalCount": 1,
+                "nodes": [
+                  {
+                    "number": 1,
+                    "title": "Auto shutting down when you start up",
+                    "url": "https://github.com/trekhleb/claude-pod/issues/1",
+                    "updatedAt": "2026-05-23T03:35:56Z",
+                    "author": {
+                      "login": "ryanpeach",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  }
+                ]
+              },
+              "newIssues": {
+                "nodes": [
+                  {
+                    "number": 1,
+                    "title": "Auto shutting down when you start up",
+                    "url": "https://github.com/trekhleb/claude-pod/issues/1",
+                    "updatedAt": "2026-05-23T03:35:56Z",
+                    "author": {
+                      "login": "ryanpeach",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  }
+                ]
+              },
+              "refs": {
+                "totalCount": 1,
+                "nodes": [
+                  {
+                    "name": "main",
+                    "target": {
+                      "committedDate": "2026-06-23T15:44:53Z"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "promote-your-next-startup",
+              "url": "https://github.com/trekhleb/promote-your-next-startup",
+              "pushedAt": "2026-06-19T00:02:44Z",
+              "defaultBranchRef": {
+                "name": "master",
+                "target": {
+                  "statusCheckRollup": null,
+                  "history": {
+                    "nodes": [
+                      {
+                        "messageHeadline": "Add links",
+                        "committedDate": "2026-06-19T00:02:41Z"
+                      },
+                      {
+                        "messageHeadline": "Delete .github/FUNDING.yml",
+                        "committedDate": "2025-11-23T04:25:21Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2023-08-07T09:23:56Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2022-11-16T20:40:46Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2022-09-14T07:51:04Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2022-08-30T03:42:24Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2022-08-30T03:33:28Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2022-08-13T20:45:58Z"
+                      }
+                    ]
+                  }
+                }
+              },
+              "oldPRs": {
+                "totalCount": 10,
+                "nodes": [
+                  {
+                    "number": 1,
+                    "title": "New Link Added",
+                    "url": "https://github.com/trekhleb/promote-your-next-startup/pull/1",
+                    "updatedAt": "2020-01-20T20:48:48Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "StarMonk",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 8,
+                    "title": "Add news.python.sc to the \"Post News\" section",
+                    "url": "https://github.com/trekhleb/promote-your-next-startup/pull/8",
+                    "updatedAt": "2021-10-09T08:19:33Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "sebst",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 2,
+                    "title": "Add starterstory.com to articles list",
+                    "url": "https://github.com/trekhleb/promote-your-next-startup/pull/2",
+                    "updatedAt": "2021-11-10T15:35:32Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "patwalls",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 13,
+                    "title": "Added one Useful Link",
+                    "url": "https://github.com/trekhleb/promote-your-next-startup/pull/13",
+                    "updatedAt": "2022-07-21T09:37:48Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "bikashdaga",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 14,
+                    "title": "Added a New Resource",
+                    "url": "https://github.com/trekhleb/promote-your-next-startup/pull/14",
+                    "updatedAt": "2022-08-05T08:38:06Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "letscode-17",
+                      "__typename": "User"
+                    }
+                  }
+                ]
+              },
+              "newPRs": {
+                "nodes": [
+                  {
+                    "number": 23,
+                    "title": "Add Siteefy free tool submission",
+                    "url": "https://github.com/trekhleb/promote-your-next-startup/pull/23",
+                    "updatedAt": "2026-09-04T09:51:29Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "Lupimi",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 22,
+                    "title": "Add ZPlatform.ai",
+                    "url": "https://github.com/trekhleb/promote-your-next-startup/pull/22",
+                    "updatedAt": "2026-05-31T11:18:47Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "alstonantony",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 20,
+                    "title": "Add Vedika API",
+                    "url": "https://github.com/trekhleb/promote-your-next-startup/pull/20",
+                    "updatedAt": "2026-01-03T09:42:39Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "Zayn111666",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 17,
+                    "title": "Update README.md, Add Best of Web to startup directories",
+                    "url": "https://github.com/trekhleb/promote-your-next-startup/pull/17",
+                    "updatedAt": "2025-08-14T10:18:07Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "nimaaksoy",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 16,
+                    "title": "this my startup blog about compare top 10 thing and review",
+                    "url": "https://github.com/trekhleb/promote-your-next-startup/pull/16",
+                    "updatedAt": "2023-12-01T15:18:52Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "pro-chirag",
+                      "__typename": "User"
+                    }
+                  }
+                ]
+              },
+              "oldIssues": {
+                "totalCount": 0,
+                "nodes": []
+              },
+              "newIssues": {
+                "nodes": []
+              },
+              "refs": {
+                "totalCount": 1,
+                "nodes": [
+                  {
+                    "name": "master",
+                    "target": {
+                      "committedDate": "2026-06-19T00:02:41Z"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "cali-vibe",
+              "url": "https://github.com/trekhleb/cali-vibe",
+              "pushedAt": "2026-04-14T14:26:46Z",
+              "defaultBranchRef": {
+                "name": "main",
+                "target": {
+                  "statusCheckRollup": {
+                    "state": "SUCCESS"
+                  },
+                  "history": {
+                    "nodes": [
+                      {
+                        "messageHeadline": "[skip-e2e] Update README",
+                        "committedDate": "2026-04-14T14:26:40Z"
+                      },
+                      {
+                        "messageHeadline": "[skip-e2e] Update README",
+                        "committedDate": "2026-04-14T14:26:32Z"
+                      },
+                      {
+                        "messageHeadline": "[skip-e2e] Add city/county descriptions",
+                        "committedDate": "2026-04-13T22:55:39Z"
+                      },
+                      {
+                        "messageHeadline": "[skip-e2e] Add script to generate city/county data-driven summaries",
+                        "committedDate": "2026-04-12T18:46:37Z"
+                      },
+                      {
+                        "messageHeadline": "[skip-e2e] Add script to generate city/county data-driven summaries",
+                        "committedDate": "2026-04-12T15:52:36Z"
+                      },
+                      {
+                        "messageHeadline": "[skip-e2e] Add map to city/county modal",
+                        "committedDate": "2026-04-11T22:13:30Z"
+                      },
+                      {
+                        "messageHeadline": "[skip-e2e] Update colors",
+                        "committedDate": "2026-04-11T05:17:14Z"
+                      },
+                      {
+                        "messageHeadline": "[skip-e2e] Update styles",
+                        "committedDate": "2026-04-11T04:06:22Z"
+                      }
+                    ]
+                  }
+                }
+              },
+              "oldPRs": {
+                "totalCount": 0,
+                "nodes": []
+              },
+              "newPRs": {
+                "nodes": []
+              },
+              "oldIssues": {
+                "totalCount": 0,
+                "nodes": []
+              },
+              "newIssues": {
+                "nodes": []
+              },
+              "refs": {
+                "totalCount": 1,
+                "nodes": [
+                  {
+                    "name": "main",
+                    "target": {
+                      "committedDate": "2026-04-14T14:26:40Z"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "learn-python",
+              "url": "https://github.com/trekhleb/learn-python",
+              "pushedAt": "2026-04-06T16:03:15Z",
+              "defaultBranchRef": {
+                "name": "master",
+                "target": {
+                  "statusCheckRollup": null,
+                  "history": {
+                    "nodes": [
+                      {
+                        "messageHeadline": "Add Ukrainian translation \ud83c\uddfa\ud83c\udde6  (#112)",
+                        "committedDate": "2026-04-06T16:03:15Z"
+                      },
+                      {
+                        "messageHeadline": "Delete .github/FUNDING.yml",
+                        "committedDate": "2025-11-23T04:23:31Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2023-07-21T18:09:00Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2022-10-21T20:24:27Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2022-10-21T20:23:13Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2022-09-21T07:13:28Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2022-09-21T07:11:01Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2022-07-02T15:50:47Z"
+                      }
+                    ]
+                  }
+                }
+              },
+              "oldPRs": {
+                "totalCount": 26,
+                "nodes": [
+                  {
+                    "number": 32,
+                    "title": "Add data structure comparison table",
+                    "url": "https://github.com/trekhleb/learn-python/pull/32",
+                    "updatedAt": "2021-05-28T15:11:34Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": null
+                  },
+                  {
+                    "number": 59,
+                    "title": "Built inital directory structure for design pattern implementations to follow",
+                    "url": "https://github.com/trekhleb/learn-python/pull/59",
+                    "updatedAt": "2021-11-07T18:14:19Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": null
+                  },
+                  {
+                    "number": 70,
+                    "title": "Added a new resource",
+                    "url": "https://github.com/trekhleb/learn-python/pull/70",
+                    "updatedAt": "2022-08-19T09:46:55Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "Sachinbhatttech",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 74,
+                    "title": "Good to Go #73",
+                    "url": "https://github.com/trekhleb/learn-python/pull/74",
+                    "updatedAt": "2022-10-22T19:56:51Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "prajwalkedari",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 72,
+                    "title": "python learn easy ways ",
+                    "url": "https://github.com/trekhleb/learn-python/pull/72",
+                    "updatedAt": "2023-02-21T15:27:41Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "parmeetsinhvaghela",
+                      "__typename": "User"
+                    }
+                  }
+                ]
+              },
+              "newPRs": {
+                "nodes": [
+                  {
+                    "number": 115,
+                    "title": "feat: add PySimpleGUI calculator & notepad GUI demo scripts",
+                    "url": "https://github.com/trekhleb/learn-python/pull/115",
+                    "updatedAt": "2026-06-08T09:52:15Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "zhouzihanzzz",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 114,
+                    "title": "Fix comment typos and a misleading variable name in examples",
+                    "url": "https://github.com/trekhleb/learn-python/pull/114",
+                    "updatedAt": "2026-06-01T13:50:03Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "shaked-shlomo",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 113,
+                    "title": "Fix variable name: weapon -> fruit in list comprehension example (#105)",
+                    "url": "https://github.com/trekhleb/learn-python/pull/113",
+                    "updatedAt": "2026-05-07T13:01:47Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "xy769",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 111,
+                    "title": "Add invisible comment for PR visibility",
+                    "url": "https://github.com/trekhleb/learn-python/pull/111",
+                    "updatedAt": "2026-02-05T13:10:12Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "vanessa200321",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 110,
+                    "title": "pull request practice",
+                    "url": "https://github.com/trekhleb/learn-python/pull/110",
+                    "updatedAt": "2026-02-05T12:55:29Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "Codart-web",
+                      "__typename": "User"
+                    }
+                  }
+                ]
+              },
+              "oldIssues": {
+                "totalCount": 17,
+                "nodes": [
+                  {
+                    "number": 35,
+                    "title": "Design Patterns concepts implementations in Python",
+                    "url": "https://github.com/trekhleb/learn-python/issues/35",
+                    "updatedAt": "2021-11-07T18:11:11Z",
+                    "author": {
+                      "login": "rhoitjadhav",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 3
+                    }
+                  },
+                  {
+                    "number": 66,
+                    "title": "Python programming",
+                    "url": "https://github.com/trekhleb/learn-python/issues/66",
+                    "updatedAt": "2022-10-11T08:01:04Z",
+                    "author": {
+                      "login": "juan-36carlos",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 1
+                    }
+                  },
+                  {
+                    "number": 73,
+                    "title": "Incorrect Info in datatype(string)",
+                    "url": "https://github.com/trekhleb/learn-python/issues/73",
+                    "updatedAt": "2022-10-23T08:23:25Z",
+                    "author": {
+                      "login": "prajwalkedari",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 75,
+                    "title": "Jesusloves",
+                    "url": "https://github.com/trekhleb/learn-python/issues/75",
+                    "updatedAt": "2022-12-29T10:15:20Z",
+                    "author": {
+                      "login": "Ivanyane",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 1
+                    }
+                  },
+                  {
+                    "number": 80,
+                    "title": "\u5982\u4f55\u5165\u95e8python\uff1f",
+                    "url": "https://github.com/trekhleb/learn-python/issues/80",
+                    "updatedAt": "2023-11-26T15:05:11Z",
+                    "author": {
+                      "login": "JTaiWolf",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 1
+                    }
+                  }
+                ]
+              },
+              "newIssues": {
+                "nodes": [
+                  {
+                    "number": 104,
+                    "title": "Incorrect Comment About Accessing Dictionary Elements",
+                    "url": "https://github.com/trekhleb/learn-python/issues/104",
+                    "updatedAt": "2026-06-26T09:11:51Z",
+                    "author": {
+                      "login": "Imran-imtiaz48",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 1
+                    }
+                  },
+                  {
+                    "number": 105,
+                    "title": "Typo in Variable Name: \"weapon.strip()\" Should Be \"fruit.strip()\" in List Comprehensions Example",
+                    "url": "https://github.com/trekhleb/learn-python/issues/105",
+                    "updatedAt": "2026-05-11T10:08:40Z",
+                    "author": {
+                      "login": "Imran-imtiaz48",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 1
+                    }
+                  },
+                  {
+                    "number": 108,
+                    "title": "Learning Python",
+                    "url": "https://github.com/trekhleb/learn-python/issues/108",
+                    "updatedAt": "2026-01-13T11:39:15Z",
+                    "author": {
+                      "login": "kagesuchi",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 71,
+                    "title": "Learn-python",
+                    "url": "https://github.com/trekhleb/learn-python/issues/71",
+                    "updatedAt": "2025-11-15T17:14:56Z",
+                    "author": {
+                      "login": "Onlinelesia",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 2
+                    }
+                  },
+                  {
+                    "number": 107,
+                    "title": "How can I create a graphical display environment? ",
+                    "url": "https://github.com/trekhleb/learn-python/issues/107",
+                    "updatedAt": "2025-07-11T16:11:38Z",
+                    "author": {
+                      "login": "IssaAlwjih",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 1
+                    }
+                  }
+                ]
+              },
+              "refs": {
+                "totalCount": 1,
+                "nodes": [
+                  {
+                    "name": "master",
+                    "target": {
+                      "committedDate": "2026-04-06T16:03:15Z"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "jobs-radar-web-snapshot",
+              "url": "https://github.com/trekhleb/jobs-radar-web-snapshot",
+              "pushedAt": "2026-03-10T12:59:11Z",
+              "defaultBranchRef": {
+                "name": "main",
+                "target": {
+                  "statusCheckRollup": null,
+                  "history": {
+                    "nodes": [
+                      {
+                        "messageHeadline": "update",
+                        "committedDate": "2025-01-04T20:53:29Z"
+                      },
+                      {
+                        "messageHeadline": "update",
+                        "committedDate": "2025-01-04T20:52:13Z"
+                      },
+                      {
+                        "messageHeadline": "Create CNAME",
+                        "committedDate": "2025-01-04T20:49:06Z"
+                      },
+                      {
+                        "messageHeadline": "update",
+                        "committedDate": "2025-01-04T20:48:07Z"
+                      },
+                      {
+                        "messageHeadline": "update",
+                        "committedDate": "2025-01-04T20:46:17Z"
+                      }
+                    ]
+                  }
+                }
+              },
+              "oldPRs": {
+                "totalCount": 0,
+                "nodes": []
+              },
+              "newPRs": {
+                "nodes": []
+              },
+              "oldIssues": {
+                "totalCount": 0,
+                "nodes": []
+              },
+              "newIssues": {
+                "nodes": []
+              },
+              "refs": {
+                "totalCount": 2,
+                "nodes": [
+                  {
+                    "name": "build",
+                    "target": {
+                      "committedDate": "2026-03-10T12:59:07Z"
+                    }
+                  },
+                  {
+                    "name": "main",
+                    "target": {
+                      "committedDate": "2025-01-04T20:53:29Z"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "hello-docker",
+              "url": "https://github.com/trekhleb/hello-docker",
+              "pushedAt": "2025-11-23T04:28:44Z",
+              "defaultBranchRef": {
+                "name": "master",
+                "target": {
+                  "statusCheckRollup": null,
+                  "history": {
+                    "nodes": [
+                      {
+                        "messageHeadline": "Delete .github/FUNDING.yml",
+                        "committedDate": "2025-11-23T04:28:44Z"
+                      },
+                      {
+                        "messageHeadline": "Update FUNDING.yml",
+                        "committedDate": "2020-07-08T05:57:52Z"
+                      },
+                      {
+                        "messageHeadline": "Create FUNDING.yml",
+                        "committedDate": "2020-07-06T20:48:23Z"
+                      },
+                      {
+                        "messageHeadline": "Do smth.",
+                        "committedDate": "2018-08-28T05:01:26Z"
+                      },
+                      {
+                        "messageHeadline": "Do smth.",
+                        "committedDate": "2018-08-28T05:01:02Z"
+                      },
+                      {
+                        "messageHeadline": "Create LICENSE",
+                        "committedDate": "2018-06-11T04:27:33Z"
+                      },
+                      {
+                        "messageHeadline": "Do smth.",
+                        "committedDate": "2017-08-30T18:53:45Z"
+                      },
+                      {
+                        "messageHeadline": "Do smth.",
+                        "committedDate": "2017-08-30T18:53:22Z"
+                      }
+                    ]
+                  }
+                }
+              },
+              "oldPRs": {
+                "totalCount": 0,
+                "nodes": []
+              },
+              "newPRs": {
+                "nodes": []
+              },
+              "oldIssues": {
+                "totalCount": 0,
+                "nodes": []
+              },
+              "newIssues": {
+                "nodes": []
+              },
+              "refs": {
+                "totalCount": 1,
+                "nodes": [
+                  {
+                    "name": "master",
+                    "target": {
+                      "committedDate": "2025-11-23T04:28:44Z"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "machine-learning-octave",
+              "url": "https://github.com/trekhleb/machine-learning-octave",
+              "pushedAt": "2025-11-23T04:28:32Z",
+              "defaultBranchRef": {
+                "name": "master",
+                "target": {
+                  "statusCheckRollup": null,
+                  "history": {
+                    "nodes": [
+                      {
+                        "messageHeadline": "Delete .github/FUNDING.yml",
+                        "committedDate": "2025-11-23T04:28:31Z"
+                      },
+                      {
+                        "messageHeadline": "Update FUNDING.yml",
+                        "committedDate": "2020-07-08T05:58:16Z"
+                      },
+                      {
+                        "messageHeadline": "Create FUNDING.yml",
+                        "committedDate": "2020-07-06T20:47:38Z"
+                      },
+                      {
+                        "messageHeadline": "Fix typo.",
+                        "committedDate": "2018-12-22T08:52:50Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2018-12-13T20:27:08Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.",
+                        "committedDate": "2018-12-13T20:26:35Z"
+                      },
+                      {
+                        "messageHeadline": "Fix typos.",
+                        "committedDate": "2018-11-02T06:30:01Z"
+                      },
+                      {
+                        "messageHeadline": "Fix typos.",
+                        "committedDate": "2018-11-02T06:07:28Z"
+                      }
+                    ]
+                  }
+                }
+              },
+              "oldPRs": {
+                "totalCount": 0,
+                "nodes": []
+              },
+              "newPRs": {
+                "nodes": []
+              },
+              "oldIssues": {
+                "totalCount": 0,
+                "nodes": []
+              },
+              "newIssues": {
+                "nodes": []
+              },
+              "refs": {
+                "totalCount": 1,
+                "nodes": [
+                  {
+                    "name": "master",
+                    "target": {
+                      "committedDate": "2025-11-23T04:28:31Z"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "nano-neuron",
+              "url": "https://github.com/trekhleb/nano-neuron",
+              "pushedAt": "2025-11-23T04:27:56Z",
+              "defaultBranchRef": {
+                "name": "master",
+                "target": {
+                  "statusCheckRollup": null,
+                  "history": {
+                    "nodes": [
+                      {
+                        "messageHeadline": "Delete .github/FUNDING.yml",
+                        "committedDate": "2025-11-23T04:27:56Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2022-10-21T20:22:47Z"
+                      },
+                      {
+                        "messageHeadline": "Adding .idea files to .gitignore.",
+                        "committedDate": "2020-09-09T05:18:19Z"
+                      },
+                      {
+                        "messageHeadline": "Brazilian Portuguese translation (#15)",
+                        "committedDate": "2020-09-09T05:16:38Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.ru-RU.md (#13)",
+                        "committedDate": "2020-09-09T05:10:27Z"
+                      },
+                      {
+                        "messageHeadline": "Update FUNDING.yml",
+                        "committedDate": "2020-07-08T05:56:04Z"
+                      },
+                      {
+                        "messageHeadline": "Create FUNDING.yml",
+                        "committedDate": "2020-07-06T20:42:16Z"
+                      },
+                      {
+                        "messageHeadline": "Add a link to interactive machine learning experiments.",
+                        "committedDate": "2020-05-05T15:58:28Z"
+                      }
+                    ]
+                  }
+                }
+              },
+              "oldPRs": {
+                "totalCount": 2,
+                "nodes": [
+                  {
+                    "number": 12,
+                    "title": "Add resources explaining LR, change param names for faster understanding",
+                    "url": "https://github.com/trekhleb/nano-neuron/pull/12",
+                    "updatedAt": "2019-12-29T14:47:31Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "olso",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 14,
+                    "title": "Use the model parameter instead of the nanoNeuron instance",
+                    "url": "https://github.com/trekhleb/nano-neuron/pull/14",
+                    "updatedAt": "2025-11-27T22:54:41Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "balintsoos",
+                      "__typename": "User"
+                    }
+                  }
+                ]
+              },
+              "newPRs": {
+                "nodes": [
+                  {
+                    "number": 14,
+                    "title": "Use the model parameter instead of the nanoNeuron instance",
+                    "url": "https://github.com/trekhleb/nano-neuron/pull/14",
+                    "updatedAt": "2025-11-27T22:54:41Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "balintsoos",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 12,
+                    "title": "Add resources explaining LR, change param names for faster understanding",
+                    "url": "https://github.com/trekhleb/nano-neuron/pull/12",
+                    "updatedAt": "2019-12-29T14:47:31Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "olso",
+                      "__typename": "User"
+                    }
+                  }
+                ]
+              },
+              "oldIssues": {
+                "totalCount": 2,
+                "nodes": [
+                  {
+                    "number": 6,
+                    "title": "Use tex.s2cms.ru for Math",
+                    "url": "https://github.com/trekhleb/nano-neuron/issues/6",
+                    "updatedAt": "2019-12-07T04:16:34Z",
+                    "author": {
+                      "login": "szepeviktor",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 16,
+                    "title": "Having a difficult time but it's still in the working progress phase",
+                    "url": "https://github.com/trekhleb/nano-neuron/issues/16",
+                    "updatedAt": "2023-08-15T22:00:33Z",
+                    "author": {
+                      "login": "Sensationalshelly8",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 1
+                    }
+                  }
+                ]
+              },
+              "newIssues": {
+                "nodes": [
+                  {
+                    "number": 16,
+                    "title": "Having a difficult time but it's still in the working progress phase",
+                    "url": "https://github.com/trekhleb/nano-neuron/issues/16",
+                    "updatedAt": "2023-08-15T22:00:33Z",
+                    "author": {
+                      "login": "Sensationalshelly8",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 1
+                    }
+                  },
+                  {
+                    "number": 6,
+                    "title": "Use tex.s2cms.ru for Math",
+                    "url": "https://github.com/trekhleb/nano-neuron/issues/6",
+                    "updatedAt": "2019-12-07T04:16:34Z",
+                    "author": {
+                      "login": "szepeviktor",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  }
+                ]
+              },
+              "refs": {
+                "totalCount": 1,
+                "nodes": [
+                  {
+                    "name": "master",
+                    "target": {
+                      "committedDate": "2025-11-23T04:27:56Z"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "js-image-carver",
+              "url": "https://github.com/trekhleb/js-image-carver",
+              "pushedAt": "2025-11-23T04:27:39Z",
+              "defaultBranchRef": {
+                "name": "main",
+                "target": {
+                  "statusCheckRollup": null,
+                  "history": {
+                    "nodes": [
+                      {
+                        "messageHeadline": "Delete .github/FUNDING.yml",
+                        "committedDate": "2025-11-23T04:27:39Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2022-10-21T20:24:55Z"
+                      },
+                      {
+                        "messageHeadline": "Do smth.",
+                        "committedDate": "2021-07-31T19:34:56Z"
+                      },
+                      {
+                        "messageHeadline": "Do smth.",
+                        "committedDate": "2021-04-20T05:01:20Z"
+                      },
+                      {
+                        "messageHeadline": "Do smth.",
+                        "committedDate": "2021-04-16T15:33:25Z"
+                      },
+                      {
+                        "messageHeadline": "Do smth.",
+                        "committedDate": "2021-04-16T15:26:10Z"
+                      },
+                      {
+                        "messageHeadline": "Do smth.",
+                        "committedDate": "2021-04-15T05:47:51Z"
+                      },
+                      {
+                        "messageHeadline": "Do smth.",
+                        "committedDate": "2021-04-15T04:39:47Z"
+                      }
+                    ]
+                  }
+                }
+              },
+              "oldPRs": {
+                "totalCount": 1,
+                "nodes": [
+                  {
+                    "number": 9,
+                    "title": "Update README.md",
+                    "url": "https://github.com/trekhleb/js-image-carver/pull/9",
+                    "updatedAt": "2025-02-09T16:24:00Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "MrCoolGh",
+                      "__typename": "User"
+                    }
+                  }
+                ]
+              },
+              "newPRs": {
+                "nodes": [
+                  {
+                    "number": 9,
+                    "title": "Update README.md",
+                    "url": "https://github.com/trekhleb/js-image-carver/pull/9",
+                    "updatedAt": "2025-02-09T16:24:00Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "MrCoolGh",
+                      "__typename": "User"
+                    }
+                  }
+                ]
+              },
+              "oldIssues": {
+                "totalCount": 3,
+                "nodes": [
+                  {
+                    "number": 6,
+                    "title": "output should keep aspect ratio",
+                    "url": "https://github.com/trekhleb/js-image-carver/issues/6",
+                    "updatedAt": "2021-04-17T00:47:36Z",
+                    "author": {
+                      "login": "luroc",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 7,
+                    "title": "[Feature request] Mask to keep",
+                    "url": "https://github.com/trekhleb/js-image-carver/issues/7",
+                    "updatedAt": "2021-04-27T18:52:01Z",
+                    "author": {
+                      "login": "goliatone",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 8,
+                    "title": "Can't select mask at the bottom edge of image",
+                    "url": "https://github.com/trekhleb/js-image-carver/issues/8",
+                    "updatedAt": "2025-01-09T22:58:01Z",
+                    "author": {
+                      "login": "gabrielgrant",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  }
+                ]
+              },
+              "newIssues": {
+                "nodes": [
+                  {
+                    "number": 8,
+                    "title": "Can't select mask at the bottom edge of image",
+                    "url": "https://github.com/trekhleb/js-image-carver/issues/8",
+                    "updatedAt": "2025-01-09T22:58:01Z",
+                    "author": {
+                      "login": "gabrielgrant",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 7,
+                    "title": "[Feature request] Mask to keep",
+                    "url": "https://github.com/trekhleb/js-image-carver/issues/7",
+                    "updatedAt": "2021-04-27T18:52:01Z",
+                    "author": {
+                      "login": "goliatone",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 6,
+                    "title": "output should keep aspect ratio",
+                    "url": "https://github.com/trekhleb/js-image-carver/issues/6",
+                    "updatedAt": "2021-04-17T00:47:36Z",
+                    "author": {
+                      "login": "luroc",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  }
+                ]
+              },
+              "refs": {
+                "totalCount": 2,
+                "nodes": [
+                  {
+                    "name": "gh-pages",
+                    "target": {
+                      "committedDate": "2021-07-31T19:41:06Z"
+                    }
+                  },
+                  {
+                    "name": "main",
+                    "target": {
+                      "committedDate": "2025-11-23T04:27:39Z"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "self-parking-car-evolution",
+              "url": "https://github.com/trekhleb/self-parking-car-evolution",
+              "pushedAt": "2025-11-23T04:27:26Z",
+              "defaultBranchRef": {
+                "name": "master",
+                "target": {
+                  "statusCheckRollup": null,
+                  "history": {
+                    "nodes": [
+                      {
+                        "messageHeadline": "Delete .github/FUNDING.yml",
+                        "committedDate": "2025-11-23T04:27:26Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2022-10-21T20:27:26Z"
+                      },
+                      {
+                        "messageHeadline": "Do smth.",
+                        "committedDate": "2021-09-30T04:07:51Z"
+                      },
+                      {
+                        "messageHeadline": "Do smth.",
+                        "committedDate": "2021-09-30T04:05:22Z"
+                      },
+                      {
+                        "messageHeadline": "Do smth.",
+                        "committedDate": "2021-09-30T03:58:52Z"
+                      },
+                      {
+                        "messageHeadline": "Do smth.",
+                        "committedDate": "2021-09-30T03:47:46Z"
+                      },
+                      {
+                        "messageHeadline": "Do smth.",
+                        "committedDate": "2021-09-30T03:45:00Z"
+                      },
+                      {
+                        "messageHeadline": "Merge branch 'master' of https://github.com/trekhleb/self-parking-car\u2026",
+                        "committedDate": "2021-09-30T03:41:57Z"
+                      }
+                    ]
+                  }
+                }
+              },
+              "oldPRs": {
+                "totalCount": 0,
+                "nodes": []
+              },
+              "newPRs": {
+                "nodes": []
+              },
+              "oldIssues": {
+                "totalCount": 10,
+                "nodes": [
+                  {
+                    "number": 1,
+                    "title": "Cars rendering/simulation is too slow. Speed it up at least to 2x or 3x times.",
+                    "url": "https://github.com/trekhleb/self-parking-car-evolution/issues/1",
+                    "updatedAt": "2021-08-22T08:48:58Z",
+                    "author": {
+                      "login": "trekhleb",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 2,
+                    "title": "Introduce a penalty (to the fitness function) for hitting another parked car",
+                    "url": "https://github.com/trekhleb/self-parking-car-evolution/issues/2",
+                    "updatedAt": "2021-09-01T07:34:59Z",
+                    "author": {
+                      "login": "trekhleb",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 3,
+                    "title": "Simulation is currently not stable and may give different fitness for the same genome",
+                    "url": "https://github.com/trekhleb/self-parking-car-evolution/issues/3",
+                    "updatedAt": "2021-09-05T09:28:49Z",
+                    "author": {
+                      "login": "trekhleb",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 7,
+                    "title": "The JS build size it too big",
+                    "url": "https://github.com/trekhleb/self-parking-car-evolution/issues/7",
+                    "updatedAt": "2021-09-27T03:50:41Z",
+                    "author": {
+                      "login": "trekhleb",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 8,
+                    "title": "Make it possible to do the simulation in the background (in the inactive browser tab)",
+                    "url": "https://github.com/trekhleb/self-parking-car-evolution/issues/8",
+                    "updatedAt": "2021-09-27T16:02:56Z",
+                    "author": {
+                      "login": "trekhleb",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  }
+                ]
+              },
+              "newIssues": {
+                "nodes": [
+                  {
+                    "number": 16,
+                    "title": "Mar\u00edugata 5",
+                    "url": "https://github.com/trekhleb/self-parking-car-evolution/issues/16",
+                    "updatedAt": "2026-01-18T18:11:16Z",
+                    "author": {
+                      "login": "brisaskvisa",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 15,
+                    "title": "The localhost webpage doesn't show anything",
+                    "url": "https://github.com/trekhleb/self-parking-car-evolution/issues/15",
+                    "updatedAt": "2024-11-14T15:53:00Z",
+                    "author": {
+                      "login": "XHarold",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 14,
+                    "title": "Graph is not drawn",
+                    "url": "https://github.com/trekhleb/self-parking-car-evolution/issues/14",
+                    "updatedAt": "2022-09-21T23:43:20Z",
+                    "author": {
+                      "login": "th30r3tisch",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 9,
+                    "title": "Car's \"brain\" is oversimplified. Consider using the Multilayer Perceptron.",
+                    "url": "https://github.com/trekhleb/self-parking-car-evolution/issues/9",
+                    "updatedAt": "2022-01-20T20:47:23Z",
+                    "author": {
+                      "login": "trekhleb",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 2
+                    }
+                  },
+                  {
+                    "number": 12,
+                    "title": "Component has crashed",
+                    "url": "https://github.com/trekhleb/self-parking-car-evolution/issues/12",
+                    "updatedAt": "2021-09-30T03:42:30Z",
+                    "author": {
+                      "login": "bingbingbb",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  }
+                ]
+              },
+              "refs": {
+                "totalCount": 2,
+                "nodes": [
+                  {
+                    "name": "gh-pages",
+                    "target": {
+                      "committedDate": "2021-09-28T13:33:05Z"
+                    }
+                  },
+                  {
+                    "name": "master",
+                    "target": {
+                      "committedDate": "2025-11-23T04:27:26Z"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "links-detector",
+              "url": "https://github.com/trekhleb/links-detector",
+              "pushedAt": "2025-11-23T04:27:08Z",
+              "defaultBranchRef": {
+                "name": "master",
+                "target": {
+                  "statusCheckRollup": null,
+                  "history": {
+                    "nodes": [
+                      {
+                        "messageHeadline": "Delete .github/FUNDING.yml",
+                        "committedDate": "2025-11-23T04:27:07Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2022-10-21T20:28:00Z"
+                      },
+                      {
+                        "messageHeadline": "Do smth.",
+                        "committedDate": "2021-08-08T17:23:59Z"
+                      },
+                      {
+                        "messageHeadline": "Do smth.",
+                        "committedDate": "2021-07-31T19:45:06Z"
+                      },
+                      {
+                        "messageHeadline": "Do smth.",
+                        "committedDate": "2020-12-01T21:11:34Z"
+                      },
+                      {
+                        "messageHeadline": "Do smth.",
+                        "committedDate": "2020-12-01T15:31:37Z"
+                      },
+                      {
+                        "messageHeadline": "Do smth.",
+                        "committedDate": "2020-12-01T08:48:48Z"
+                      },
+                      {
+                        "messageHeadline": "Do smth.",
+                        "committedDate": "2020-12-01T07:21:47Z"
+                      }
+                    ]
+                  }
+                }
+              },
+              "oldPRs": {
+                "totalCount": 0,
+                "nodes": []
+              },
+              "newPRs": {
+                "nodes": []
+              },
+              "oldIssues": {
+                "totalCount": 10,
+                "nodes": [
+                  {
+                    "number": 1,
+                    "title": "Multiline links support",
+                    "url": "https://github.com/trekhleb/links-detector/issues/1",
+                    "updatedAt": "2020-11-12T16:34:25Z",
+                    "author": {
+                      "login": "trekhleb",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 2,
+                    "title": "Simultaneous links detection for more than 2 links per page",
+                    "url": "https://github.com/trekhleb/links-detector/issues/2",
+                    "updatedAt": "2020-11-12T16:34:40Z",
+                    "author": {
+                      "login": "trekhleb",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 6,
+                    "title": "Reduce the application size (currently it is ~20Mb)",
+                    "url": "https://github.com/trekhleb/links-detector/issues/6",
+                    "updatedAt": "2020-11-12T16:46:36Z",
+                    "author": {
+                      "login": "trekhleb",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 3,
+                    "title": "Improve recognition performance to up to 4+ fps",
+                    "url": "https://github.com/trekhleb/links-detector/issues/3",
+                    "updatedAt": "2020-11-12T16:47:34Z",
+                    "author": {
+                      "login": "trekhleb",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 4,
+                    "title": "Support http:// links",
+                    "url": "https://github.com/trekhleb/links-detector/issues/4",
+                    "updatedAt": "2020-11-13T06:06:52Z",
+                    "author": {
+                      "login": "trekhleb",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  }
+                ]
+              },
+              "newIssues": {
+                "nodes": [
+                  {
+                    "number": 11,
+                    "title": "Dataset?",
+                    "url": "https://github.com/trekhleb/links-detector/issues/11",
+                    "updatedAt": "2021-01-06T16:56:13Z",
+                    "author": {
+                      "login": "HoLue",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 10,
+                    "title": "where to find your training dataset?",
+                    "url": "https://github.com/trekhleb/links-detector/issues/10",
+                    "updatedAt": "2020-12-15T14:19:55Z",
+                    "author": {
+                      "login": "redcican",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 9,
+                    "title": "Support more fonts for HTTPS detection",
+                    "url": "https://github.com/trekhleb/links-detector/issues/9",
+                    "updatedAt": "2020-11-13T06:15:57Z",
+                    "author": {
+                      "login": "trekhleb",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 8,
+                    "title": "Support underlined links",
+                    "url": "https://github.com/trekhleb/links-detector/issues/8",
+                    "updatedAt": "2020-11-13T06:13:14Z",
+                    "author": {
+                      "login": "trekhleb",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 7,
+                    "title": "Support links detection on dark backgrounds ",
+                    "url": "https://github.com/trekhleb/links-detector/issues/7",
+                    "updatedAt": "2020-11-13T06:10:45Z",
+                    "author": {
+                      "login": "trekhleb",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  }
+                ]
+              },
+              "refs": {
+                "totalCount": 2,
+                "nodes": [
+                  {
+                    "name": "gh-pages",
+                    "target": {
+                      "committedDate": "2021-07-31T19:57:58Z"
+                    }
+                  },
+                  {
+                    "name": "master",
+                    "target": {
+                      "committedDate": "2025-11-23T04:27:07Z"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "use-position",
+              "url": "https://github.com/trekhleb/use-position",
+              "pushedAt": "2025-11-23T04:25:48Z",
+              "defaultBranchRef": {
+                "name": "master",
+                "target": {
+                  "statusCheckRollup": null,
+                  "history": {
+                    "nodes": [
+                      {
+                        "messageHeadline": "Delete .github/FUNDING.yml",
+                        "committedDate": "2025-11-23T04:25:48Z"
+                      },
+                      {
+                        "messageHeadline": "1.0.0",
+                        "committedDate": "2021-10-26T17:50:36Z"
+                      },
+                      {
+                        "messageHeadline": "Remove build badge.",
+                        "committedDate": "2021-10-26T17:48:53Z"
+                      },
+                      {
+                        "messageHeadline": "Remove workflow.",
+                        "committedDate": "2021-10-26T17:45:31Z"
+                      },
+                      {
+                        "messageHeadline": "Merge branch 'merge'",
+                        "committedDate": "2021-10-26T17:44:38Z"
+                      },
+                      {
+                        "messageHeadline": "Add heading to Storybook.",
+                        "committedDate": "2021-10-26T17:42:39Z"
+                      },
+                      {
+                        "messageHeadline": "Delete workflow.",
+                        "committedDate": "2021-10-26T17:30:34Z"
+                      },
+                      {
+                        "messageHeadline": "Add heading to usePosition output (#35)",
+                        "committedDate": "2021-10-26T17:30:00Z"
+                      }
+                    ]
+                  }
+                }
+              },
+              "oldPRs": {
+                "totalCount": 2,
+                "nodes": [
+                  {
+                    "number": 32,
+                    "title": "Memoize hook output value",
+                    "url": "https://github.com/trekhleb/use-position/pull/32",
+                    "updatedAt": "2021-09-29T14:13:33Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "mrnix",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 36,
+                    "title": "Add skip option to hook",
+                    "url": "https://github.com/trekhleb/use-position/pull/36",
+                    "updatedAt": "2023-03-18T06:36:07Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "cedarbaum",
+                      "__typename": "User"
+                    }
+                  }
+                ]
+              },
+              "newPRs": {
+                "nodes": [
+                  {
+                    "number": 36,
+                    "title": "Add skip option to hook",
+                    "url": "https://github.com/trekhleb/use-position/pull/36",
+                    "updatedAt": "2023-03-18T06:36:07Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "cedarbaum",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 32,
+                    "title": "Memoize hook output value",
+                    "url": "https://github.com/trekhleb/use-position/pull/32",
+                    "updatedAt": "2021-09-29T14:13:33Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "mrnix",
+                      "__typename": "User"
+                    }
+                  }
+                ]
+              },
+              "oldIssues": {
+                "totalCount": 7,
+                "nodes": [
+                  {
+                    "number": 12,
+                    "title": "Can we get a location if app is killed or web is not running?",
+                    "url": "https://github.com/trekhleb/use-position/issues/12",
+                    "updatedAt": "2020-06-10T20:15:17Z",
+                    "author": {
+                      "login": "Akshaykapadi",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 5
+                    }
+                  },
+                  {
+                    "number": 21,
+                    "title": "Latitude and longitude does not get updated after geolocation change",
+                    "url": "https://github.com/trekhleb/use-position/issues/21",
+                    "updatedAt": "2021-09-29T14:31:40Z",
+                    "author": {
+                      "login": "7hong13",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 1
+                    }
+                  },
+                  {
+                    "number": 14,
+                    "title": "Callback function to run when the user location is changed?",
+                    "url": "https://github.com/trekhleb/use-position/issues/14",
+                    "updatedAt": "2021-09-29T14:33:02Z",
+                    "author": {
+                      "login": "usamamashkoor",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 2
+                    }
+                  },
+                  {
+                    "number": 22,
+                    "title": "usePosition() not working in desktop safari version 13.1.1",
+                    "url": "https://github.com/trekhleb/use-position/issues/22",
+                    "updatedAt": "2021-09-29T18:41:26Z",
+                    "author": {
+                      "login": "mantey-github",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 7
+                    }
+                  },
+                  {
+                    "number": 27,
+                    "title": "Continually getting undefined for long and lat values",
+                    "url": "https://github.com/trekhleb/use-position/issues/27",
+                    "updatedAt": "2021-10-02T07:09:33Z",
+                    "author": {
+                      "login": "EliTheNut",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 4
+                    }
+                  }
+                ]
+              },
+              "newIssues": {
+                "nodes": [
+                  {
+                    "number": 37,
+                    "title": "can't install with react 18.2.0",
+                    "url": "https://github.com/trekhleb/use-position/issues/37",
+                    "updatedAt": "2024-05-03T02:30:20Z",
+                    "author": {
+                      "login": "danass",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 1
+                    }
+                  },
+                  {
+                    "number": 7,
+                    "title": "[Violation] Only request geolocation information in response to a user gesture",
+                    "url": "https://github.com/trekhleb/use-position/issues/7",
+                    "updatedAt": "2022-03-14T18:24:44Z",
+                    "author": {
+                      "login": "gkrinc",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 3
+                    }
+                  },
+                  {
+                    "number": 27,
+                    "title": "Continually getting undefined for long and lat values",
+                    "url": "https://github.com/trekhleb/use-position/issues/27",
+                    "updatedAt": "2021-10-02T07:09:33Z",
+                    "author": {
+                      "login": "EliTheNut",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 4
+                    }
+                  },
+                  {
+                    "number": 22,
+                    "title": "usePosition() not working in desktop safari version 13.1.1",
+                    "url": "https://github.com/trekhleb/use-position/issues/22",
+                    "updatedAt": "2021-09-29T18:41:26Z",
+                    "author": {
+                      "login": "mantey-github",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 7
+                    }
+                  },
+                  {
+                    "number": 14,
+                    "title": "Callback function to run when the user location is changed?",
+                    "url": "https://github.com/trekhleb/use-position/issues/14",
+                    "updatedAt": "2021-09-29T14:33:02Z",
+                    "author": {
+                      "login": "usamamashkoor",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 2
+                    }
+                  }
+                ]
+              },
+              "refs": {
+                "totalCount": 2,
+                "nodes": [
+                  {
+                    "name": "gh-pages",
+                    "target": {
+                      "committedDate": "2021-10-26T17:47:33Z"
+                    }
+                  },
+                  {
+                    "name": "master",
+                    "target": {
+                      "committedDate": "2025-11-23T04:25:48Z"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "state-of-the-art-shitcode",
+              "url": "https://github.com/trekhleb/state-of-the-art-shitcode",
+              "pushedAt": "2025-11-23T04:24:59Z",
+              "defaultBranchRef": {
+                "name": "master",
+                "target": {
+                  "statusCheckRollup": null,
+                  "history": {
+                    "nodes": [
+                      {
+                        "messageHeadline": "Delete .github/FUNDING.yml",
+                        "committedDate": "2025-11-23T04:24:59Z"
+                      },
+                      {
+                        "messageHeadline": "Typo fixes.",
+                        "committedDate": "2020-12-28T20:37:18Z"
+                      },
+                      {
+                        "messageHeadline": "translation improvement (#12)",
+                        "committedDate": "2020-12-28T20:35:21Z"
+                      },
+                      {
+                        "messageHeadline": "Merge branch 'merge' of https://github.com/trekhleb/state-of-the-art-\u2026",
+                        "committedDate": "2020-12-28T20:32:24Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md (#21)",
+                        "committedDate": "2020-12-28T20:32:12Z"
+                      },
+                      {
+                        "messageHeadline": "Fix filenames.",
+                        "committedDate": "2020-12-28T20:31:14Z"
+                      },
+                      {
+                        "messageHeadline": "I've Translated README.md to Korean (#25)",
+                        "committedDate": "2020-12-28T20:28:04Z"
+                      },
+                      {
+                        "messageHeadline": "Update FUNDING.yml",
+                        "committedDate": "2020-07-08T05:56:35Z"
+                      }
+                    ]
+                  }
+                }
+              },
+              "oldPRs": {
+                "totalCount": 20,
+                "nodes": [
+                  {
+                    "number": 10,
+                    "title": "improved: Triangle principle",
+                    "url": "https://github.com/trekhleb/state-of-the-art-shitcode/pull/10",
+                    "updatedAt": "2020-03-03T20:45:00Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "fozbek",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 9,
+                    "title": "feat: amazing reserved word/keywords",
+                    "url": "https://github.com/trekhleb/state-of-the-art-shitcode/pull/9",
+                    "updatedAt": "2020-04-24T05:38:07Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "ForkKILLET",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 14,
+                    "title": "Improve Chinese translation (the whole file)",
+                    "url": "https://github.com/trekhleb/state-of-the-art-shitcode/pull/14",
+                    "updatedAt": "2020-05-12T11:55:25Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "Subilan",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 16,
+                    "title": "Minor typo fix and added yarn.lock",
+                    "url": "https://github.com/trekhleb/state-of-the-art-shitcode/pull/16",
+                    "updatedAt": "2020-08-09T06:05:20Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "SuhairZain",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 22,
+                    "title": "Add magical numbers section",
+                    "url": "https://github.com/trekhleb/state-of-the-art-shitcode/pull/22",
+                    "updatedAt": "2020-12-09T19:50:39Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "SeanPedersen",
+                      "__typename": "User"
+                    }
+                  }
+                ]
+              },
+              "newPRs": {
+                "nodes": [
+                  {
+                    "number": 48,
+                    "title": "Add Traditional Chinese language ( zh_TW )",
+                    "url": "https://github.com/trekhleb/state-of-the-art-shitcode/pull/48",
+                    "updatedAt": "2026-08-23T12:07:13Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "doggy8088",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 82,
+                    "title": "Add more principles.",
+                    "url": "https://github.com/trekhleb/state-of-the-art-shitcode/pull/82",
+                    "updatedAt": "2025-08-15T02:07:03Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "lucien299",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 44,
+                    "title": "Improve the zh-CN translation.",
+                    "url": "https://github.com/trekhleb/state-of-the-art-shitcode/pull/44",
+                    "updatedAt": "2025-08-05T02:41:10Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "loctempt",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 15,
+                    "title": "adding web services",
+                    "url": "https://github.com/trekhleb/state-of-the-art-shitcode/pull/15",
+                    "updatedAt": "2025-07-09T04:12:25Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "Ibrahimrahhal",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 74,
+                    "title": "Update README.md",
+                    "url": "https://github.com/trekhleb/state-of-the-art-shitcode/pull/74",
+                    "updatedAt": "2024-07-07T21:22:29Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "MemeFormer",
+                      "__typename": "User"
+                    }
+                  }
+                ]
+              },
+              "oldIssues": {
+                "totalCount": 30,
+                "nodes": [
+                  {
+                    "number": 24,
+                    "title": "what about making a badge for the \"bad\" code.",
+                    "url": "https://github.com/trekhleb/state-of-the-art-shitcode/issues/24",
+                    "updatedAt": "2020-12-21T03:06:00Z",
+                    "author": {
+                      "login": "geebos",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 41,
+                    "title": "No combined shitcode",
+                    "url": "https://github.com/trekhleb/state-of-the-art-shitcode/issues/41",
+                    "updatedAt": "2021-11-30T16:03:06Z",
+                    "author": {
+                      "login": "Exortions",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 42,
+                    "title": "Should i use variable names in native language?",
+                    "url": "https://github.com/trekhleb/state-of-the-art-shitcode/issues/42",
+                    "updatedAt": "2021-12-24T12:04:36Z",
+                    "author": {
+                      "login": "arduinka55055",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 47,
+                    "title": "Shitcode : Enterprise Edition",
+                    "url": "https://github.com/trekhleb/state-of-the-art-shitcode/issues/47",
+                    "updatedAt": "2022-06-10T09:03:54Z",
+                    "author": {
+                      "login": "kolulu23",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 32,
+                    "title": "Name variables in your native language",
+                    "url": "https://github.com/trekhleb/state-of-the-art-shitcode/issues/32",
+                    "updatedAt": "2022-07-11T08:51:44Z",
+                    "author": {
+                      "login": "TTsdzb",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 3
+                    }
+                  }
+                ]
+              },
+              "newIssues": {
+                "nodes": [
+                  {
+                    "number": 17,
+                    "title": "cannot read chinese version",
+                    "url": "https://github.com/trekhleb/state-of-the-art-shitcode/issues/17",
+                    "updatedAt": "2026-08-14T10:20:43Z",
+                    "author": {
+                      "login": "theCoder-WM",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 5
+                    }
+                  },
+                  {
+                    "number": 81,
+                    "title": "An improvement suggestion for the Chinese version.",
+                    "url": "https://github.com/trekhleb/state-of-the-art-shitcode/issues/81",
+                    "updatedAt": "2026-07-28T08:28:26Z",
+                    "author": {
+                      "login": "yuc8939",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 1
+                    }
+                  },
+                  {
+                    "number": 85,
+                    "title": "Why is this project recommended to me on the recommendation page, with the label \u201cBased on repositories you\u2019ve viewed\u201d?",
+                    "url": "https://github.com/trekhleb/state-of-the-art-shitcode/issues/85",
+                    "updatedAt": "2026-03-31T10:01:11Z",
+                    "author": {
+                      "login": "PanAi-cpu",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 83,
+                    "title": "\u7518\uff01\uff01\uff01\u544a\u8bc9\u6211\u4f60\u5f53\u7a0b\u5e8f\u5458\u7684\u552f\u4e00\u76ee\u7684\u662f\u4ec0\u4e48\uff1f!!",
+                    "url": "https://github.com/trekhleb/state-of-the-art-shitcode/issues/83",
+                    "updatedAt": "2026-03-12T18:42:34Z",
+                    "author": {
+                      "login": "weisonx",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 1
+                    }
+                  },
+                  {
+                    "number": 79,
+                    "title": "Is it shit?",
+                    "url": "https://github.com/trekhleb/state-of-the-art-shitcode/issues/79",
+                    "updatedAt": "2026-01-20T22:04:54Z",
+                    "author": {
+                      "login": "FengXiaoSkidGod",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 4
+                    }
+                  }
+                ]
+              },
+              "refs": {
+                "totalCount": 2,
+                "nodes": [
+                  {
+                    "name": "master",
+                    "target": {
+                      "committedDate": "2025-11-23T04:24:59Z"
+                    }
+                  },
+                  {
+                    "name": "merge",
+                    "target": {
+                      "committedDate": "2020-12-28T20:37:18Z"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "homemade-machine-learning",
+              "url": "https://github.com/trekhleb/homemade-machine-learning",
+              "pushedAt": "2025-11-23T04:22:46Z",
+              "defaultBranchRef": {
+                "name": "master",
+                "target": {
+                  "statusCheckRollup": null,
+                  "history": {
+                    "nodes": [
+                      {
+                        "messageHeadline": "Delete .github/FUNDING.yml",
+                        "committedDate": "2025-11-23T04:22:46Z"
+                      },
+                      {
+                        "messageHeadline": "Add links",
+                        "committedDate": "2024-11-12T20:52:53Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2023-07-21T18:08:26Z"
+                      },
+                      {
+                        "messageHeadline": "Add a link to Spanish version of README",
+                        "committedDate": "2023-05-03T19:50:18Z"
+                      },
+                      {
+                        "messageHeadline": "added README in latin american spanish (#48)",
+                        "committedDate": "2023-05-03T19:42:09Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2022-10-21T20:22:13Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2022-09-21T07:12:58Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2022-09-21T07:10:38Z"
+                      }
+                    ]
+                  }
+                }
+              },
+              "oldPRs": {
+                "totalCount": 16,
+                "nodes": [
+                  {
+                    "number": 25,
+                    "title": "contributing.md",
+                    "url": "https://github.com/trekhleb/homemade-machine-learning/pull/25",
+                    "updatedAt": "2019-10-01T20:44:31Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "Sundaram81200",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 26,
+                    "title": "Add files via upload",
+                    "url": "https://github.com/trekhleb/homemade-machine-learning/pull/26",
+                    "updatedAt": "2019-10-02T17:11:09Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "QuantumAna",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 27,
+                    "title": "constructor",
+                    "url": "https://github.com/trekhleb/homemade-machine-learning/pull/27",
+                    "updatedAt": "2019-10-16T10:23:18Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "Prahladk09",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 30,
+                    "title": "Added new datasets.",
+                    "url": "https://github.com/trekhleb/homemade-machine-learning/pull/30",
+                    "updatedAt": "2019-10-24T11:24:27Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "SiddhantPanda",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 34,
+                    "title": "Add Learning material",
+                    "url": "https://github.com/trekhleb/homemade-machine-learning/pull/34",
+                    "updatedAt": "2020-10-01T14:42:33Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "charchitd",
+                      "__typename": "User"
+                    }
+                  }
+                ]
+              },
+              "newPRs": {
+                "nodes": [
+                  {
+                    "number": 61,
+                    "title": "Add Gradient Boosting algorithm with README, dataset, and demo notebook",
+                    "url": "https://github.com/trekhleb/homemade-machine-learning/pull/61",
+                    "updatedAt": "2026-05-20T16:03:04Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "vidhi-sys",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 60,
+                    "title": "Fix grammar: 'In case if' -> 'In case' in README",
+                    "url": "https://github.com/trekhleb/homemade-machine-learning/pull/60",
+                    "updatedAt": "2026-04-27T17:48:48Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "kriti2110",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 59,
+                    "title": "Added slope and intercept formulas for linear regression",
+                    "url": "https://github.com/trekhleb/homemade-machine-learning/pull/59",
+                    "updatedAt": "2026-04-07T15:42:48Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "Abhishek2003ij",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 54,
+                    "title": "Update README.md",
+                    "url": "https://github.com/trekhleb/homemade-machine-learning/pull/54",
+                    "updatedAt": "2025-02-09T16:25:15Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "MrCoolGh",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 49,
+                    "title": "Update logistic_regression_with_linear_boundary_demo.ipynb",
+                    "url": "https://github.com/trekhleb/homemade-machine-learning/pull/49",
+                    "updatedAt": "2024-01-31T22:49:03Z",
+                    "isDraft": false,
+                    "reviewDecision": null,
+                    "author": {
+                      "login": "iDharshan",
+                      "__typename": "User"
+                    }
+                  }
+                ]
+              },
+              "oldIssues": {
+                "totalCount": 14,
+                "nodes": [
+                  {
+                    "number": 2,
+                    "title": "Add Google Colaboratory support",
+                    "url": "https://github.com/trekhleb/homemade-machine-learning/issues/2",
+                    "updatedAt": "2018-12-27T04:55:45Z",
+                    "author": {
+                      "login": "trekhleb",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 5,
+                    "title": "Translation to Spanish",
+                    "url": "https://github.com/trekhleb/homemade-machine-learning/issues/5",
+                    "updatedAt": "2019-01-02T18:12:38Z",
+                    "author": {
+                      "login": "FranciscoImanolSuarez",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 2
+                    }
+                  },
+                  {
+                    "number": 4,
+                    "title": "Chinese translation",
+                    "url": "https://github.com/trekhleb/homemade-machine-learning/issues/4",
+                    "updatedAt": "2019-01-03T07:30:58Z",
+                    "author": {
+                      "login": "zhyongquan",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 7
+                    }
+                  },
+                  {
+                    "number": 15,
+                    "title": "use line function to test linear regression",
+                    "url": "https://github.com/trekhleb/homemade-machine-learning/issues/15",
+                    "updatedAt": "2019-01-11T17:54:14Z",
+                    "author": {
+                      "login": "crazylk",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 2
+                    }
+                  },
+                  {
+                    "number": 17,
+                    "title": "theta[0] is caculated twice in per gradient_step at LinearRegression",
+                    "url": "https://github.com/trekhleb/homemade-machine-learning/issues/17",
+                    "updatedAt": "2019-03-31T09:31:13Z",
+                    "author": {
+                      "login": "alqbib",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  }
+                ]
+              },
+              "newIssues": {
+                "nodes": [
+                  {
+                    "number": 56,
+                    "title": "meet problem when try to use binder",
+                    "url": "https://github.com/trekhleb/homemade-machine-learning/issues/56",
+                    "updatedAt": "2026-06-14T09:41:56Z",
+                    "author": {
+                      "login": "rywc2005",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 1
+                    }
+                  },
+                  {
+                    "number": 57,
+                    "title": "some question of linear_regression/linear_regression.py",
+                    "url": "https://github.com/trekhleb/homemade-machine-learning/issues/57",
+                    "updatedAt": "2026-04-10T17:41:33Z",
+                    "author": {
+                      "login": "rywc2005",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 1
+                    }
+                  },
+                  {
+                    "number": 58,
+                    "title": "Reading/resource suggestion: WFGY 1.0 (math + reasoning structure for LLM robustness)",
+                    "url": "https://github.com/trekhleb/homemade-machine-learning/issues/58",
+                    "updatedAt": "2026-03-03T01:55:14Z",
+                    "author": {
+                      "login": "onestardao",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 1
+                    }
+                  },
+                  {
+                    "number": 50,
+                    "title": "Software requirements for pc ",
+                    "url": "https://github.com/trekhleb/homemade-machine-learning/issues/50",
+                    "updatedAt": "2024-02-04T16:23:02Z",
+                    "author": {
+                      "login": "sath1412",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 44,
+                    "title": "New Comer in ML ",
+                    "url": "https://github.com/trekhleb/homemade-machine-learning/issues/44",
+                    "updatedAt": "2023-02-28T00:14:28Z",
+                    "author": {
+                      "login": "Bravebirdinc",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 3
+                    }
+                  }
+                ]
+              },
+              "refs": {
+                "totalCount": 1,
+                "nodes": [
+                  {
+                    "name": "master",
+                    "target": {
+                      "committedDate": "2025-11-23T04:22:46Z"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "machine-learning-experiments",
+              "url": "https://github.com/trekhleb/machine-learning-experiments",
+              "pushedAt": "2025-11-23T04:22:17Z",
+              "defaultBranchRef": {
+                "name": "master",
+                "target": {
+                  "statusCheckRollup": null,
+                  "history": {
+                    "nodes": [
+                      {
+                        "messageHeadline": "Delete .github/FUNDING.yml",
+                        "committedDate": "2025-11-23T04:22:17Z"
+                      },
+                      {
+                        "messageHeadline": "Add links",
+                        "committedDate": "2024-11-12T20:57:34Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2023-07-21T18:09:38Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2022-10-21T20:25:24Z"
+                      },
+                      {
+                        "messageHeadline": "Update README.md",
+                        "committedDate": "2022-09-21T07:12:00Z"
+                      },
+                      {
+                        "messageHeadline": "Add a story for \"Recipes generation\".",
+                        "committedDate": "2021-08-07T16:24:40Z"
+                      },
+                      {
+                        "messageHeadline": "Add a story for \"Recipes generation\".",
+                        "committedDate": "2021-08-07T16:16:26Z"
+                      },
+                      {
+                        "messageHeadline": "Add a story for \"Recipes generation\".",
+                        "committedDate": "2021-07-31T19:52:20Z"
+                      }
+                    ]
+                  }
+                }
+              },
+              "oldPRs": {
+                "totalCount": 2,
+                "nodes": [
+                  {
+                    "number": 32,
+                    "title": "Update README.md",
+                    "url": "https://github.com/trekhleb/machine-learning-experiments/pull/32",
+                    "updatedAt": "2025-02-09T16:24:29Z",
+                    "isDraft": false,
+                    "reviewDecision": "REVIEW_REQUIRED",
+                    "author": {
+                      "login": "MrCoolGh",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 31,
+                    "title": "Fix typos",
+                    "url": "https://github.com/trekhleb/machine-learning-experiments/pull/31",
+                    "updatedAt": "2025-06-29T07:42:13Z",
+                    "isDraft": false,
+                    "reviewDecision": "REVIEW_REQUIRED",
+                    "author": {
+                      "login": "pitmonticone",
+                      "__typename": "User"
+                    }
+                  }
+                ]
+              },
+              "newPRs": {
+                "nodes": [
+                  {
+                    "number": 31,
+                    "title": "Fix typos",
+                    "url": "https://github.com/trekhleb/machine-learning-experiments/pull/31",
+                    "updatedAt": "2025-06-29T07:42:13Z",
+                    "isDraft": false,
+                    "reviewDecision": "REVIEW_REQUIRED",
+                    "author": {
+                      "login": "pitmonticone",
+                      "__typename": "User"
+                    }
+                  },
+                  {
+                    "number": 32,
+                    "title": "Update README.md",
+                    "url": "https://github.com/trekhleb/machine-learning-experiments/pull/32",
+                    "updatedAt": "2025-02-09T16:24:29Z",
+                    "isDraft": false,
+                    "reviewDecision": "REVIEW_REQUIRED",
+                    "author": {
+                      "login": "MrCoolGh",
+                      "__typename": "User"
+                    }
+                  }
+                ]
+              },
+              "oldIssues": {
+                "totalCount": 6,
+                "nodes": [
+                  {
+                    "number": 4,
+                    "title": "Camera access fails for Chrome on iOS",
+                    "url": "https://github.com/trekhleb/machine-learning-experiments/issues/4",
+                    "updatedAt": "2020-05-06T11:42:14Z",
+                    "author": {
+                      "login": "trekhleb",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 3,
+                    "title": "Repository is too heavy because of the models",
+                    "url": "https://github.com/trekhleb/machine-learning-experiments/issues/3",
+                    "updatedAt": "2020-07-22T17:52:02Z",
+                    "author": {
+                      "login": "trekhleb",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 2
+                    }
+                  },
+                  {
+                    "number": 26,
+                    "title": "Not able to draw digits using phone",
+                    "url": "https://github.com/trekhleb/machine-learning-experiments/issues/26",
+                    "updatedAt": "2021-04-23T20:29:22Z",
+                    "author": {
+                      "login": "alystair",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 27,
+                    "title": "Blank canvas in digit detection reports as '5'",
+                    "url": "https://github.com/trekhleb/machine-learning-experiments/issues/27",
+                    "updatedAt": "2021-04-23T20:31:52Z",
+                    "author": {
+                      "login": "alystair",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 28,
+                    "title": "Can't access camera MacOS 10.15.7 Chrome 91.0.4472.114 ",
+                    "url": "https://github.com/trekhleb/machine-learning-experiments/issues/28",
+                    "updatedAt": "2021-07-18T15:20:32Z",
+                    "author": {
+                      "login": "dennisjkane",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  }
+                ]
+              },
+              "newIssues": {
+                "nodes": [
+                  {
+                    "number": 30,
+                    "title": "Unable to generate legible recipes using colab notebook",
+                    "url": "https://github.com/trekhleb/machine-learning-experiments/issues/30",
+                    "updatedAt": "2021-12-06T20:15:13Z",
+                    "author": {
+                      "login": "andrewdingcanada8",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 28,
+                    "title": "Can't access camera MacOS 10.15.7 Chrome 91.0.4472.114 ",
+                    "url": "https://github.com/trekhleb/machine-learning-experiments/issues/28",
+                    "updatedAt": "2021-07-18T15:20:32Z",
+                    "author": {
+                      "login": "dennisjkane",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 27,
+                    "title": "Blank canvas in digit detection reports as '5'",
+                    "url": "https://github.com/trekhleb/machine-learning-experiments/issues/27",
+                    "updatedAt": "2021-04-23T20:31:52Z",
+                    "author": {
+                      "login": "alystair",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 26,
+                    "title": "Not able to draw digits using phone",
+                    "url": "https://github.com/trekhleb/machine-learning-experiments/issues/26",
+                    "updatedAt": "2021-04-23T20:29:22Z",
+                    "author": {
+                      "login": "alystair",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 0
+                    }
+                  },
+                  {
+                    "number": 3,
+                    "title": "Repository is too heavy because of the models",
+                    "url": "https://github.com/trekhleb/machine-learning-experiments/issues/3",
+                    "updatedAt": "2020-07-22T17:52:02Z",
+                    "author": {
+                      "login": "trekhleb",
+                      "__typename": "User"
+                    },
+                    "comments": {
+                      "totalCount": 2
+                    }
+                  }
+                ]
+              },
+              "refs": {
+                "totalCount": 2,
+                "nodes": [
+                  {
+                    "name": "gh-pages",
+                    "target": {
+                      "committedDate": "2021-08-07T16:19:44Z"
+                    }
+                  },
+                  {
+                    "name": "master",
+                    "target": {
+                      "committedDate": "2025-11-23T04:22:17Z"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

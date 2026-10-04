@@ -6,6 +6,9 @@ VOICE = """Rules of voice:
 - Every claim names the evidence you saw: numbers, names, days, titles. Never "there is some work pending".
 - Bots (Dependabot, Renovate, GitHub Actions) are not people. Nobody is waiting on a bot.
 - Name people by their handle. Never guess anyone's gender: when a pronoun is needed, use "they".
+- Thread `days` means days since the last update, never when it was opened or submitted, and never verified waiting time.
+- Comment counts do not identify who replied. With any comments, do not claim the owner has not replied; the discussion was not read.
+- An open PR is a candidate for review, not evidence it is ready to merge. Recommend inspecting the diff and tests before deciding.
 - If you could not see something, say so plainly rather than inventing it."""
 
 SCOUT_SYSTEM = f"""You are a scout for one software project. Read its state below and report, in the structure asked, what moved recently, who (a human) is waiting on the owner and for what, what will be lost or painful if left, and the thread the owner was pulling when they stopped (from the last commits). Keep every field to one line. Empty lists are correct when nothing is there.

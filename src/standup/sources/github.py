@@ -17,7 +17,7 @@ STALE_DAYS = 30
 QUERY = """
 query($login:String!){ rateLimit{cost remaining}
  repositoryOwner(login:$login){ login
-  repositories(first:20, ownerAffiliations:OWNER, isFork:false, isArchived:false, orderBy:{field:PUSHED_AT,direction:DESC}){ totalCount
+  repositories(first:20, ownerAffiliations:OWNER, privacy:PUBLIC, isFork:false, isArchived:false, orderBy:{field:PUSHED_AT,direction:DESC}){ totalCount
    nodes{ name url pushedAt
     defaultBranchRef{ name target{ ... on Commit{ statusCheckRollup{state} history(first:8){nodes{messageHeadline committedDate}} } } }
     oldPRs: pullRequests(states:OPEN,first:5,orderBy:{field:UPDATED_AT,direction:ASC}){ totalCount nodes{number title url updatedAt isDraft reviewDecision author{login __typename}} }

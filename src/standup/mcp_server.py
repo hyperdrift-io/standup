@@ -7,12 +7,17 @@ from mcp.server.fastmcp import FastMCP
 
 from .pipeline import run_standup
 from .render import brief_to_text
+from .models import Brief
+
+
+class StandupResult(Brief):
+    text: str
 
 mcp = FastMCP("standup")
 
 
 @mcp.tool()
-async def standup(target: str) -> dict:
+async def standup(target: str) -> StandupResult:
     """Triage someone's software projects and say what to do first.
 
     Call this when a person asks what to work on, what they left unfinished, who is waiting on them,
@@ -22,9 +27,7 @@ async def standup(target: str) -> dict:
     """
     # The run is a minute of blocking work with its own event loop inside; keep the server's loop free.
     brief = await asyncio.to_thread(run_standup, target)
-    out = brief.model_dump()
-    out["text"] = brief_to_text(brief)
-    return out
+    return StandupResult(**brief.model_dump(), text=brief_to_text(brief))
 
 
 def main() -> None:

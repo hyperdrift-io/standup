@@ -1,0 +1,36 @@
+{
+  "checked_at": "2026-10-04",
+  "source": "Read-only gh pr view and gh issue view against public trekhleb/javascript-algorithms",
+  "references": [
+    {
+      "number": 2191,
+      "kind": "pull_request",
+      "url": "https://github.com/trekhleb/javascript-algorithms/pull/2191",
+      "title": "Implements the Hungarian Algorithm",
+      "author": "Ayushman-00",
+      "state": "OPEN",
+      "createdAt": "2026-07-07T18:22:54Z",
+      "updatedAt": "2026-10-02T16:26:07Z"
+    },
+    {
+      "number": 2221,
+      "kind": "issue",
+      "url": "https://github.com/trekhleb/javascript-algorithms/issues/2221",
+      "title": "[TEL] Telugu Language Translation / తెలుగు భాష అనువాదము",
+      "author": "YashwanthPandi",
+      "state": "OPEN",
+      "createdAt": "2026-09-30T05:53:17Z",
+      "updatedAt": "2026-09-30T08:32:00Z"
+    },
+    {
+      "number": 2219,
+      "kind": "pull_request",
+      "url": "https://github.com/trekhleb/javascript-algorithms/pull/2219",
+      "title": "Fix interpolationSearch looping forever when the seek element is above part of the range",
+      "author": "Darkslayer3324j",
+      "state": "OPEN",
+      "createdAt": "2026-09-19T16:52:44Z",
+      "updatedAt": "2026-09-22T20:33:50Z"
+    }
+  ]
+}

@@ -12,6 +12,8 @@ Standup takes a GitHub handle, reads that person's public repositories, and hand
 
 - **Read-only.** Standup reads repositories and reports what it looked at; it never writes to GitHub.
 - Every recommendation carries its evidence. Keep the audit trail (`src/standup/audit.py`) visible in every surface.
+- GitHub handle reads explicitly filter public repositories, even with a token that can read private ones. Local folders remain an explicitly selected local capability.
+- Thread ages are last-update ages; counts do not establish who replied, and an open PR does not establish merge readiness. Preserve these evidence limits in every brief.
 
 ## Stack
 
@@ -29,6 +31,17 @@ python -m venv .venv && .venv/bin/pip install -e '.[dev]'
 ```
 
 Production runs `.venv/bin/python -m standup.web` under PM2 with `interpreter: none`, which does not inject `.env`; the web entrypoint loads it itself.
+
+## MCP distribution
+
+`standup-mcp` and `standup-agent` expose the same typed MCP result; the latter
+matches the distribution name for Registry clients. Keep `pyproject.toml`,
+`server.json` and the release tag on the same version. Verify a non-editable
+installation through initialize, discovery and an actual call. A manifest or
+publish workflow alone is not publication: check PyPI and the Registry before
+claiming availability. Tagged Git source is the documented installation path
+while those checks are pending. Retain actual results and their limits in
+`docs/proof/`; transport success is separate from recommendation quality.
 
 ## Approved experience — Clear Line (2026-09-11) and the Three stops mark (2026-09-13)
 

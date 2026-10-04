@@ -1,0 +1,17 @@
+Processing request of type ListToolsRequest
+Processing request of type CallToolRequest
+HTTP Request: POST https://api.github.com/graphql "HTTP/1.1 200 OK"
+Creating Strands MetricsClient
+HTTP Request: POST https://aiplatform.googleapis.com/v1beta1/projects/[REDACTED]/locations/global/publishers/google/models/gemini-3.6-flash:streamGenerateContent?alt=sse "HTTP/1.1 200 OK"
+HTTP Request: POST https://aiplatform.googleapis.com/v1beta1/projects/[REDACTED]/locations/global/publishers/google/models/gemini-3.6-flash:streamGenerateContent?alt=sse "HTTP/1.1 200 OK"
+HTTP Request: POST https://aiplatform.googleapis.com/v1beta1/projects/[REDACTED]/locations/global/publishers/google/models/gemini-3.6-flash:streamGenerateContent?alt=sse "HTTP/1.1 200 OK"
+HTTP Request: POST https://aiplatform.googleapis.com/v1beta1/projects/[REDACTED]/locations/global/publishers/google/models/gemini-3.6-flash:streamGenerateContent?alt=sse "HTTP/1.1 200 OK"
+HTTP Request: POST https://aiplatform.googleapis.com/v1beta1/projects/[REDACTED]/locations/global/publishers/google/models/gemini-3.6-flash:streamGenerateContent?alt=sse "HTTP/1.1 200 OK"
+HTTP Request: POST https://aiplatform.googleapis.com/v1beta1/projects/[REDACTED]/locations/global/publishers/google/models/gemini-3.6-flash:streamGenerateContent?alt=sse "HTTP/1.1 200 OK"
+HTTP Request: POST https://aiplatform.googleapis.com/v1beta1/projects/[REDACTED]/locations/global/publishers/google/models/gemini-3.6-flash:streamGenerateContent?alt=sse "HTTP/1.1 200 OK"
+HTTP Request: POST https://aiplatform.googleapis.com/v1beta1/projects/[REDACTED]/locations/global/publishers/google/models/gemini-3.6-flash:streamGenerateContent?alt=sse "HTTP/1.1 200 OK"
+HTTP Request: POST https://aiplatform.googleapis.com/v1beta1/projects/[REDACTED]/locations/global/publishers/google/models/gemini-3.6-flash:streamGenerateContent?alt=sse "HTTP/1.1 200 OK"
+HTTP Request: POST https://aiplatform.googleapis.com/v1beta1/projects/[REDACTED]/locations/global/publishers/google/models/gemini-3.6-flash:streamGenerateContent?alt=sse "HTTP/1.1 200 OK"
+HTTP Request: POST https://aiplatform.googleapis.com/v1beta1/projects/[REDACTED]/locations/global/publishers/google/models/gemini-3.6-flash:streamGenerateContent?alt=sse "HTTP/1.1 200 OK"
+HTTP Request: POST https://aiplatform.googleapis.com/v1beta1/projects/[REDACTED]/locations/global/publishers/google/models/gemini-3.6-flash:streamGenerateContent?alt=sse "HTTP/1.1 200 OK"
+HTTP Request: POST https://aiplatform.googleapis.com/v1beta1/projects/[REDACTED]/locations/global/publishers/google/models/gemini-3.6-flash:streamGenerateContent?alt=sse "HTTP/1.1 200 OK"

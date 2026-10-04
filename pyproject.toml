@@ -1,6 +1,6 @@
 [project]
 name = "standup-agent"
-version = "0.3.0"
+version = "0.3.1"
 description = "Type a GitHub handle. See who is waiting on you, what will hurt later, and what to do first."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -41,6 +41,7 @@ dev = ["pytest>=8"]
 [project.scripts]
 standup = "standup.cli:main"
 standup-mcp = "standup.mcp_server:main"
+standup-agent = "standup.mcp_server:main"
 standup-web = "standup.web:main"
 
 [build-system]

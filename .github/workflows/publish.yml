@@ -15,7 +15,24 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Check release identity
+        run: |
+          python - <<'PY'
+          import json, os, pathlib, tomllib
+          root = pathlib.Path('.')
+          project = tomllib.loads((root / 'pyproject.toml').read_text())['project']
+          server = json.loads((root / 'server.json').read_text())
+          assert os.environ['GITHUB_REF_NAME'] == 'v' + project['version'], 'Tag and package versions differ'
+          assert server['version'] == project['version'] == server['packages'][0]['version']
+          assert server['packages'][0]['identifier'] == project['name']
+          assert 'mcp-name: ' + server['name'] in (root / 'README.md').read_text()
+          assert project['name'] in project['scripts'], 'Registry execution needs a matching entrypoint'
+          PY
       - run: python -m pip install --quiet build && python -m build
+      - name: Verify the installed wheel
+        run: |
+          python -m pip install --quiet dist/*.whl pytest
+          python -m pytest -o pythonpath='' tests
       - uses: actions/upload-artifact@v4
         with:
           name: dist

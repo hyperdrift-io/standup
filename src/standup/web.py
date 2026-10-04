@@ -193,7 +193,7 @@ LLMS = f"""# Standup
 
 - [Standup]({BASE}/): enter a handle, get the brief; the page walks through one example route
 - [Source and README]({REPO}): how the ordering is decided, a real unedited brief, the CLI, the GitHub Action and the MCP server
-- [standup-agent on PyPI](https://pypi.org/project/standup-agent/): install the CLI and the MCP server with pipx or uv
+- [Install Standup]({REPO}#install): tagged-source CLI and MCP installation, credentials and scope
 """
 
 

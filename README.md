@@ -1,5 +1,7 @@
 # Standup
 
+<!-- mcp-name: io.github.hyperdrift-io/standup -->
+
 **Type a GitHub handle. See who is waiting on you.**
 
 Someone opened a pull request on your project nine days ago and you still have not looked, because looking means six tabs and three threads before you know whether it even needs you. So it sits there, and the person who wrote it decides you are not maintaining this any more. Standup does that reading for you and hands back three things to do, each with the evidence it saw and how long it will take.
@@ -70,10 +72,16 @@ The one thing that ever writes is the last step of the GitHub Action: your token
 
 ## Install
 
-**CLI**
+**MCP evaluation build.** Clean installation and tool execution are verified.
+Two live checks still found unsupported age and CI-coverage claims in generated
+briefs. Inspect the linked GitHub evidence before acting; this build has not
+established better decisions than reading GitHub directly. See the
+[installation and comparison report](docs/proof/2026-10-04/README.md).
+
+**CLI** — install the tagged source with [uv](https://docs.astral.sh/uv/):
 
 ```bash
-pipx install standup-agent        # or: uv tool install standup-agent
+uv tool install 'git+https://github.com/hyperdrift-io/standup@mcp-preview-0.3.1'
 standup trekhleb                  # a GitHub handle or org
 standup ~/dev/my-project          # or a folder of repositories
 ```
@@ -83,12 +91,30 @@ Set `GOOGLE_SA_KEY_B64` + `VERTEX_PROJECT`, or `GEMINI_API_KEY`, or leave both u
 **MCP server** — ask Claude or Cursor "what should I do first on my projects?" and the brief comes back in the tool you already have open. Claude Desktop, `claude_desktop_config.json`:
 
 ```json
-{"mcpServers": {"standup": {"command": "uvx", "args": ["--from", "standup-agent", "standup-mcp"],
+{"mcpServers": {"standup": {"command": "uvx", "args": ["--from", "git+https://github.com/hyperdrift-io/standup@mcp-preview-0.3.1", "standup-mcp"],
   "env": {"GOOGLE_SA_KEY_B64": "…", "VERTEX_PROJECT": "…", "GITHUB_TOKEN": "…",
           "STANDUP_STATE": "/Users/you/.standup"}}}}
 ```
 
-Cursor takes the same block in `.cursor/mcp.json`. One tool, `standup(target)`. Listed in the [MCP Registry](https://registry.modelcontextprotocol.io) as `io.github.hyperdrift-io/standup`. The token is any read-only one; without it the server falls back to `gh auth token`, which a GUI-launched app often cannot see.
+Cursor takes the same block in `.cursor/mcp.json`. One tool, `standup(target)`.
+Set one model provider and GitHub access in the host environment; the server
+does not automatically read a project's `.env`. The token is any read-only one;
+without it the server falls back to `gh auth token`, which a GUI-launched app
+often cannot see. Source installation requires Git and a compatible Python
+runtime. Give the host at least 180 seconds for a first live call.
+
+The GitHub handle path reads public repositories only. A local folder target is
+an explicit local capability: it reads that folder and its Git metadata, so
+grant filesystem access accordingly. The local previous-brief cache lives in
+`STANDUP_STATE` (default `~/.standup`). Model-provider charges are separate from
+this open-source package.
+
+PyPI and MCP Registry promotion are held at the evidence-quality gate. `server.json`
+declares `io.github.hyperdrift-io/standup` and describes the intended PyPI
+package; a committed manifest is not a live listing. Use the tagged-source
+installation above to evaluate the current build. The package also exposes
+`standup-agent` as an MCP entrypoint matching its distribution name, so a
+Registry client can run it without custom executable arguments.
 
 **GitHub Action** — copy [`examples/standup.yml`](examples/standup.yml) into `.github/workflows/`, add one model secret — a Gemini key, or the Vertex pair — and Monday morning brings an issue instead of a backlog.
 

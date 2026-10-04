@@ -1,0 +1,6 @@
+{
+  "command": "<fresh-venv>/bin/python -m pytest -q",
+  "exit_code": 0,
+  "elapsed_seconds": 10.032,
+  "scope": "All existing tests; declared dev extra only; no model credentials loaded"
+}
