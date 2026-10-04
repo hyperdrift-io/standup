@@ -64,5 +64,22 @@ resolve, not missing analytics or an assumed lack of demand.
 - [Revised run](final-run/README.md): typed protocol result and release tests.
 - [GitHub snapshot](github-baseline.json): bounded public data behind the comparison.
 
-The versioned public Git install receives its own transport check after the
-tag is available. A local wheel check alone does not establish that public path.
+The [public Git installation](public-git-install.md) also passed: a fresh cache
+and temporary directory, with Git authentication disabled, retrieved the tag,
+initialized MCP and listed the typed tool in 16.820 seconds. All seventeen
+installed runtime Python files matched the live-tested wheel. This verifies
+the public installation path without repeating a paid model call.
+
+## Live service check
+
+The existing infra deployment completed successfully at runtime revision
+`9b940b2d5fd13a01aadd47602fbe525ce8fd84be`. Public `/health` returned HTTP 200,
+and `/llms.txt` now points to the verified README installation instructions
+instead of the unavailable PyPI package. Infra configuration and secrets were
+unchanged.
+
+The existing launch-readiness command reported four passes, zero failures and
+two existing warnings: the PostHog project is unset in app configuration and
+the base URL is absent from the vault. `seo_enabled=false` skips the analytics
+and indexing gate. This verifies the deployed repair, not complete discovery
+measurement or readiness for a growth campaign.

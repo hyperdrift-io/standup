@@ -1,0 +1,260 @@
+{
+  "started_at": "2026-10-04T20:17:50.427389+00:00",
+  "install_spec": "git+https://github.com/hyperdrift-io/standup@mcp-preview-0.3.1",
+  "expected_commit": "9b940b2d5fd13a01aadd47602fbe525ce8fd84be",
+  "fresh_uv_cache": true,
+  "fresh_working_directory": true,
+  "editable_install": false,
+  "git_authentication": "Global and system Git config disabled; credential helper empty; terminal prompts disabled; no token or SSH-agent variables passed",
+  "model_calls": 0,
+  "steps": [
+    {
+      "method": "initialize",
+      "elapsed_seconds_including_install": 16.71,
+      "response": {
+        "meta": null,
+        "protocolVersion": "2025-11-25",
+        "capabilities": {
+          "experimental": {},
+          "logging": null,
+          "prompts": {
+            "listChanged": false
+          },
+          "resources": {
+            "subscribe": false,
+            "listChanged": false
+          },
+          "tools": {
+            "listChanged": false
+          },
+          "completions": null,
+          "tasks": null
+        },
+        "serverInfo": {
+          "name": "standup",
+          "title": null,
+          "version": "1.30.0",
+          "websiteUrl": null,
+          "icons": null
+        },
+        "instructions": null
+      }
+    },
+    {
+      "method": "tools/list",
+      "elapsed_seconds": 0.001,
+      "response": {
+        "meta": null,
+        "nextCursor": null,
+        "tools": [
+          {
+            "name": "standup",
+            "title": null,
+            "description": "Triage someone's software projects and say what to do first.\n\n    Call this when a person asks what to work on, what they left unfinished, who is waiting on them,\n    or wants a standup across their repositories. `target` is a public GitHub handle or organisation\n    (e.g. \"hyperdrift-io\"), or a local folder path. Read-only: it never writes to GitHub or the disk beyond a\n    small cache. Returns up to three items with evidence, action and minutes, plus what it looked at.\n    ",
+            "inputSchema": {
+              "properties": {
+                "target": {
+                  "title": "Target",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target"
+              ],
+              "title": "standupArguments",
+              "type": "object"
+            },
+            "outputSchema": {
+              "$defs": {
+                "BriefItem": {
+                  "properties": {
+                    "title": {
+                      "title": "Title",
+                      "type": "string"
+                    },
+                    "evidence": {
+                      "title": "Evidence",
+                      "type": "string"
+                    },
+                    "action": {
+                      "title": "Action",
+                      "type": "string"
+                    },
+                    "minutes": {
+                      "exclusiveMinimum": 0,
+                      "title": "Minutes",
+                      "type": "integer"
+                    },
+                    "kind": {
+                      "enum": [
+                        "waiting",
+                        "will_hurt",
+                        "thread"
+                      ],
+                      "title": "Kind",
+                      "type": "string"
+                    },
+                    "waiting_on": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null,
+                      "title": "Waiting On"
+                    },
+                    "repo": {
+                      "title": "Repo",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "evidence",
+                    "action",
+                    "minutes",
+                    "kind",
+                    "repo"
+                  ],
+                  "title": "BriefItem",
+                  "type": "object"
+                },
+                "LookedAt": {
+                  "properties": {
+                    "when": {
+                      "title": "When",
+                      "type": "string"
+                    },
+                    "what": {
+                      "title": "What",
+                      "type": "string"
+                    },
+                    "target": {
+                      "title": "Target",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "when",
+                    "what",
+                    "target"
+                  ],
+                  "title": "LookedAt",
+                  "type": "object"
+                }
+              },
+              "properties": {
+                "target": {
+                  "title": "Target",
+                  "type": "string"
+                },
+                "standing": {
+                  "title": "Standing",
+                  "type": "string"
+                },
+                "items": {
+                  "items": {
+                    "$ref": "#/$defs/BriefItem"
+                  },
+                  "maxItems": 3,
+                  "minItems": 1,
+                  "title": "Items",
+                  "type": "array"
+                },
+                "beyond_tonight": {
+                  "title": "Beyond Tonight",
+                  "type": "string"
+                },
+                "could_not_see": {
+                  "default": [],
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Could Not See",
+                  "type": "array"
+                },
+                "looked_at": {
+                  "default": [],
+                  "items": {
+                    "$ref": "#/$defs/LookedAt"
+                  },
+                  "title": "Looked At",
+                  "type": "array"
+                },
+                "generated_at": {
+                  "title": "Generated At",
+                  "type": "string"
+                },
+                "text": {
+                  "title": "Text",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "target",
+                "standing",
+                "items",
+                "beyond_tonight",
+                "generated_at",
+                "text"
+              ],
+              "title": "StandupResult",
+              "type": "object"
+            },
+            "icons": null,
+            "annotations": null,
+            "meta": null,
+            "execution": null
+          }
+        ]
+      }
+    }
+  ],
+  "installation": {
+    "module": "/tmp/standup-public-git.gUjqhY/cache/archive-v0/xUazTaoYo3sI-Y_I/lib/python3.12/site-packages/standup",
+    "python": "3.12.14",
+    "version": "0.3.1",
+    "direct_url": {
+      "url": "https://github.com/hyperdrift-io/standup",
+      "vcs_info": {
+        "vcs": "git",
+        "commit_id": "9b940b2d5fd13a01aadd47602fbe525ce8fd84be",
+        "requested_revision": "mcp-preview-0.3.1"
+      }
+    },
+    "versions": {
+      "mcp": "1.30.0",
+      "strands-agents": "1.57.2",
+      "google-genai": "2.28.0",
+      "pydantic": "2.13.5"
+    }
+  },
+  "runtime_source_files": {
+    "standup/__init__.py": "aecacc17d17bd2bea6752b10e7ef9a116d22017410546eeb538838351272e0f3",
+    "standup/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "standup/audit.py": "63578e438a40119234ba1bd286d2288f0fe5cf231f4fb61a1dfb5e19dc183f28",
+    "standup/cli.py": "e21ff88a48eea946eec9307144b5f893dd2c2fdacf5e0c688f2aaa1d8e6d25e1",
+    "standup/graph.py": "6462d5e9965624cc119625273a7f44f90548e1e647032131dd227cc6d04010c0",
+    "standup/mcp_server.py": "2b90be0463e3755f11fd6a2a74324c81154b20c9ed20be4b28731c5c4032f937",
+    "standup/model.py": "41d4dd1765d022706298b06554393474591d30d49f283722b2af0feef7b21a11",
+    "standup/models.py": "1445265283b981d48dbd72f4c1e9ef2295abef27240a43d260dfe79343f322b7",
+    "standup/pipeline.py": "43b0b4853f20e9c3204d7f636c8678aaf45d24eb6ef672ae418410a1fc08abe1",
+    "standup/prompts.py": "c4ae301a24b52d9dcd824b940155a2d855faa8de61b6286ba2874b20c56df82a",
+    "standup/render.py": "edb46a960a38aaf349117dff556807452cd0393688b9413b297efb268efc09fa",
+    "standup/runs.py": "7b8fa51e55e348b4ca8b11bce133da26d0a37a8a600bbe6105d3e18f3c946213",
+    "standup/store.py": "7330b0aa3989d394f30b5ec1d4c882edd1568c25fca3f26a719d5b2177cbe6f6",
+    "standup/target.py": "4c8c6472374c626f819b118b81db29b97a5125a01e32442d248e270e027d6bed",
+    "standup/web.py": "896c74f9f2328b73d6f7fe849c0e0744f4bcb211cca76b8010ddfae89f821d5f",
+    "standup/sources/github.py": "7e8f6dea73086515c4f41cc7f305800c9a3c5045852eb9264950f50a966ff2a2",
+    "standup/sources/local.py": "bdcceb610fd98192786086542ff17aa7af52c9e73239a4a3925a82100f20990a"
+  },
+  "runtime_matches_live_tested_wheel": true,
+  "live_tested_wheel_sha256": "7f72fc61015f28027d91a3eced3a32e31eff26c91e12d3f1b24b2bdb85ac9540",
+  "passed": true,
+  "elapsed_seconds": 16.82,
+  "completed_at": "2026-10-04T20:18:07.248243+00:00",
+  "install_and_server_stderr": "   Building standup-agent @ git+https://github.com/hyperdrift-io/standup@9b940b2d5fd13a01aadd47602fbe525ce8fd84be\nDownloading botocore (15.3MiB)\nDownloading cryptography (3.7MiB)\nDownloading google-genai (1.1MiB)\nDownloading pydantic-core (1.8MiB)\n      Built standup-agent @ git+https://github.com/hyperdrift-io/standup@9b940b2d5fd13a01aadd47602fbe525ce8fd84be\n Downloaded google-genai\n Downloaded pydantic-core\n Downloaded cryptography\n Downloaded botocore\nInstalled 58 packages in 74ms\nProcessing request of type ListToolsRequest\n"
+}
