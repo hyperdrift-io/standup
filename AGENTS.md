@@ -1,12 +1,12 @@
 # Standup
 
-> **Inherits**: [Hyperdrift workspace AGENTS.md](../../../AGENTS.md) (`~/dev/hyperdrift/AGENTS.md`). Read it first; this file adds Standup-specific context only.
->
-> **Voice Covenant**: every user-facing surface, including the agent's generated standup, inherits `meta/PHILOSOPHY.md` #8 "Speak to Enable" — enable, never diminish; strengths first.
+> Inherits `~/dev/hyperdrift/AGENTS.md`.
 
 ## Overview
 
-Standup takes a GitHub handle, reads that person's public repositories, and hands back three things to do first — who is waiting, the evidence it saw, and how long each takes. Live at https://standup.hyperdrift.io (port 3016, per `infra/group_vars/apps.yml`). Built with the Strands Agents SDK for the Agents for Humans Hackathon; load the `contest` skill for submission or post-contest work.
+Standup takes a GitHub handle, reads that person's public repositories, and hands back three things to do first — who is waiting, the evidence it saw, and how long each takes. Live at https://standup.hyperdrift.io (port 3016, per `infra/group_vars/apps.yml`). Built with the Strands Agents SDK.
+
+POC (founder, 29 October 2026). Agents for Humans entry, submitted 14 September 2026; outcome in `~/dev/hyperdrift/.growth/contests/ledger.jsonl`.
 
 ## Product boundary
 
@@ -43,6 +43,7 @@ claiming availability. Tagged Git source is the documented installation path
 while those checks are pending. Retain actual results and their limits in
 `docs/proof/`; transport success is separate from recommendation quality.
 
-## Approved experience — Clear Line (2026-09-11) and the Three stops mark (2026-09-13)
+## Design
 
-Founder selected Clear Line: "clear line is great. Go with that." See `DESIGN.md`. The hero tells the product story: a person contributes, their work meets the maintainer's attention, a manageable review helps them move forward. Each marked intersection reveals context on hover, keyboard focus or tap. Off-white, navy Figtree, coral route and quieter sage/slate crossings. Semantic cascading CSS, native SVG geometry, native forms and details/summary; motion optional, content immediate; real SSE owns progress, never an animation. No new framework or runtime dependency. Brand assets live in `src/standup/static/` (mark, favicon cut, share card); the design record is in the HD root under `docs/design/2026-09-1{1,3}-standup-*`.
+Founder-approved Clear Line (11 September 2026) and Three stops mark (13 September). `DESIGN.md` is the contract; brand assets in `src/standup/static/`.
+Real SSE owns progress; motion is optional and never stands in for it.
